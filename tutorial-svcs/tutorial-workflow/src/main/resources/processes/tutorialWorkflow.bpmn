@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="tutorial-workflow-public" name="Tutorial Workflow" isExecutable="true">
+    <serviceTask id="RunAnalytic" name="Run Analytic" activiti:class="com.ge.digitaltwin.tutorial.workflow.activiti.PostRESTServiceJavaDelegate">
+      <extensionElements>
+        <activiti:field name="url">
+          <activiti:string><![CDATA[https://<YOUR_CATALOG_ENTRY_ID>.run.aws-usw02-pr.ice.predix.io/api/v1/analytic/execution/]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="predixZoneId">
+          <activiti:string><![CDATA[<YOUR_PREDIX_ANALYTIC_CATALOG_ZONE_ID>]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <startEvent id="start" activiti:formKey="wf:submitAdhocTask"></startEvent>
+    <serviceTask id="GetData" name="Get Data" activiti:class="com.ge.digitaltwin.tutorial.workflow.activiti.GetRESTServiceJavaDelegate">
+      <extensionElements>
+        <activiti:field name="url">
+          <activiti:string><![CDATA[https://<YOUR_OWN_DATA_SERVICE_PREFIX>-dt-tutorial-data.run.aws-usw02-pr.ice.predix.io/input?assetId={assetId}&startTimestamp={startTime}&endTimestamp={endTime}]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow1" sourceRef="start" targetRef="GetData"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="GetData" targetRef="RunAnalytic"></sequenceFlow>
+    <serviceTask id="AnalyticPostProcessing" name="Analytic Post Processing" activiti:class="com.ge.digitaltwin.tutorial.workflow.activiti.PostRESTServiceJavaDelegate">
+      <extensionElements>
+        <activiti:field name="url">
+          <activiti:string><![CDATA[https://<YOUR_OWN_POSTPROCESSING_SERVICE_PREFIX>-dt-tutorial-analytic-post-processing.run.aws-usw02-pr.ice.predix.io/transform/{assetId}]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow3" sourceRef="RunAnalytic" targetRef="AnalyticPostProcessing"></sequenceFlow>
+    <serviceTask id="PersistResults" name="Persist Results" activiti:class="com.ge.digitaltwin.tutorial.workflow.activiti.PostRESTServiceJavaDelegate">
+      <extensionElements>
+        <activiti:field name="url">
+          <activiti:string><![CDATA[https://<YOUR_OWN_RESULT_SERVICE_PREFIX>-dt-tutorial-result-persistence.run.aws-usw02-pr.ice.predix.io/api/analyticResults]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow4" sourceRef="AnalyticPostProcessing" targetRef="PersistResults"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="PersistResults" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_tutorial-workflow-public">
+    <bpmndi:BPMNPlane bpmnElement="tutorial-workflow-public" id="BPMNPlane_tutorial-workflow-public">
+      <bpmndi:BPMNShape bpmnElement="RunAnalytic" id="BPMNShape_RunAnalytic">
+        <omgdc:Bounds height="65.0" width="115.0" x="360.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="890.0" y="235.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="35.0" width="35.0" x="80.0" y="235.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="GetData" id="BPMNShape_GetData">
+        <omgdc:Bounds height="65.0" width="115.0" x="190.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="AnalyticPostProcessing" id="BPMNShape_AnalyticPostProcessing">
+        <omgdc:Bounds height="65.0" width="105.0" x="540.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="PersistResults" id="BPMNShape_PersistResults">
+        <omgdc:Bounds height="65.0" width="115.0" x="700.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="115.0" y="252.0"></omgdi:waypoint>
+        <omgdi:waypoint x="190.0" y="252.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="305.0" y="252.0"></omgdi:waypoint>
+        <omgdi:waypoint x="360.0" y="252.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="475.0" y="252.0"></omgdi:waypoint>
+        <omgdi:waypoint x="540.0" y="252.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="645.0" y="252.0"></omgdi:waypoint>
+        <omgdi:waypoint x="700.0" y="252.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="815.0" y="252.0"></omgdi:waypoint>
+        <omgdi:waypoint x="890.0" y="252.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
