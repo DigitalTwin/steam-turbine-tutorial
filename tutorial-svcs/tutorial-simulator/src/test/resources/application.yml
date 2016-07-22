@@ -1,0 +1,11 @@
+---
+tutorial.workflow:
+  workflowUri: https://www.foo.com
+  workflowMethod: post
+  workflowHeaders[0]:
+    name: Predix-Zone-Id
+    value: xx4747ff-8b69-46a6-a022-2be17dfe0fca
+tutorial.simulator.oauth2:
+  accessTokenUri: https://www.foo.com
+  clientId: foo
+  clientSecret: bar
