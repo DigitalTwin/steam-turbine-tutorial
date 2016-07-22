@@ -1,0 +1,16 @@
+com.ge.dt.ptsc:
+  token-endpoint: https://<YOUR_OWN_UAA_INSTANCE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
+  clientId: <pass it in>
+  clientSecret: <pass it in>
+  zoneId: <YOUR_PREDIX_TIMESERIES_SERVICE_ZONE_ID>
+  ingestionEndpoint: wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages
+  queryEndpoint: https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints
+  proxyHost: <HOSTNAME>
+  proxyPort: <PORT>
+
+logging.level.com.ge.dt.ptsc: DEBUG
+logging.level.com.ge.digitaltwin.tutorial.util: debug
+
+config.steamTurbineId: <pass it in>
+config.csvFilename: <pass it in>
+
