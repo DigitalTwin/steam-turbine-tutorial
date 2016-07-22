@@ -1,0 +1,96 @@
+---
+applications:
+- name: tutorial-result-persistence
+  host: <YOUR_OWN_RESULT_SERVICE_PREFIX>-dt-tutorial-result-persistence
+  memory: 1G
+  services:
+  - <YOUR_POSTGRES_SERVICE_FOR_RESULT_DATA>
+  - <YOUR_RABBITMQ_SERVICE>
+  path: tutorial-result-persistence/target/tutorial-result-persistence-1.1-SNAPSHOT.jar
+  env:
+    security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
+    security_oauth2_client_clientId: <YOUR_CLIENT_ID>
+    security_oauth2_client_clientSecret: <YOUR_CLIENT_SECRET>
+- name: tutorial-asset
+  host: <YOUR_OWN_ASSET_SERVICE_PREFIX>-dt-tutorial-asset
+  memory: 1G
+  path: tutorial-asset/target/tutorial-asset-1.1-SNAPSHOT.jar
+  env:
+    security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
+    security_oauth2_client_clientId: <YOUR_CLIENT_ID>
+    security_oauth2_client_clientSecret: <YOUR_CLIENT_SECRET>
+- name: tutorial-model-coefficient
+  host: <YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient
+  memory: 1G
+  services:
+  - <YOUR_POSTGRES_SERVICE_FOR_COEFFICIENT_DATA>
+  path: tutorial-model-coefficient/target/tutorial-model-coefficient-1.1-SNAPSHOT.jar
+  env:
+    security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
+    security_oauth2_client_clientId: <YOUR_CLIENT_ID>
+    security_oauth2_client_clientSecret: <YOUR_CLIENT_SECRET>
+- name: tutorial-analytic-post-processing
+  host: <YOUR_OWN_POSTPROCESSING_PREFIX>-dt-tutorial-analytic-post-processing
+  memory: 1G
+  path: tutorial-analytic-post-processing/target/tutorial-analytic-post-processing-1.1-SNAPSHOT.jar
+  env:
+    security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
+    security_oauth2_client_clientId: <YOUR_CLIENT_ID>
+    security_oauth2_client_clientSecret: <YOUR_CLIENT_SECRET>
+- name: tutorial-simulator
+  host: <YOUR_OWN_SIMULATOR_PREFIX>-dt-tutorial-simulator
+  memory: 1G
+  path: tutorial-simulator/target/tutorial-simulator-1.1-SNAPSHOT.jar
+  env:
+    # If using a proxy configure your proxy settings
+    # JAVA_OPTS: -Dhttps.proxyHost=<HOST> -Dhttps.proxyPort=<PORT> -Dhttp.nonProxyHosts=localhost
+    tutorial_simulator_oauth2_accessTokenUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
+    tutorial_simulator_oauth2_clientId: <YOUR_CLIENT_ID>
+    tutorial_simulator_oauth2_clientSecret: <YOUR_CLIENT_SECRET>
+    security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
+    security_oauth2_client_clientId: <YOUR_CLIENT_ID>
+    security_oauth2_client_clientSecret: <YOUR_CLIENT_SECRET>
+    tutorial_workflow_workflowUri: https://<YOUR_OWN_WORKFLOW_SERVICE_PREFIX>-dt-tutorial-workflow.run.aws-usw02-pr.ice.predix.io/workflow/tutorial-workflow-public
+    tutorial_workflow_workflowMethod: post
+    tutorial_workflow_workflowBodyTag: params
+    spring_application_json: |
+      {
+        "tutorial" : {
+          "workflow" : {
+            "workflowHeaders" : [
+              {
+                "name" : "Predix-Zone-Id",
+                "value" : <YOUR_ANALYTIC_CATALOG_ZONE_ID_HERE>
+              },
+              { "name" : "Content-type",
+                "value" : "application/json"
+              }
+            ]
+          }
+        }
+      }
+- name: tutorial-data
+  host: <YOUR_OWN_DATA_SERVICE_PREFIX>-dt-tutorial-data
+  memory: 1G
+  services:
+  - <YOUR_PREDIX_TIMESERIES_SERVICE>
+  path: tutorial-data/target/tutorial-data-1.1-SNAPSHOT.jar
+  env:
+    security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
+    security_oauth2_client_clientId: <YOUR_CLIENT_ID>
+    security_oauth2_client_clientSecret: <YOUR_CLIENT_SECRET>
+    com_ge_dt_ptsc_tokenEndpoint: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
+    com_ge_dt_ptsc_clientId: <YOUR_CLIENT_ID>
+    com_ge_dt_ptsc_clientSecret: <YOUR_CLIENT_SECRET>
+    com_ge_dt_ptsc_queryEndpoint: https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints
+    com_ge_dt_ptsc_ingestionEndpoint: wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages
+    com_ge_dt_ptsc_zoneId: <YOUR_PREDIX_TIMESERIES_SERVICE_PREDIX_ZONE_ID>
+    com_ge_digitaltwin_tutorial_data_coefficient_coefficientService: https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/search/findByAssetId
+- name: tutorial-workflow
+  host: <YOUR_OWN_WORKFLOW_SERVICE_PREFIX>-dt-tutorial-workflow
+  memory: 1G
+  path: tutorial-workflow/target/tutorial-workflow-1.1-SNAPSHOT.jar
+  env:
+   security_oauth2_resource_tokenInfoUri: https://<YOUR_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
+   security_oauth2_client_clientId: <YOUR_CLIENT_ID>
+   security_oauth2_client_clientSecret: <YOUR_CLIENT_SECRET>

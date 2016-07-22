@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="tutorial-workflow" name="Steam Turbine Tutorial" isExecutable="true">
+    <startEvent id="start" name="Start"></startEvent>
+    <endEvent id="end" name="End"></endEvent>
+    <serviceTask id="GetTurbineModelCoefficients" name="Get Turbine Model Coefficients" activiti:delegateExpression="${ingestionDelegate}">
+      <extensionElements>
+        <activiti:field name="url">
+          <activiti:string><![CDATA[https://dt-tutorial-asset.run.aws-usw02-pr.ice.predix.io/asset]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="method">
+          <activiti:string><![CDATA[GET]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+
+    <sequenceFlow id="flow1" sourceRef="start" targetRef="GetTurbineModelCoefficients"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="GetTurbineModelCoefficients" targetRef="end"></sequenceFlow>
+  </process>
+</definitions>
