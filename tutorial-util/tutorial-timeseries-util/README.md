@@ -20,8 +20,8 @@ You can "java -jar target/tutorial-timeseries-util-1.0-SNAPSHOT.jar" to execute 
 com.ge.digitaltwin.tutorial.util.TutorialTimeseriesUtilApplication class with the following VM
 options (being mindful of your proxy settings):
 ```
--Dhttps.proxyHost=proxy.research.ge.com
--Dhttps.proxyPort=8080
+-Dhttps.proxyHost=<HOSTNAME>
+-Dhttps.proxyPort=<PORT>
 -Dcom.ge.dt.ptsc.clientSecret=<client-secret-for-tutorial-svcs-client>
 -Dconfig.steamTurbineId=<steam turbine id>
 -Dconfig.csvFilename=<csv filename in resources directory or path/filename on the local file system>
