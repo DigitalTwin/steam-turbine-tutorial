@@ -84,7 +84,7 @@ The response will look something like this:
 ```
 {
   "createdTimestamp": "2016-07-08 16:53:50.637",
-  "analyticId": "ef4eb73f-3ac9-4bcb-887b-4e16225024e0",
+  "analyticId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
   "updatedTimestamp": "2016-07-08 16:53:50.749",
   "inputData": "{\r\n \"series\": [{\r\n   \"timestamp\": 1466308800000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 201\r\n   }, {\r\n   \"timestamp\": 1466308801000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 203\r\n   }, {\r\n   \"timestamp\": 1466308802000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 208\r\n   }, {\r\n   \"timestamp\": 1466308803000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 211\r\n }],\r\n \"slope\": 0.065,\r\n \"intercept\": 4.0\r\n}",
   "status": "COMPLETED",
