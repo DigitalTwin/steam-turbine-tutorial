@@ -11,6 +11,10 @@ import org.springframework.web.client.RestTemplate;
  */
 public class PostRESTServiceJavaDelegate extends BaseRESTServiceJavaDelegate {
 
+    public PostRESTServiceJavaDelegate() {
+        super();
+    }
+
     @Autowired
     public PostRESTServiceJavaDelegate(RestTemplate restTemplate) {
         super(restTemplate);
