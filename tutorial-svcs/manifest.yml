@@ -77,10 +77,8 @@ applications:
   env:
     security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
     security_oauth2_client_clientId: <YOUR_CLIENT_ID>
-    security_oauth2_client_clientSecret: <YOUR_CLIENT_SECRET>
     com_ge_dt_ptsc_tokenEndpoint: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
     com_ge_dt_ptsc_clientId: <YOUR_CLIENT_ID>
-    com_ge_dt_ptsc_clientSecret: <YOUR_CLIENT_SECRET>
     com_ge_dt_ptsc_queryEndpoint: https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints
     com_ge_dt_ptsc_ingestionEndpoint: wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages
     com_ge_dt_ptsc_zoneId: <YOUR_PREDIX_TIMESERIES_SERVICE_PREDIX_ZONE_ID>
