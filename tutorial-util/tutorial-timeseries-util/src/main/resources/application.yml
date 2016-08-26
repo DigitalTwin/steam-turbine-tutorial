@@ -1,5 +1,5 @@
 com.ge.dt.ptsc:
-  token-endpoint: https://<YOUR_OWN_UAA_INSTANCE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
+  token-endpoint: https://<YOUR_UAA_INSTANCE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
   clientId: <YOUR CLIENT ID>
   zoneId: <YOUR_PREDIX_TIMESERIES_SERVICE_ZONE_ID>
   ingestionEndpoint: wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages
