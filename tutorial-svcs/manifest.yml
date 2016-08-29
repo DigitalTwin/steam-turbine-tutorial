@@ -89,4 +89,3 @@ applications:
   env:
    security_oauth2_resource_tokenInfoUri: https://<YOUR_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
    security_oauth2_client_clientId: <YOUR_CLIENT_ID>
-   security_oauth2_client_clientSecret: <YOUR_CLIENT_SECRET>
