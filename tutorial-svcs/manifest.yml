@@ -87,5 +87,5 @@ applications:
   memory: 1G
   path: tutorial-workflow/target/tutorial-workflow-1.1-SNAPSHOT.jar
   env:
-   security_oauth2_resource_tokenInfoUri: https://<YOUR_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
+   security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
    security_oauth2_client_clientId: <YOUR_CLIENT_ID>
