@@ -42,10 +42,8 @@ applications:
     # JAVA_OPTS: -Dhttps.proxyHost=<HOST> -Dhttps.proxyPort=<PORT> -Dhttp.nonProxyHosts=localhost
     tutorial_simulator_oauth2_accessTokenUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
     tutorial_simulator_oauth2_clientId: <YOUR_CLIENT_ID>
-    tutorial_simulator_oauth2_clientSecret: <YOUR_CLIENT_SECRET>
     security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
     security_oauth2_client_clientId: <YOUR_CLIENT_ID>
-    security_oauth2_client_clientSecret: <YOUR_CLIENT_SECRET>
     tutorial_workflow_workflowUri: https://<YOUR_OWN_WORKFLOW_SERVICE_PREFIX>-dt-tutorial-workflow.run.aws-usw02-pr.ice.predix.io/workflow/tutorial-workflow-public
     tutorial_workflow_workflowMethod: post
     tutorial_workflow_workflowBodyTag: params
