@@ -1,9 +1,9 @@
 package com.ge.digitaltwin.tutorial.util;
 
 import com.ge.dt.ptsc.IngestionRequest;
-import com.ge.dt.ptsc.PredixTimeSeriesClient;
+import com.ge.dt.ptsc.IngestionClient;
 import com.ge.dt.ptsc.PredixTimeSeriesClientException;
-import com.ge.dt.ptsc.PredixTimeSeriesSession;
+import com.ge.dt.ptsc.IngestionSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,10 +23,10 @@ public class IngestionService {
 
     private static final Logger LOG = LoggerFactory.getLogger(IngestionService.class);
 
-    private final PredixTimeSeriesClient predixTimeSeriesClient;
+    private final IngestionClient predixTimeSeriesClient;
 
     @Autowired
-    public IngestionService(PredixTimeSeriesClient predixTimeSeriesClient) {
+    public IngestionService(IngestionClient predixTimeSeriesClient) {
         this.predixTimeSeriesClient = predixTimeSeriesClient;
     }
 
@@ -38,7 +38,7 @@ public class IngestionService {
         }
     }
 
-    public Integer processTurbineList(List<SteamTurbineDataPoint> turbineList, PredixTimeSeriesSession predixTimeseries) {
+    public Integer processTurbineList(List<SteamTurbineDataPoint> turbineList, IngestionSession predixTimeseries) {
         Integer turbineCount = 0;
         Integer pushCount = 0;
         IngestionRequest ingestionRequest = new IngestionRequest();

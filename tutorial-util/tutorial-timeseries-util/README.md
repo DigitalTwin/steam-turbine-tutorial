@@ -12,7 +12,7 @@ timestamp,rpm,temperature
 ```
 ### Installation
 Clone this repository, adjust the application.yml file and the relevant constants in the
-com.ge.digitaltwin.tutorial.util.TutorialTimeseriesUtilController class as appropriate for your environment,
+com.ge.digitaltwin.tutorial.util.IngestionService class as appropriate for your environment,
 and then "mvn clean install" it to build your executable jar file.  
 
 ### Executing the Utility

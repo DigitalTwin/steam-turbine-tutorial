@@ -18,10 +18,10 @@ public class IngestionServiceTest {
     private IngestionService ingestionService;
 
     @Mock
-    private PredixTimeSeriesClient predixTimeSeriesClient;
+    private IngestionClient predixTimeSeriesClient;
 
     @Mock
-    private PredixTimeSeriesSession predixTimeSeriesSession;
+    private IngestionSession predixTimeSeriesSession;
 
     @Before
     public void setup() {
@@ -39,7 +39,7 @@ public class IngestionServiceTest {
 
         ingestionService.ingest(singletonList(steamTurbineDataPoint));
 
-        final ArgumentCaptor<PredixTimeSeriesJob> predixTimeSeriesJobArgumentCaptor = ArgumentCaptor.forClass(PredixTimeSeriesJob.class);
+        final ArgumentCaptor<IngestionJob> predixTimeSeriesJobArgumentCaptor = ArgumentCaptor.forClass(IngestionJob.class);
         then(predixTimeSeriesClient).should().doInSession(predixTimeSeriesJobArgumentCaptor.capture());
         predixTimeSeriesJobArgumentCaptor.getValue().doInSession(predixTimeSeriesSession);
 
