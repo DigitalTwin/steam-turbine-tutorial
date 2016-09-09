@@ -1,0 +1,29 @@
+# Ignore eclipse settings
+.metadata
+.classpath
+.factorypath
+.project
+.springBeans
+.settings/
+
+# Ignore IntelliJ settings
+*.iml
+.idea/
+
+# Ignore output folders
+bin/
+target/
+
+# Ignore logs
+log/
+*.log
+target/
+
+#Ignore Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
