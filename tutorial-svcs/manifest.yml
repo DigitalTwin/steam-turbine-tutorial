@@ -1,7 +1,7 @@
 ---
 applications:
-- name: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-result-persistence
-  host: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-result-persistence
+- name: <YOUR_OWN_UNIQUE_PREFIX>-tutorial-result-persistence
+  host: <YOUR_OWN_RESULT_SERVICE_PREFIX>-dt-tutorial-result-persistence
   memory: 1G
   services:
   - <YOUR_POSTGRES_SERVICE_FOR_RESULT_DATA>
@@ -10,15 +10,15 @@ applications:
   env:
     security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
     security_oauth2_client_clientId: <YOUR_CLIENT_ID>
-- name: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-asset
-  host: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-asset
+- name: <YOUR_OWN_UNIQUE_PREFIX>-tutorial-asset
+  host: <YOUR_OWN_ASSET_SERVICE_PREFIX>-dt-tutorial-asset
   memory: 1G
   path: tutorial-asset/target/tutorial-asset-1.1-SNAPSHOT.jar
   env:
     security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
     security_oauth2_client_clientId: <YOUR_CLIENT_ID>
-- name: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-model-coefficient
-  host: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-model-coefficient
+- name: <YOUR_OWN_UNIQUE_PREFIX>-tutorial-model-coefficient
+  host: <YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient
   memory: 1G
   services:
   - <YOUR_POSTGRES_SERVICE_FOR_COEFFICIENT_DATA>
@@ -26,15 +26,15 @@ applications:
   env:
     security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
     security_oauth2_client_clientId: <YOUR_CLIENT_ID>
-- name: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-analytic-post-processing
-  host: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-analytic-post-processing
+- name: <YOUR_OWN_UNIQUE_PREFIX>-tutorial-analytic-post-processing
+  host: <YOUR_OWN_POSTPROCESSING_PREFIX>-dt-tutorial-analytic-post-processing
   memory: 1G
   path: tutorial-analytic-post-processing/target/tutorial-analytic-post-processing-1.1-SNAPSHOT.jar
   env:
     security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
     security_oauth2_client_clientId: <YOUR_CLIENT_ID>
-- name: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-simulator
-  host: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-simulator
+- name: <YOUR_OWN_UNIQUE_PREFIX>-tutorial-simulator
+  host: <YOUR_OWN_SIMULATOR_PREFIX>-dt-tutorial-simulator
   memory: 1G
   path: tutorial-simulator/target/tutorial-simulator-1.1-SNAPSHOT.jar
   env:
@@ -63,8 +63,8 @@ applications:
           }
         }
       }
-- name: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-data
-  host: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-data
+- name: <YOUR_OWN_UNIQUE_PREFIX>-tutorial-data
+  host: <YOUR_OWN_DATA_SERVICE_PREFIX>-dt-tutorial-data
   memory: 1G
   services:
   - <YOUR_PREDIX_TIMESERIES_SERVICE>
@@ -78,8 +78,8 @@ applications:
     com_ge_dt_ptsc_ingestionEndpoint: wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages
     com_ge_dt_ptsc_zoneId: <YOUR_PREDIX_TIMESERIES_SERVICE_PREDIX_ZONE_ID>
     com_ge_digitaltwin_tutorial_data_coefficient_coefficientService: https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/search/findByAssetId
-- name: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-workflow
-  host: <YOUR_OWN_UNIQUE_PREFIX>-dt-tutorial-workflow
+- name: <YOUR_OWN_UNIQUE_PREFIX>-tutorial-workflow
+  host: <YOUR_OWN_WORKFLOW_SERVICE_PREFIX>-dt-tutorial-workflow
   memory: 1G
   path: tutorial-workflow/target/tutorial-workflow-1.1-SNAPSHOT.jar
   env:
