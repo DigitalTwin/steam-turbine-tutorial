@@ -666,7 +666,7 @@
         {
           "name": "Execute a workflow",
           "request": {
-            "url": "https://<YOUR_OWN_WORKFLOW_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/workflow/tutorial-workflow-test",
+            "url": "https://<YOUR_OWN_WORKFLOW_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/workflow/tutorial-workflow-public",
             "method": "POST",
             "header": [
               {
@@ -684,7 +684,7 @@
               "mode": "raw",
               "raw": "{\n    \"params\":\n        {\n            \"assetId\":1,\n            \"startTime\":1205106871000,\n            \"endTime\":1468265271000\n        }\n}"
             },
-            "description": "Path must include name of workflow. In this example, the name of the workflow is tutorial-workflow-test"
+            "description": "Path must include name of workflow. In this example, the name of the workflow is tutorial-workflow-public"
           },
           "response": []
         },
