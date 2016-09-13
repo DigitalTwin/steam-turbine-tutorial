@@ -682,7 +682,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"params\":\n        {\n            \"assetId\":1,\n            \"startTime\":1205106871000,\n            \"endTime\":1468265271000\n        }\n}"
+              "raw": "{\n    \"params\":\n        {\n            \"assetId\":2,\n            \"startTime\":18000000,\n            \"endTime\":315550800000\n        }\n}"
             },
             "description": "Path must include name of workflow. In this example, the name of the workflow is tutorial-workflow-public"
           },
