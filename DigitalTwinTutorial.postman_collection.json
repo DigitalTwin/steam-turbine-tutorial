@@ -34,7 +34,7 @@
         {
           "name": "Get analytic input data",
           "request": {
-            "url": "https://<YOUR_OWN_DATA_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/input?assetId=1&startTimestamp=1420070370000&endTimestamp=1422748770000",
+            "url": "https://<YOUR_OWN_DATA_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/input?assetId=2&startTimestamp=1420070370000&endTimestamp=1422748770000",
             "method": "GET",
             "header": [
               {
@@ -74,7 +74,7 @@
         {
           "name": "Get model coefficients for a specific asset",
           "request": {
-            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/search/findByAssetId?assetId=1",
+            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/search/findByAssetId?assetId=2",
             "method": "GET",
             "header": [
               {
@@ -87,7 +87,7 @@
               "mode": "raw",
               "raw": "{\n    \"assetId\": 1,\n    \"m\": 0.144,\n    \"b\": 68\n}"
             },
-            "description": "replace '1' with the asset id you wish to get coefficients for "
+            "description": "replace '2' with the asset id you wish to get coefficients for "
           },
           "response": []
         },
@@ -600,7 +600,7 @@
         {
           "name": "Count analytic results",
           "request": {
-            "url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults/search/countByAssetId?assetId=1",
+            "url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults/search/countByAssetId?assetId=2",
             "method": "GET",
             "header": [
               {
@@ -691,7 +691,7 @@
         {
           "name": "Simulate workflow",
           "request": {
-            "url": "https://<YOUR_OWN_SIMULATOR_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/simulate?assetId=1&startTime=1420070370000&endTime=1422748770000&intervalMilliseconds=21600000",
+            "url": "https://<YOUR_OWN_SIMULATOR_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/simulate?assetId=2&startTime=1420070370000&endTime=1422748770000&intervalMilliseconds=21600000",
             "method": "POST",
             "header": [
               {
