@@ -54,7 +54,7 @@ applications:
             "workflowHeaders" : [
               {
                 "name" : "Predix-Zone-Id",
-                "value" : <YOUR_ANALYTIC_CATALOG_ZONE_ID_HERE>
+                "value" : "<YOUR_ANALYTIC_CATALOG_ZONE_ID_HERE>"
               },
               { "name" : "Content-type",
                 "value" : "application/json"
