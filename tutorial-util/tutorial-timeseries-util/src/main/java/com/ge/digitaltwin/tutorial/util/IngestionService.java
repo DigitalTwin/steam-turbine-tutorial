@@ -68,6 +68,7 @@ public class IngestionService {
             }
         }
         LOG.debug("##### Done, processed " + turbineCount + " steam turbines.");
+        LOG.debug("##### This application may take significant time to complete and exit cleanly as queue processing time is proportional to the size of the data.");
         return turbineCount;
     }
 
