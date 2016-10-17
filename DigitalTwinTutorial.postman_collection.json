@@ -8,18 +8,57 @@
   },
   "item": [
     {
+      "name": "Predix UAA",
+      "description": "",
+      "item": [
+        {
+          "name": "Get new bearer token",
+          "request": {
+            "url": "https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{credentials}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client_id",
+                  "value": "tutorial-svcs",
+                  "type": "text",
+                  "enabled": true
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "text",
+                  "enabled": true
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Step 1 - Get Data",
       "description": "",
       "item": [
         {
           "name": "Get all assets",
           "request": {
-            "url": "https://<YOUR_OWN_ASSET_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/asset",
+            "url": "https://<YOUR_OWN_ASSET_SERVICE_PREFIX>-dt-tutorial-asset.run.aws-usw02-pr.ice.predix.io/asset",
             "method": "GET",
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               }
             ],
@@ -34,12 +73,12 @@
         {
           "name": "Get analytic input data",
           "request": {
-            "url": "https://<YOUR_OWN_DATA_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/input?assetId=2&startTimestamp=1420070370000&endTimestamp=1422748770000",
+            "url": "https://<YOUR_OWN_DATA_SERVICE_PREFIX>-dt-tutorial-data.run.aws-usw02-pr.ice.predix.io/input?assetId=2&startTimestamp=1420070370000&endTimestamp=1422748770000",
             "method": "GET",
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               }
             ],
@@ -54,12 +93,12 @@
         {
           "name": "Get all model coefficients",
           "request": {
-            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/",
+            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/",
             "method": "GET",
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               }
             ],
@@ -74,12 +113,12 @@
         {
           "name": "Get model coefficients for a specific asset",
           "request": {
-            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/search/findByAssetId?assetId=2",
+            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/search/findByAssetId?assetId=2",
             "method": "GET",
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               }
             ],
@@ -94,12 +133,12 @@
         {
           "name": "Post model coefficients for an asset",
           "request": {
-            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/",
+            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/",
             "method": "POST",
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -119,12 +158,12 @@
         {
           "name": "Delete a model coefficient",
           "request": {
-            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/<COEFFICIENT_OBJECT_ID>",
+            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/<COEFFICIENT_OBJECT_ID>",
             "method": "DELETE",
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               }
             ],
@@ -150,7 +189,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -175,7 +214,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -205,7 +244,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -254,7 +293,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -284,7 +323,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -309,7 +348,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -334,7 +373,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -364,7 +403,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -394,7 +433,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -424,7 +463,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -454,7 +493,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -479,7 +518,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -510,7 +549,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -535,7 +574,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -560,7 +599,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -585,7 +624,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               }
             ],
@@ -605,7 +644,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               }
             ],
@@ -625,7 +664,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               }
             ],
@@ -645,7 +684,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               }
             ],
@@ -671,7 +710,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               },
               {
@@ -691,12 +730,12 @@
         {
           "name": "Simulate workflow",
           "request": {
-            "url": "https://<YOUR_OWN_SIMULATOR_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/simulate?assetId=2&startTime=1420070370000&endTime=1422748770000&intervalMilliseconds=21600000",
+            "url": "https://<YOUR_OWN_SIMULATOR_SERVICE_PREFIX>-dt-tutorial-simulator.run.aws-usw02-pr.ice.predix.io/simulate?assetId=2&startTime=1420070370000&endTime=1422748770000&intervalMilliseconds=21600000",
             "method": "POST",
             "header": [
               {
                 "key": "Authorization",
-                "value": "{{token}}",
+                "value": "Bearer {{token}}",
                 "description": ""
               }
             ],
@@ -705,45 +744,6 @@
               "formdata": []
             },
             "description": "Start: December 31st, 2014, 11:59:30\n\nEnd: January 31st, 2015, 11:59:30\n\nInterval: 6 hours"
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "UAA",
-      "description": "",
-      "item": [
-        {
-          "name": "Get new bearer token",
-          "request": {
-            "url": "https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{uaa-authorization}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "client_id",
-                  "value": "tutorial-svcs",
-                  "type": "text",
-                  "enabled": true
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials",
-                  "type": "text",
-                  "enabled": true
-                }
-              ]
-            },
-            "description": ""
           },
           "response": []
         }
