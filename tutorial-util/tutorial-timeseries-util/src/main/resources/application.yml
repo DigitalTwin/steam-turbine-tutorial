@@ -1,4 +1,4 @@
-com.ge.dt.ptsc:
+com.ge.dt.tsc:
   token-endpoint: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
   clientId: <YOUR CLIENT ID>
   zoneId: <YOUR_PREDIX_TIMESERIES_SERVICE_ZONE_ID>
@@ -7,7 +7,7 @@ com.ge.dt.ptsc:
   proxyHost: <HOSTNAME>
   proxyPort: <PORT>
 
-logging.level.com.ge.dt.ptsc: DEBUG
+logging.level.com.ge.dt.tsc: DEBUG
 logging.level.com.ge.digitaltwin.tutorial.util: debug
 
 
