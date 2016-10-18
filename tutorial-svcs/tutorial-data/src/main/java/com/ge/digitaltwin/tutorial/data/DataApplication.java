@@ -1,6 +1,6 @@
 package com.ge.digitaltwin.tutorial.data;
 
-import com.ge.dt.ptsc.PredixTimeSeriesClientConfiguration;
+import com.ge.dt.tsc.DigitalTwinTimeSeriesClientConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@Import(PredixTimeSeriesClientConfiguration.class)
+@Import(DigitalTwinTimeSeriesClientConfiguration.class)
 @EnableSwagger2
 public class DataApplication {
 

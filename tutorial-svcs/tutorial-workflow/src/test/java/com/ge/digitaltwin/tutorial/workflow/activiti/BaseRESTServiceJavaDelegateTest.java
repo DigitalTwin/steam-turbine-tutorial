@@ -3,6 +3,7 @@ package com.ge.digitaltwin.tutorial.workflow.activiti;
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.impl.el.FixedValue;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.http.HttpEntity;
