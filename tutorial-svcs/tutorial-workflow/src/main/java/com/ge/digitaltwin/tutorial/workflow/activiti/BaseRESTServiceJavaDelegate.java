@@ -85,7 +85,8 @@ abstract class BaseRESTServiceJavaDelegate implements JavaDelegate {
                 responseEntity = this.restTemplate.exchange(urlString, method, entity, Object.class);
             }
         } catch (HttpClientErrorException e) {
-            LOGGER.error("An error occurred while attempting to process request to URL: " + urlString, e);
+            LOGGER.error("An error occurred while attempting to process request to URL: " + urlString + ", in method: " + method.toString(), e);
+            throw e;
         }
         return responseEntity;
     }
