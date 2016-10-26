@@ -1,11 +1,11 @@
 package com.ge.digitaltwin.tutorial.data;
 
-import com.ge.dt.ptsc.QueryClient;
-import com.ge.dt.ptsc.QueryRequest;
-import com.ge.dt.ptsc.QueryRequest.Tag.Filter;
-import com.ge.dt.ptsc.QueryResponse;
-import com.ge.dt.ptsc.QueryResponse.Tag;
-import com.ge.dt.ptsc.QueryResponse.Tag.Result.DataPoint;
+import com.ge.dt.tsc.QueryClient;
+import com.ge.dt.tsc.QueryRequest;
+import com.ge.dt.tsc.QueryRequest.Tag.Filter;
+import com.ge.dt.tsc.QueryResponse;
+import com.ge.dt.tsc.QueryResponse.Tag;
+import com.ge.dt.tsc.QueryResponse.Tag.Result.DataPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

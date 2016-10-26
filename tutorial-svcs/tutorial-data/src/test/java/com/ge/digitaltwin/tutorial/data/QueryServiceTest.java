@@ -1,8 +1,8 @@
 package com.ge.digitaltwin.tutorial.data;
 
-import com.ge.dt.ptsc.QueryClient;
-import com.ge.dt.ptsc.QueryRequest;
-import com.ge.dt.ptsc.QueryResponse;
+import com.ge.dt.tsc.QueryClient;
+import com.ge.dt.tsc.QueryRequest;
+import com.ge.dt.tsc.QueryResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;

@@ -25,11 +25,11 @@ applications:
   env:
     security_oauth2_resource_tokenInfoUri: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
     security_oauth2_client_clientId: <YOUR_CLIENT_ID>
-    com_ge_dt_ptsc_tokenEndpoint: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
-    com_ge_dt_ptsc_clientId: <YOUR_CLIENT_ID>
-    com_ge_dt_ptsc_queryEndpoint: https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints
-    com_ge_dt_ptsc_ingestionEndpoint: wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages
-    com_ge_dt_ptsc_zoneId: <YOUR_PREDIX_TIMESERIES_SERVICE_PREDIX_ZONE_ID>
+    com_ge_dt_tsc_tokenEndpoint: https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
+    com_ge_dt_tsc_clientId: <YOUR_CLIENT_ID>
+    com_ge_dt_tsc_queryEndpoint: https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints
+    com_ge_dt_tsc_ingestionEndpoint: wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages
+    com_ge_dt_tsc_zoneId: <YOUR_PREDIX_TIMESERIES_SERVICE_PREDIX_ZONE_ID>
     com_ge_digitaltwin_tutorial_data_coefficient_coefficientService: https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/search/findByAssetId
 - name: <YOUR_OWN_UNIQUE_PREFIX>-tutorial-result-persistence
   host: <YOUR_OWN_RESULT_SERVICE_PREFIX>-dt-tutorial-result-persistence
