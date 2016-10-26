@@ -3,13 +3,17 @@ package com.ge.digitaltwin.tutorial.workflow.activiti;
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.delegate.JavaDelegate;
+import org.slf4j.Logger;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Abstract base class for all REST service implementations to extend from
@@ -27,6 +31,8 @@ abstract class BaseRESTServiceJavaDelegate implements JavaDelegate {
 
     private Expression url = null;
     private Expression predixZoneId = null;
+
+    private static final Logger LOGGER = getLogger(BaseRESTServiceJavaDelegate.class);
 
     public BaseRESTServiceJavaDelegate() {
         restTemplate = new RestTemplate();
@@ -71,10 +77,18 @@ abstract class BaseRESTServiceJavaDelegate implements JavaDelegate {
 
     @SuppressWarnings("unchecked")
     private  ResponseEntity<Object> doRequest(String urlString, HttpMethod method, HttpEntity entity, Object params) {
-        if (params instanceof Map)
-            return this.restTemplate.exchange(urlString, method, entity, Object.class, (Map<String, ?>) params);
-
-        return this.restTemplate.exchange(urlString, method, entity, Object.class);
+        ResponseEntity<Object> responseEntity = null;
+        try {
+            if (params instanceof Map) {
+                responseEntity = this.restTemplate.exchange(urlString, method, entity, Object.class, (Map<String, ?>) params);
+            } else {
+                responseEntity = this.restTemplate.exchange(urlString, method, entity, Object.class);
+            }
+        } catch (HttpClientErrorException e) {
+            LOGGER.error("An error occurred while attempting to process request to URL: " + urlString + ", in method: " + method.toString(), e);
+            throw e;
+        }
+        return responseEntity;
     }
 
     /**
