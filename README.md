@@ -11,4 +11,4 @@ of a steam turbine.  The documents and the suggested order of reading are listed
 - Step-3.docx
 - Step-4.docx
 - Step-5.docx
-- Creating Your Own Digital Twin.docs
+- Creating Your Own Digital Twin.docx
