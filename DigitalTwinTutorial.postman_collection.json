@@ -1,753 +1,784 @@
 {
-  "variables": [],
-  "info": {
-    "name": "DigitalTwinTutorial",
-    "_postman_id": "9286eff7-e9a1-53da-9414-cac370ec077e",
-    "description": "",
-    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Predix UAA",
-      "description": "",
-      "item": [
-        {
-          "name": "Get new bearer token",
-          "request": {
-            "url": "https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Basic {{credentials}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "client_id",
-                  "value": "tutorial-svcs",
-                  "type": "text",
-                  "enabled": true
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials",
-                  "type": "text",
-                  "enabled": true
-                }
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Step 1 - Get Data",
-      "description": "",
-      "item": [
-        {
-          "name": "Get all assets",
-          "request": {
-            "url": "https://<YOUR_OWN_ASSET_SERVICE_PREFIX>-dt-tutorial-asset.run.aws-usw02-pr.ice.predix.io/asset",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Get analytic input data",
-          "request": {
-            "url": "https://<YOUR_OWN_DATA_SERVICE_PREFIX>-dt-tutorial-data.run.aws-usw02-pr.ice.predix.io/input?assetId=2&startTimestamp=1420070370000&endTimestamp=1422748770000",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "description": "Will get timeseries data for the given asset id and date range as well as the model coefficients"
-          },
-          "response": []
-        },
-        {
-          "name": "Get all model coefficients",
-          "request": {
-            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Get model coefficients for a specific asset",
-          "request": {
-            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/search/findByAssetId?assetId=2",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"assetId\": 1,\n    \"m\": 0.144,\n    \"b\": 68\n}"
-            },
-            "description": "replace '2' with the asset id you wish to get coefficients for "
-          },
-          "response": []
-        },
-        {
-          "name": "Post model coefficients for an asset",
-          "request": {
-            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"assetId\": 2,\n    \"m\": 0.5,\n    \"b\": 1\n}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Delete a model coefficient",
-          "request": {
-            "url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/<COEFFICIENT_OBJECT_ID>",
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "description": "Replace '<COEFFICIENT_OBJECT_ID>' with the surrogate key of the coefficient object you want to delete"
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Step 2 - Analytic",
-      "description": "",
-      "item": [
-        {
-          "name": "Get all analytics in your analytics catalog",
-          "request": {
-            "url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Create catalog entry",
-          "request": {
-            "url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\":\"steam-turbine-actual-vs-expected-analytic\",\n    \"version\":\"v1\",\n    \"supportedLanguage\":\"Java\",\n    \"taxonomyLocation\":\"\",\n    \"author\":\"Jane Doe\",\n    \"description\":\"This analytic computes deltas between the actual (timeseries data) and expected (model predicted) temperatures values.\",\n    \"customMetadata\":\"\"\n}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Upload analytic file/jar",
-          "request": {
-            "url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/artifacts",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "enabled": true
-                },
-                {
-                  "key": "catalogEntryId",
-                  "value": "<YOUR_CATALOG_ENTRY_UUID>",
-                  "type": "text",
-                  "enabled": true
-                },
-                {
-                  "key": "type",
-                  "value": "executable",
-                  "type": "text",
-                  "enabled": true
-                },
-                {
-                  "key": "description",
-                  "value": "steam-turbine-tutorial-analytic - computes the deltas between actual and expected temperature values",
-                  "type": "text",
-                  "enabled": true
-                }
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Validate your analytic",
-          "request": {
-            "url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/<YOUR_CATALOG_ENTRY_UUID>/validation",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n\t\"series\": [{\r\n\t\t\"timestamp\": 1466308800000,\r\n\t\t\"rpm\": 3000,\r\n\t\t\"actualTemperature\": 201\r\n\t}, {\r\n\t\t\"timestamp\": 1466308801000,\r\n\t\t\"rpm\": 3000,\r\n\t\t\"actualTemperature\": 203\r\n\t}, {\r\n\t\t\"timestamp\": 1466308802000,\r\n\t\t\"rpm\": 3000,\r\n\t\t\"actualTemperature\": 208\r\n\t}, {\r\n\t\t\"timestamp\": 1466308803000,\r\n\t\t\"rpm\": 3000,\r\n\t\t\"actualTemperature\": 211\r\n\t}],\r\n\t\"slope\": 0.065,\r\n\t\"intercept\": 4.0\r\n}"
-            },
-            "description": "Required before executing"
-          },
-          "response": []
-        },
-        {
-          "name": "Check validation status",
-          "request": {
-            "url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/<YOUR_CATALOG_ENTRY_UUID>/validation/<YOUR_VALIDATION_ID>",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "description": "'<YOUR_CATALOG_ENTRY_UUID>' is the id of the analytic we are validating \n\n'<YOUR_VALIDATION_ID>' is the validation request id"
-          },
-          "response": []
-        },
-        {
-          "name": "Request validation results",
-          "request": {
-            "url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/<YOUR_CATALOG_ENTRY_UUID>/validation/<YOUR_VALIDATION_ID>",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Execute the analytic",
-          "request": {
-            "url": "https://<YOUR_CATALOG_ENTRY_UUID>.run.aws-usw02-pr.ice.predix.io/api/v1/analytic/execution/",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n \"series\": [{\r\n   \"timestamp\": 1466308800000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 201\r\n   }, {\r\n   \"timestamp\": 1466308801000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 203\r\n   }, {\r\n   \"timestamp\": 1466308802000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 208\r\n   }, {\r\n   \"timestamp\": 1466308803000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 211\r\n }],\r\n \"slope\": 0.065,\r\n \"intercept\": 4.0\r\n}"
-            },
-            "description": "This will execute the analytic using the <analytic-uri> endpoint. Replace the request body with the time-series data you wish to run the analytic on.\n\n'<YOUR_CATALOG_ENTRY_UUID>' is the id specific to our analytic. "
-          },
-          "response": []
-        },
-        {
-          "name": "Execute the analytic asynchronously",
-          "request": {
-            "url": "https://<YOUR_CATALOG_ENTRY_UUID>.run.aws-usw02-pr.ice.predix.io/api/v1/analytic/execution/async",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n \"series\": [{\r\n   \"timestamp\": 1466308800000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 201\r\n   }, {\r\n   \"timestamp\": 1466308801000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 203\r\n   }, {\r\n   \"timestamp\": 1466308802000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 208\r\n   }, {\r\n   \"timestamp\": 1466308803000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 211\r\n }],\r\n \"slope\": 0.065,\r\n \"intercept\": 4.0\r\n}"
-            },
-            "description": "This will execute the analytic using the <analytic-uri> endpoint. Replace the request body with the time-series data you wish to run the analytic on.\n\n'<YOUR_CATALOG_ENTRY_UUID>' is the id specific to our analytic. "
-          },
-          "response": []
-        },
-        {
-          "name": "Check the status of the async execution",
-          "request": {
-            "url": "https://<YOUR_CATALOG_ENTRY_UUID>.run.aws-usw02-pr.ice.predix.io/api/v1/analytic/execution/async/<YOUR_VALIDATION_ID>/status",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n \"series\": [{\r\n   \"timestamp\": 1466308800000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 201\r\n   }, {\r\n   \"timestamp\": 1466308801000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 203\r\n   }, {\r\n   \"timestamp\": 1466308802000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 208\r\n   }, {\r\n   \"timestamp\": 1466308803000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 211\r\n }],\r\n \"slope\": 0.065,\r\n \"intercept\": 4.0\r\n}"
-            },
-            "description": "'<YOUR_VALIDATION_ID>' is the request id returned from the asynchronous execution"
-          },
-          "response": []
-        },
-        {
-          "name": "Get the results of the async execution",
-          "request": {
-            "url": "https://<YOUR_CATALOG_ENTRY_UUID>.run.aws-usw02-pr.ice.predix.io/api/v1/analytic/execution/async/<YOUR_VALIDATION_ID>/result",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n \"series\": [{\r\n   \"timestamp\": 1466308800000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 201\r\n   }, {\r\n   \"timestamp\": 1466308801000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 203\r\n   }, {\r\n   \"timestamp\": 1466308802000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 208\r\n   }, {\r\n   \"timestamp\": 1466308803000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 211\r\n }],\r\n \"slope\": 0.065,\r\n \"intercept\": 4.0\r\n}"
-            },
-            "description": "'<YOUR_VALIDATION_ID>' is the request id returned from the asynchronous execution"
-          },
-          "response": []
-        },
-        {
-          "name": "Get recent logs",
-          "request": {
-            "url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/<YOUR_CATALOG_ENTRY_UUID>/logs",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Delete catalog entry",
-          "request": {
-            "url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/<YOUR_CATALOG_ENTRY_UUID>",
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Predix-Zone-Id",
-                "value": "{{analytic-zone-id}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Step 3 - Store Data",
-      "description": "",
-      "item": [
-        {
-          "name": "Transform analytic output",
-          "request": {
-            "url": "https://<YOUR_OWN_POSTPROCESS_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/transform/1",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"result\": {\r\n    \"series\": [\r\n      {\r\n        \"timestamp\": 1467747958000,\r\n        \"rpm\": 3000,\r\n        \"actualTemperature\": 201,\r\n        \"expectedTemperature\": 199,\r\n        \"delta\": 2\r\n      },\r\n      {\r\n        \"timestamp\": 1467748018000,\r\n        \"rpm\": 3000,\r\n        \"actualTemperature\": 204,\r\n        \"expectedTemperature\": 199,\r\n        \"delta\": 5\r\n      }\r\n    ],\r\n    \"slope\": 0.065,\r\n    \"intercept\": 4\r\n  }\r\n}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Post a single result",
-          "request": {
-            "url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"expectedTemperature\": 199.0,\r\n    \"actualTemperature\": 201.0,\r\n    \"timestamp\": 1466308800000,\r\n    \"assetId\": \"1\",\r\n    \"temperatureDelta\": 2.0\r\n}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Post list of results",
-          "request": {
-            "url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/api/analyticResults",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "[\n  {\n    \"id\": null,\n    \"expectedTemperature\": 199,\n    \"actualTemperature\": 201,\n    \"timestamp\": 1467747958000,\n    \"assetId\": \"1\",\n    \"rpm\": 3000,\n    \"temperatureDelta\": 2\n  },\n  {\n    \"id\": null,\n    \"expectedTemperature\": 199,\n    \"actualTemperature\": 204,\n    \"timestamp\": 1467748018000,\n    \"assetId\": \"1\",\n    \"rpm\": 3000,\n    \"temperatureDelta\": 5\n  }\n]"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Get all analytic results",
-          "request": {
-            "url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Count analytic results",
-          "request": {
-            "url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults/search/countByAssetId?assetId=2",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "Delete a single analytic result",
-          "request": {
-            "url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults/<YOUR_ANALYTIC_RESULT_UUID>",
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "description": "'<YOUR_ANALYTIC_RESULT_UUID>' is the surrogate key of the analytic result we wish to delete"
-          },
-          "response": []
-        },
-        {
-          "name": "Delete all analytic results",
-          "request": {
-            "url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/admin/analyticResults",
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": "You must have admin privileges to do this"
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Step 4 - Orchestrate Workflow",
-      "description": "",
-      "item": [
-        {
-          "name": "Execute a workflow",
-          "request": {
-            "url": "https://<YOUR_OWN_WORKFLOW_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/workflow/tutorial-workflow-public",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"params\":\n        {\n            \"assetId\":2,\n            \"startTime\":18000000,\n            \"endTime\":315550800000\n        }\n}"
-            },
-            "description": "Path must include name of workflow. In this example, the name of the workflow is tutorial-workflow-public"
-          },
-          "response": []
-        },
-        {
-          "name": "Simulate workflow",
-          "request": {
-            "url": "https://<YOUR_OWN_SIMULATOR_SERVICE_PREFIX>-dt-tutorial-simulator.run.aws-usw02-pr.ice.predix.io/simulate?assetId=2&startTime=1420070370000&endTime=1422748770000&intervalMilliseconds=21600000",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "description": "Start: December 31st, 2014, 11:59:30\n\nEnd: January 31st, 2015, 11:59:30\n\nInterval: 6 hours"
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"variables": [],
+	"info": {
+		"name": "DigitalTwinTutorial",
+		"_postman_id": "28f1d547-e3a6-553f-2b7d-1d90c929678b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Predix UAA",
+			"description": "",
+			"item": [
+				{
+					"name": "Get new bearer token",
+					"request": {
+						"url": "https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{credentials}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "tutorial-svcs",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Step 1 - Get Data",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all assets",
+					"request": {
+						"url": "https://<YOUR_OWN_ASSET_SERVICE_PREFIX>-dt-tutorial-asset.run.aws-usw02-pr.ice.predix.io/asset",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get analytic input data",
+					"request": {
+						"url": "https://<YOUR_OWN_DATA_SERVICE_PREFIX>-dt-tutorial-data.run.aws-usw02-pr.ice.predix.io/input?assetId=2&startTimestamp=1420070370000&endTimestamp=1422748770000",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "Will get timeseries data for the given asset id and date range as well as the model coefficients"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all model coefficients",
+					"request": {
+						"url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get model coefficients for a specific asset",
+					"request": {
+						"url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/search/findByAssetId?assetId=2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"assetId\": 1,\n    \"m\": 0.144,\n    \"b\": 68\n}"
+						},
+						"description": "replace '2' with the asset id you wish to get coefficients for "
+					},
+					"response": []
+				},
+				{
+					"name": "Post model coefficients for an asset",
+					"request": {
+						"url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"assetId\": 2,\n    \"m\": 0.5,\n    \"b\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a model coefficient",
+					"request": {
+						"url": "https://<YOUR_OWN_MODEL_COEFFICIENT_SERVICE_PREFIX>-dt-tutorial-model-coefficient.run.aws-usw02-pr.ice.predix.io/persistence/modelCoefficients/<COEFFICIENT_OBJECT_ID>",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "Replace '<COEFFICIENT_OBJECT_ID>' with the surrogate key of the coefficient object you want to delete"
+					},
+					"response": []
+				},
+				{
+					"name": "Post to query timeseries data",
+					"request": {
+						"url": "https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Predix-Zone-Id",
+								"value": "e3ea5ddd-2482-412e-95ed-8e1de761997b",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"start\": \"50y-ago\",\r\n  \"end\": \"25y-ago\",\r\n  \"tags\": [{\r\n    \"name\": \"rpm\",\r\n    \"limit\": 1000,\r\n    \"order\": \"desc\"\r\n  },{\r\n    \"name\": \"actualTemperature\",\r\n    \"limit\": 1000,\r\n    \"order\": \"desc\"\r\n  }]\r\n}\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Step 2 - Analytic",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all analytics in your analytics catalog",
+					"request": {
+						"url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create catalog entry",
+					"request": {
+						"url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"steam-turbine-actual-vs-expected-analytic\",\n    \"version\":\"v1\",\n    \"supportedLanguage\":\"Java\",\n    \"taxonomyLocation\":\"\",\n    \"author\":\"Jane Doe\",\n    \"description\":\"This analytic computes deltas between the actual (timeseries data) and expected (model predicted) temperatures values.\",\n    \"customMetadata\":\"\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Upload analytic file/jar",
+					"request": {
+						"url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/artifacts",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"enabled": true,
+									"value": ""
+								},
+								{
+									"key": "catalogEntryId",
+									"value": "<YOUR_CATALOG_ENTRY_UUID>",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "type",
+									"value": "executable",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "description",
+									"value": "steam-turbine-tutorial-analytic - computes the deltas between actual and expected temperature values",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Validate your analytic",
+					"request": {
+						"url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/<YOUR_CATALOG_ENTRY_UUID>/validation",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"series\": [{\r\n\t\t\"timestamp\": 1466308800000,\r\n\t\t\"rpm\": 3000,\r\n\t\t\"actualTemperature\": 201\r\n\t}, {\r\n\t\t\"timestamp\": 1466308801000,\r\n\t\t\"rpm\": 3000,\r\n\t\t\"actualTemperature\": 203\r\n\t}, {\r\n\t\t\"timestamp\": 1466308802000,\r\n\t\t\"rpm\": 3000,\r\n\t\t\"actualTemperature\": 208\r\n\t}, {\r\n\t\t\"timestamp\": 1466308803000,\r\n\t\t\"rpm\": 3000,\r\n\t\t\"actualTemperature\": 211\r\n\t}],\r\n\t\"slope\": 0.065,\r\n\t\"intercept\": 4.0\r\n}"
+						},
+						"description": "Required before executing"
+					},
+					"response": []
+				},
+				{
+					"name": "Check validation status",
+					"request": {
+						"url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/<YOUR_CATALOG_ENTRY_UUID>/validation/<YOUR_VALIDATION_ID>",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "'<YOUR_CATALOG_ENTRY_UUID>' is the id of the analytic we are validating \n\n'<YOUR_VALIDATION_ID>' is the validation request id"
+					},
+					"response": []
+				},
+				{
+					"name": "Request validation results",
+					"request": {
+						"url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/<YOUR_CATALOG_ENTRY_UUID>/validation/<YOUR_VALIDATION_ID>",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Execute the analytic",
+					"request": {
+						"url": "https://<YOUR_CATALOG_ENTRY_UUID>.run.aws-usw02-pr.ice.predix.io/api/v1/analytic/execution/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"series\": [{\r\n   \"timestamp\": 1466308800000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 201\r\n   }, {\r\n   \"timestamp\": 1466308801000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 203\r\n   }, {\r\n   \"timestamp\": 1466308802000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 208\r\n   }, {\r\n   \"timestamp\": 1466308803000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 211\r\n }],\r\n \"slope\": 0.065,\r\n \"intercept\": 4.0\r\n}"
+						},
+						"description": "This will execute the analytic using the <analytic-uri> endpoint. Replace the request body with the time-series data you wish to run the analytic on.\n\n'<YOUR_CATALOG_ENTRY_UUID>' is the id specific to our analytic. "
+					},
+					"response": []
+				},
+				{
+					"name": "Execute the analytic asynchronously",
+					"request": {
+						"url": "https://<YOUR_CATALOG_ENTRY_UUID>.run.aws-usw02-pr.ice.predix.io/api/v1/analytic/execution/async",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"series\": [{\r\n   \"timestamp\": 1466308800000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 201\r\n   }, {\r\n   \"timestamp\": 1466308801000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 203\r\n   }, {\r\n   \"timestamp\": 1466308802000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 208\r\n   }, {\r\n   \"timestamp\": 1466308803000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 211\r\n }],\r\n \"slope\": 0.065,\r\n \"intercept\": 4.0\r\n}"
+						},
+						"description": "This will execute the analytic using the <analytic-uri> endpoint. Replace the request body with the time-series data you wish to run the analytic on.\n\n'<YOUR_CATALOG_ENTRY_UUID>' is the id specific to our analytic. "
+					},
+					"response": []
+				},
+				{
+					"name": "Check the status of the async execution",
+					"request": {
+						"url": "https://<YOUR_CATALOG_ENTRY_UUID>.run.aws-usw02-pr.ice.predix.io/api/v1/analytic/execution/async/<YOUR_VALIDATION_ID>/status",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"series\": [{\r\n   \"timestamp\": 1466308800000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 201\r\n   }, {\r\n   \"timestamp\": 1466308801000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 203\r\n   }, {\r\n   \"timestamp\": 1466308802000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 208\r\n   }, {\r\n   \"timestamp\": 1466308803000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 211\r\n }],\r\n \"slope\": 0.065,\r\n \"intercept\": 4.0\r\n}"
+						},
+						"description": "'<YOUR_VALIDATION_ID>' is the request id returned from the asynchronous execution"
+					},
+					"response": []
+				},
+				{
+					"name": "Get the results of the async execution",
+					"request": {
+						"url": "https://<YOUR_CATALOG_ENTRY_UUID>.run.aws-usw02-pr.ice.predix.io/api/v1/analytic/execution/async/<YOUR_VALIDATION_ID>/result",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"series\": [{\r\n   \"timestamp\": 1466308800000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 201\r\n   }, {\r\n   \"timestamp\": 1466308801000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 203\r\n   }, {\r\n   \"timestamp\": 1466308802000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 208\r\n   }, {\r\n   \"timestamp\": 1466308803000,\r\n   \"rpm\": 3000,\r\n   \"actualTemperature\": 211\r\n }],\r\n \"slope\": 0.065,\r\n \"intercept\": 4.0\r\n}"
+						},
+						"description": "'<YOUR_VALIDATION_ID>' is the request id returned from the asynchronous execution"
+					},
+					"response": []
+				},
+				{
+					"name": "Get recent logs",
+					"request": {
+						"url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/<YOUR_CATALOG_ENTRY_UUID>/logs",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete catalog entry",
+					"request": {
+						"url": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/analytics/<YOUR_CATALOG_ENTRY_UUID>",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Predix-Zone-Id",
+								"value": "{{analytic-zone-id}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Store Data",
+			"description": "",
+			"item": [
+				{
+					"name": "Transform analytic output",
+					"request": {
+						"url": "https://<YOUR_OWN_POSTPROCESS_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/transform/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"result\": {\r\n    \"series\": [\r\n      {\r\n        \"timestamp\": 1467747958000,\r\n        \"rpm\": 3000,\r\n        \"actualTemperature\": 201,\r\n        \"expectedTemperature\": 199,\r\n        \"delta\": 2\r\n      },\r\n      {\r\n        \"timestamp\": 1467748018000,\r\n        \"rpm\": 3000,\r\n        \"actualTemperature\": 204,\r\n        \"expectedTemperature\": 199,\r\n        \"delta\": 5\r\n      }\r\n    ],\r\n    \"slope\": 0.065,\r\n    \"intercept\": 4\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Post a single result",
+					"request": {
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"expectedTemperature\": 199.0,\r\n    \"actualTemperature\": 201.0,\r\n    \"timestamp\": 1466308800000,\r\n    \"assetId\": \"1\",\r\n    \"temperatureDelta\": 2.0\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Post list of results",
+					"request": {
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/api/analyticResults",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"id\": null,\n    \"expectedTemperature\": 199,\n    \"actualTemperature\": 201,\n    \"timestamp\": 1467747958000,\n    \"assetId\": \"1\",\n    \"rpm\": 3000,\n    \"temperatureDelta\": 2\n  },\n  {\n    \"id\": null,\n    \"expectedTemperature\": 199,\n    \"actualTemperature\": 204,\n    \"timestamp\": 1467748018000,\n    \"assetId\": \"1\",\n    \"rpm\": 3000,\n    \"temperatureDelta\": 5\n  }\n]"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all analytic results",
+					"request": {
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Count analytic results",
+					"request": {
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults/search/countByAssetId?assetId=2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a single analytic result",
+					"request": {
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults/<YOUR_ANALYTIC_RESULT_UUID>",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "'<YOUR_ANALYTIC_RESULT_UUID>' is the surrogate key of the analytic result we wish to delete"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all analytic results",
+					"request": {
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/admin/analyticResults",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "You must have admin privileges to do this"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Step 4 - Orchestrate Workflow",
+			"description": "",
+			"item": [
+				{
+					"name": "Execute a workflow",
+					"request": {
+						"url": "https://<YOUR_OWN_WORKFLOW_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/workflow/tutorial-workflow-public",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"params\":\n        {\n            \"assetId\":2,\n            \"startTime\":18000000,\n            \"endTime\":315550800000\n        }\n}"
+						},
+						"description": "Path must include name of workflow. In this example, the name of the workflow is tutorial-workflow-public"
+					},
+					"response": []
+				},
+				{
+					"name": "Simulate workflow",
+					"request": {
+						"url": "https://<YOUR_OWN_SIMULATOR_SERVICE_PREFIX>-dt-tutorial-simulator.run.aws-usw02-pr.ice.predix.io/simulate?assetId=2&startTime=1420070370000&endTime=1422748770000&intervalMilliseconds=21600000",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "Start: December 31st, 2014, 11:59:30\n\nEnd: January 31st, 2015, 11:59:30\n\nInterval: 6 hours"
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
