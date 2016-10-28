@@ -7,12 +7,12 @@ This collection can be used as a guide for how to use the RESTful endpoints on t
 you must first import the file into Postman. Since there are a few strings that are frequently used, the collection is configured
 to read 3 different variables from your Postman environment:
 
-- token = Bearer \<bearer token\>
+- token = \<bearer token\>
     - Used in the header of requests
 - analytic-zone-id = \<Predix analytics catalog zone id\>
-    - Used in the header of requests to the analytic catalog service
-- uaa-authorization = Basic \<Base64(client-id:client-secret)\>
-    - Used in the header of the request to get your bearer token
+    - Used in the Predix-Zone-Id header of requests to the analytic catalog service
+- credentials = \<Base64(client-id:client-secret)\>
+    - Used in the Authorization header of the request to get your bearer token
 
 Links:
 - Importing a collection into Postman: https://www.getpostman.com/docs/collections
