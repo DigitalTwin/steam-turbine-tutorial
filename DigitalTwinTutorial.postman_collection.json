@@ -14,7 +14,7 @@
 				{
 					"name": "Get new bearer token",
 					"request": {
-						"url": "https://<YOUR_UAA_INSTANCE_GUID>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token",
+						"url": "https://<YOUR_UAA_INSTANCE_HERE>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token",
 						"method": "POST",
 						"header": [
 							{
