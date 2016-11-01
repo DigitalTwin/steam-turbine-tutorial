@@ -575,7 +575,7 @@
 				{
 					"name": "Transform analytic output",
 					"request": {
-						"url": "https://<YOUR_OWN_POSTPROCESS_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/transform/1",
+						"url": "https://<YOUR_OWN_POSTPROCESS_SERVICE_PREFIX>-dt-tutorial-analytic-post-processing.run.aws-usw02-pr.ice.predix.io/transform/1",
 						"method": "POST",
 						"header": [
 							{
@@ -600,7 +600,7 @@
 				{
 					"name": "Post a single result",
 					"request": {
-						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults",
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>-dt-tutorial-result-persistence.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults",
 						"method": "POST",
 						"header": [
 							{
@@ -625,7 +625,7 @@
 				{
 					"name": "Post list of results",
 					"request": {
-						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/api/analyticResults",
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>-dt-tutorial-result-persistence.run.aws-usw02-pr.ice.predix.io/api/analyticResults",
 						"method": "POST",
 						"header": [
 							{
@@ -650,7 +650,7 @@
 				{
 					"name": "Get all analytic results",
 					"request": {
-						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults",
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>-dt-tutorial-result-persistence.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults",
 						"method": "GET",
 						"header": [
 							{
@@ -670,7 +670,7 @@
 				{
 					"name": "Count analytic results",
 					"request": {
-						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults/search/countByAssetId?assetId=2",
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>-dt-tutorial-result-persistence.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults/search/countByAssetId?assetId=2",
 						"method": "GET",
 						"header": [
 							{
@@ -690,7 +690,7 @@
 				{
 					"name": "Delete a single analytic result",
 					"request": {
-						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults/<YOUR_ANALYTIC_RESULT_UUID>",
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>-dt-tutorial-result-persistence.run.aws-usw02-pr.ice.predix.io/persistence/analyticResults/<YOUR_ANALYTIC_RESULT_UUID>",
 						"method": "DELETE",
 						"header": [
 							{
@@ -710,7 +710,7 @@
 				{
 					"name": "Delete all analytic results",
 					"request": {
-						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/admin/analyticResults",
+						"url": "https://<YOUR_OWN_RESULT_SERVICE_PREFIX>-dt-tutorial-result-persistence.run.aws-usw02-pr.ice.predix.io/admin/analyticResults",
 						"method": "DELETE",
 						"header": [
 							{
@@ -736,7 +736,7 @@
 				{
 					"name": "Execute a workflow",
 					"request": {
-						"url": "https://<YOUR_OWN_WORKFLOW_SERVICE_PREFIX>.run.aws-usw02-pr.ice.predix.io/workflow/tutorial-workflow-public",
+						"url": "https://<YOUR_OWN_WORKFLOW_SERVICE_PREFIX>-dt-tutorial-workflow.run.aws-usw02-pr.ice.predix.io/workflow/tutorial-workflow-public",
 						"method": "POST",
 						"header": [
 							{
