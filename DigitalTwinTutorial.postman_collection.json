@@ -183,7 +183,7 @@
 						"header": [
 							{
 								"key": "Predix-Zone-Id",
-								"value": "e3ea5ddd-2482-412e-95ed-8e1de761997b",
+								"value": "<YOUR_TIMESERIES_PREDIX_ZONE_ID>",
 								"description": ""
 							},
 							{
