@@ -1,6 +1,6 @@
 # steam-turbine-tutorial
 
-### Steam Turbine Tutorial - an Working Example of a Digital Twin
+### Steam Turbine Tutorial - a Working Example of a Digital Twin
 In the documentation folder are several MSWord documents that can be followed to walk you through building your digital twin
 of a steam turbine.  The documents and the suggested order of reading are listed below.
 
