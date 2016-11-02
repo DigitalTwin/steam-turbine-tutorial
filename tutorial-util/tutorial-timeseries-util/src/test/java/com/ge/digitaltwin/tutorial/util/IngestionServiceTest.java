@@ -1,6 +1,6 @@
 package com.ge.digitaltwin.tutorial.util;
 
-import com.ge.dt.ptsc.*;
+import com.ge.dt.tsc.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -18,19 +18,19 @@ public class IngestionServiceTest {
     private IngestionService ingestionService;
 
     @Mock
-    private IngestionClient predixTimeSeriesClient;
+    private IngestionClient digitalTwinTimeSeriesClient;
 
     @Mock
-    private IngestionSession predixTimeSeriesSession;
+    private IngestionSession digitalTwinTimeSeriesSession;
 
     @Before
     public void setup() {
         initMocks(this);
-        ingestionService = new IngestionService(predixTimeSeriesClient);
+        ingestionService = new IngestionService(digitalTwinTimeSeriesClient);
     }
 
     @Test
-    public void pushesTurbineDataPointToPredixTimeseries() throws PredixTimeSeriesClientException {
+    public void pushesTurbineDataPointToDigitalTwinTimeseries() throws DigitalTwinTimeSeriesClientException {
         final SteamTurbineDataPoint steamTurbineDataPoint = new SteamTurbineDataPoint();
         steamTurbineDataPoint.setSteamTurbineId("test-42");
         steamTurbineDataPoint.setTimestamp(new java.sql.Date(1461684000000L));
@@ -39,12 +39,12 @@ public class IngestionServiceTest {
 
         ingestionService.ingest(singletonList(steamTurbineDataPoint));
 
-        final ArgumentCaptor<IngestionJob> predixTimeSeriesJobArgumentCaptor = ArgumentCaptor.forClass(IngestionJob.class);
-        then(predixTimeSeriesClient).should().doInSession(predixTimeSeriesJobArgumentCaptor.capture());
-        predixTimeSeriesJobArgumentCaptor.getValue().doInSession(predixTimeSeriesSession);
+        final ArgumentCaptor<IngestionJob> digitalTwinTimeSeriesJobArgumentCaptor = ArgumentCaptor.forClass(IngestionJob.class);
+        then(digitalTwinTimeSeriesClient).should().doInSession(digitalTwinTimeSeriesJobArgumentCaptor.capture());
+        digitalTwinTimeSeriesJobArgumentCaptor.getValue().doInSession(digitalTwinTimeSeriesSession);
 
         final ArgumentCaptor<IngestionRequest> ingestionRequestArgumentCaptor = ArgumentCaptor.forClass(IngestionRequest.class);
-        then(predixTimeSeriesSession).should(times(1)).ingest(ingestionRequestArgumentCaptor.capture());
+        then(digitalTwinTimeSeriesSession).should(times(1)).ingest(ingestionRequestArgumentCaptor.capture());
         final IngestionRequest ingestionRequest = ingestionRequestArgumentCaptor.getValue();
 
         assertThat(ingestionRequest.getBodies().get(0).getAttributes().get("SteamTurbineId"), is(equalTo(steamTurbineDataPoint.getSteamTurbineId())));

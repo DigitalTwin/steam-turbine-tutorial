@@ -1,9 +1,9 @@
 package com.ge.digitaltwin.tutorial.util;
 
-import com.ge.dt.ptsc.IngestionRequest;
-import com.ge.dt.ptsc.IngestionClient;
-import com.ge.dt.ptsc.PredixTimeSeriesClientException;
-import com.ge.dt.ptsc.IngestionSession;
+import com.ge.dt.tsc.IngestionRequest;
+import com.ge.dt.tsc.IngestionClient;
+import com.ge.dt.tsc.DigitalTwinTimeSeriesClientException;
+import com.ge.dt.tsc.IngestionSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,22 +23,22 @@ public class IngestionService {
 
     private static final Logger LOG = LoggerFactory.getLogger(IngestionService.class);
 
-    private final IngestionClient predixTimeSeriesClient;
+    private final IngestionClient digitalTwinTimeSeriesClient;
 
     @Autowired
-    public IngestionService(IngestionClient predixTimeSeriesClient) {
-        this.predixTimeSeriesClient = predixTimeSeriesClient;
+    public IngestionService(IngestionClient digitalTwinTimeSeriesClient) {
+        this.digitalTwinTimeSeriesClient = digitalTwinTimeSeriesClient;
     }
 
     public void ingest(List<SteamTurbineDataPoint> turbineList) {
         try {
-            predixTimeSeriesClient.doInSession(predixTimeseries -> processTurbineList(turbineList, predixTimeseries));
-        } catch (PredixTimeSeriesClientException e) {
+            digitalTwinTimeSeriesClient.doInSession(digitalTwinTimeseries -> processTurbineList(turbineList, digitalTwinTimeseries));
+        } catch (DigitalTwinTimeSeriesClientException e) {
             LOG.error("Problem encountered while pushing steam turbines to Timeseries service instance", e);
         }
     }
 
-    public Integer processTurbineList(List<SteamTurbineDataPoint> turbineList, IngestionSession predixTimeseries) {
+    public Integer processTurbineList(List<SteamTurbineDataPoint> turbineList, IngestionSession digitalTwinTimeseries) {
         Integer turbineCount = 0;
         Integer pushCount = 0;
         IngestionRequest ingestionRequest = new IngestionRequest();
@@ -51,9 +51,9 @@ public class IngestionService {
             if (turbineCount % CHUNK_SIZE == 0) {
                 LOG.debug("##### sending steam turbine data payloads: " + (1 + (pushCount * CHUNK_SIZE)) + "-" + ((1 + pushCount) * CHUNK_SIZE));
                 try {
-                    predixTimeseries.ingest(ingestionRequest);
+                    digitalTwinTimeseries.ingest(ingestionRequest);
                     ingestionRequest = new IngestionRequest();
-                } catch (PredixTimeSeriesClientException e) {
+                } catch (DigitalTwinTimeSeriesClientException e) {
                     LOG.error("Problems encountered while attempting to process SteamTurbineDataPoint ingestion request", e);
                 }
                 pushCount++;
@@ -62,8 +62,8 @@ public class IngestionService {
         if (ingestionRequest.getBodies().size() > 0) {
             LOG.debug("##### sending steam turbine data payload: " + (1 + pushCount * CHUNK_SIZE));
             try {
-                predixTimeseries.ingest(ingestionRequest);
-            } catch (PredixTimeSeriesClientException e) {
+                digitalTwinTimeseries.ingest(ingestionRequest);
+            } catch (DigitalTwinTimeSeriesClientException e) {
                 LOG.error("Problems encountered while attempting to process Turbine ingestion request", e);
             }
         }

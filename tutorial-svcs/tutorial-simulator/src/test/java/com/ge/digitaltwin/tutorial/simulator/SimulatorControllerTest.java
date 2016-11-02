@@ -6,6 +6,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.mockito.Mock;
 
 public class SimulatorControllerTest {
@@ -22,6 +23,7 @@ public class SimulatorControllerTest {
     }
 
     @Test
+    @Ignore
     public void runsSimulation() {
         final String assetId = "asset123";
         final Long startTime = 1436234000L;
