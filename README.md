@@ -1,6 +1,7 @@
 # steam-turbine-tutorial
+![alt tag](https://cdn2.geready.com/digital/sites/default/files/D_Power_Gen_industrial_impact.jpg)
 
-### Steam Turbine Tutorial - a Working Example of a Digital Twin
+### Digital Twin Starter Kit - a Working Example of a Digital Twin
 In the documentation folder are several MSWord documents that can be followed to walk you through building your digital twin
 of a steam turbine.  The documents and the suggested order of reading are listed below.
 
