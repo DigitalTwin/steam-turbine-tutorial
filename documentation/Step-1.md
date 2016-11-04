@@ -2,13 +2,13 @@
 
 **What you'll learn to do**
 
-<img src="media/image1.png" width="632" height="397" />
+<img src="images/step1-01.jpg" width="632" height="397" />
 
 Step 1 illustrates how to use a pre-built set of data retrieval services that are accessible via a REST endpoint (URL).  Later, in Step 4, we'll see the workflow invoke these services to pull the data and then feed it to the analytic model.
 
 The simple workflow:
 
-<img src="media/image2.jpeg" width="679" height="156" />
+<img src="images/step1-02.jpg" width="679" height="156" />
 
 In this part of the tutorial, you will:
 
@@ -99,7 +99,7 @@ tutorial-asset                      started           
 
 -   Try the “Get all assets” GET request.
 
-<img src="media/image3.png" width="624" height="669" />
+<img src="images/step1-03.jpg" width="624" height="669" />
 
 **Create the tutorial-model-coefficient application**
 
@@ -191,11 +191,11 @@ tutorial-model-coefficient          started                1/1 
 </tbody>
 </table>
 
-<img src="media/image4.png" width="624" height="648" />
+<img src="images/step1-04.jpg" width="624" height="648" />
 
 -   Next, “Get the model coefficients for a specific asset” request.
 
-<img src="media/image5.png" width="624" height="542" />
+<img src="images/step1-05.jpg" width="624" height="542" />
 
 **Create the tutorial-data application**
 
@@ -410,7 +410,7 @@ By convention, testing data is between the years 1970 and 1979. To verify the su
 </tbody>
 </table>
 
-<img src="media/image6.png" width="624" height="608" />
+<img src="images/step1-06.jpg" width="624" height="608" />
 
 **Push the tutorial’s steam turbine data**
 
@@ -418,7 +418,7 @@ After you’ve pushed and verified the six example data points above, you can co
 
 Now that you have a significant amount of data in your time series service, let’s use the tutorial-data application that you created earlier to get that data. This will serve to test that the application works as intended. In your Postman collection, run the “Get analytic input data” request and you should see something like the following:
 
-<img src="media/image7.png" width="624" height="663" />
+<img src="images/step1-07.jpg" width="624" height="663" />
 
 **What you learned**
 
