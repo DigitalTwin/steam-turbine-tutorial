@@ -1,3 +1,5 @@
+Previous: [Step 5](Step-5.md)
+
 #**Build the Digital Twin Starter Kit: Creating Your Digital Twin**
 
 ##**What you'll learn to do**
