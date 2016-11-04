@@ -2,13 +2,13 @@
 
 **What you'll learn to do**
 
-<img src="media/image1.png" width="624" height="391" />
+<img src="images/step4-01.jpg" width="624" height="391" />
 
 Step 4 illustrates how to build and deploy a "workflow" orchestration service that is accessible via a REST endpoint (URL). 
 
 The simple workflow:
 
-<img src="media/image2.jpeg" width="675" height="156" />
+<img src="imags/step4-02.jpg" width="675" height="156" />
 
 In this part of the tutorial, you will:
 
@@ -174,7 +174,7 @@ Get a bearer token and test your service with Postman.
 </tbody>
 </table>
 
-<img src="media/image3.png" width="717" height="609" />
+<img src="images/step4-03.jpg" width="717" height="609" />
 
 These are the rest endpoints of interest to the "tutorial-workflow" (an implementation of a typical "workflow" service):
 
@@ -337,7 +337,7 @@ PostRESTServiceJavaDelegate - a custom extension of the BaseRESTServiceJavaDel
 
 Figure 1. The example BPMN opened in the IntelliJ Activiti plugin 
 
-<img src="media/image4.jpeg" width="709" height="311" />
+<img src="images/step4-04.jpg" width="709" height="311" />
 
 The sample workflow (as shown in Figure 1 above) consists of 11 components:
 
