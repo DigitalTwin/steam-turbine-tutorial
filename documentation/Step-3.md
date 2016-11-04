@@ -81,15 +81,15 @@ Notes:
 
 2)  Push it to Cloud Foundry
 
-<pre>C:\steam-turbine-tutorial\tutorial-svcs &gt; cf push &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-result-persistence --no-start</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf push &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-result-persistence --no-start</pre>
 
 3)  You'll need to set an environment variable for the security\_oauth2\_client\_clientSecret. You could set this in the manifest.yml file instead, but we recommend using an environment variable as it is more secure than storing passwords in a file, which may result in them being accidentally committed to your source code repository.
 
-<pre>C:\steam-turbine-tutorial\tutorial-svcs &gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-result-persistence security_oauth2_client_clientSecret &lt;your Client Id's secret&gt;</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-result-persistence security_oauth2_client_clientSecret &lt;your Client Id's secret&gt;</pre>
 
 4)  Start your application.
 
-<pre>C:\steam-turbine-tutorial\tutorial-svcs &gt; cf start &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-result-persistence</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf start &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-result-persistence</pre>
 
 5)  Use "cf apps" to discover the URL to your service. Prepend the “https://” protocol then append your API path to get the full URL to your data service
 
