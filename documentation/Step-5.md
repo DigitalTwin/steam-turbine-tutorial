@@ -213,8 +213,8 @@ Now that your visualization application is up and running with the support of al
 Let’s start with a clean set of data. Using the tutorial-util\\tutorial-timeseries-util from Step 1, repush the /data/ data\_points\_turbine\_1.csv file as steamTurbineId 5. Then use the “Post model coefficients for an asset” request from the Postman collection to create coefficients for assetId 5. Since the steam turbine data is relatively “flat”, feel free to use a slope of zero (or close to zero) and a y-intercept somewhere around 500 (since that’s close to the actual temperature values in the data set).
 
 Now, go back to your browser and change the “select an asset” to the asset named “GE ST-360 05” (the “05” is the asset id in this case). The display will appear to have no data. This is because the simulator needs to be run so that its output is saved to the place where the visualization application will discover it. So, keep your browser open and run the “Simulate workflow” request from Postman (details in Step 4) for assetId 5 from 1420167570000 (1 January 2015) to 1427857170000 (31 March 2015) at an interval of 21600000 milliseconds (6 hours). In a few seconds, you should see your browser start to dynamically update the display showing a plot of the actual temperatures (from the time series data) and expected temperatures (calculated by the analytic given the asset’s coefficients) versus time. As time progresses, you’ll see the actual temperature drifting higher gradually pulling away from the calculated expected temperature (for a model slope coefficient set to zero). To a steam turbine engineer, this delta would indicate that the sensors are drifting, the model coefficients are wrong and need to be tuned, or that there is a legitimate problem with the asset and that maintenance should be scheduled.
-
-<img src="images/step5-02.jpg" width="655" height="410" />
+width="655" height="410"
+<img src="images/step5-02.jpg"  />
 
 ##**What you learned**
 
