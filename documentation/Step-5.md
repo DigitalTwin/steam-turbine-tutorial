@@ -1,6 +1,6 @@
-**Step 5: Build Applications**
+#**Step 5: Build Applications**
 
-**What you'll learn to do**
+##**What you'll learn to do**
 
 Step 5 notes that while every Digital Twin application is likely to have its own visualization requirements, a few common elements are frequently used. In this step, you’ll learn how to set up a simple visualization application that leverages the services and orchestration that we previously built.
 
@@ -26,13 +26,13 @@ This fully functional web application pulls data from the "GET" endpoint describ
 
 -   Explore your data
 
-**What you need to set up**
+##**What you need to set up**
 
 You will need a Predix service instance of a [Key-Value (Redis)](https://www.predix.io/services/service.html?id=1215) service and you’ll need to know its name. You’ll also need a properly configured UAA instance. Please refer to the [*Setting up a UAA service in Getting Started*](https://predix-io-dev.grc-apps.svc.ice.ge.com/resources/tutorials/tutorial-details.html?tutorial_id=1915&tag=1913&journey=Digital%20Twin%20Runtime%20Starter%20Kit&resources=1914,1915,1916,1917,1918,1919,1920) to create your own clients, users and secrets for building the tutorial.
 
-**What you need to do**
+##**What you need to do**
 
-**Create the tutorial-vis application**
+###**Create the tutorial-vis application**
 
 **Update URLs to the REST endpoints to get data**
 
@@ -118,73 +118,49 @@ If you are behind a corporate firewall, then you’ll need to configure your pro
 
 -   Node/npm – you’ll need to:
 
-<table>
-<thead>
-<tr class="header">
-<th>npm config set proxy http://{your-http-proxy-host}:{your-http-proxy-port}<br />
-npm config set https-proxy http://{your-https-proxy-host}:{your-https-proxy-port}</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+npm config set proxy http://{your-http-proxy-host}:{your-http-proxy-port}
+npm config set https-proxy http://{your-https-proxy-host}:{your-https-proxy-port}
+</pre>
 
 -   Bower – your .bowerrc file will need to contain these key/value pairs:
 
-<table>
-<thead>
-<tr class="header">
-<th>{<br />
-&quot;proxy&quot;:&quot;http://{your-http-proxy-host}:{your-http-proxy-port}&quot;,<br />
-&quot;https-proxy&quot;:&quot;http://{your-https-proxy-host}:{your-https-proxy-port}&quot;,<br />
-}</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+{
+  &quot;proxy&quot;:&quot;http://{your-http-proxy-host}:{your-http-proxy-port}&quot;,
+  &quot;https-proxy&quot;:&quot;http://{your-https-proxy-host}:{your-https-proxy-port}&quot;,
+}
+</pre>
 
-In the top level directory in the visualization section, run "npm install", "bower install", and "grunt dist" to install dependencies and package the project. 
+In the top-level directory in the visualization section, run "npm install", "bower install", and "grunt dist" to install dependencies and package the project. 
 
-<table>
-<thead>
-<tr class="header">
-<th>C:\steam-turbine-tutorial-vis&gt;npm install<br />
-C:\steam-turbine-tutorial-vis&gt;bower install<br />
-C:\steam-turbine-tutorial-vis&gt;grunt dist</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+C:\steam-turbine-tutorial-vis&gt;npm install
+C:\steam-turbine-tutorial-vis&gt;bower install
+C:\steam-turbine-tutorial-vis&gt;grunt dist
+</pre>
 
-1.  Configure the appropriate section of the “manifest.yml” file to reflect your environment.
+1)  Configure the appropriate section of the “manifest.yml” file to reflect your environment.
 
-<table>
-<thead>
-<tr class="header">
-<th>---<br />
-applications:<br />
-- name: &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-vis<br />
-host: &lt;YOUR_OWN_VIS_APP_PREFIX&gt;-dt-tutorial-vis<br />
-buildpack: predix_openresty_buildpack<br />
-path: dist<br />
-memory: 64M<br />
-stack: cflinuxfs2<br />
-services:<br />
-- &lt;YOUR_REDIS_SERVICE_NAME&gt;<br />
-env:<br />
-UAA_SERVER_URL: https://&lt;YOUR_UAA_INSTANCE_HERE&gt;.predix-uaa.run.aws-usw02-pr.ice.predix.io<br />
-# UAA_AUTHORIZATION:<br />
-REDIS: redis-&lt;N&gt;<br />
-# SESSION_SECRET:</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+---
+applications:
+- name: &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-vis
+  host: &lt;YOUR_OWN_VIS_APP_PREFIX&gt;-dt-tutorial-vis
+  buildpack: predix_openresty_buildpack
+  path: dist
+  memory: 64M
+  stack: cflinuxfs2
+  services:
+  - &lt;YOUR_REDIS_SERVICE_NAME&gt;
+  env:
+    UAA_SERVER_URL: https://&lt;YOUR_UAA_INSTANCE_HERE&gt;.predix-uaa.run.aws-usw02-pr.ice.predix.io
+    # UAA_AUTHORIZATION:
+    REDIS: redis-&lt;N&gt;
+    # SESSION_SECRET:
+</pre>
 
-> Notes:
+Notes:
 
 -   The application **name** must be unique across your Cloud Foundry organization.
 
@@ -196,53 +172,39 @@ REDIS: redis-&lt;N&gt;<br />
 
 -   Substitute the number associated with your Redis service for &lt;N&gt;. You can find this number in the “service” column in the output of “cf services”
 
-<table>
-<thead>
-<tr class="header">
-<th>C:\steam-turbine-tutorial-vis&gt;cf services<br />
-Getting services in org 200000000@mail.ad.ge.com / space dev as<br />
-200000000@mail.ad.ge.com...<br />
-OK<br />
-name service plan<br />
-…<br />
-my-tutorial-redis redis-5 shared-vm<br />
-…</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+C:\steam-turbine-tutorial-vis&gt;cf services
+Getting services in org 200000000@mail.ad.ge.com / space dev as
+200000000@mail.ad.ge.com...
+OK
+name service plan
+…
+my-tutorial-redis redis-5 shared-vm
+…
+</pre>
 
-1.  Push it to Cloud Foundry
+2)  Push it to Cloud Foundry
 
-| C:\\steam-turbine-tutorial-vis&gt;cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-vis –no-start |
-|----------------------------------------------------------------------------------------------------|
+<pre>C:\\steam-turbine-tutorial-vis&gt;cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-vis –no-start</pre>
 
-1.  You’ll need to set two environment variables
+3)  You’ll need to set two environment variables
 
-    1.  UAA\_AUTHORIZATION - this is a Base64-encoded concatenation of the tutorial-user client’s id, a colon (“:”), and that client’s password. If you used the “create-dt-starter-kit.pl” script in Getting Started, then this string is “tutorial-user:tutorial-user-password”. You can run this string through any trusted Base64 encoding utility to get the &lt;Base64Encoded-clientId:password&gt; needed below.
+- UAA\_AUTHORIZATION - this is a Base64-encoded concatenation of the tutorial-user client’s id, a colon (“:”), and that client’s password. If you used the “create-dt-starter-kit.pl” script in Getting Started, then this string is “tutorial-user:tutorial-user-password”. You can run this string through any trusted Base64 encoding utility to get the &lt;Base64Encoded-clientId:password&gt; needed below.
+- SESSION\_SECRET – this can be a string of your choosing as it’ll be used to encrypt data that gets stored in your Redis instance.
 
-    2.  SESSION\_SECRET – this can be a string of your choosing as it’ll be used to encrypt data that gets stored in your Redis instance.
 
-<table>
-<thead>
-<tr class="header">
-<th>C:\steam-turbine-tutorial-vis&gt;cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-vis UAA_AUTHORIZATION &lt;Base64-Encoded-clientId:password&gt;<br />
-C:\steam-turbine-tutorial-vis&gt;cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-vis SESSION_SECRET &lt;your-redis-encryption-string&gt;</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+C:\steam-turbine-tutorial-vis&gt;cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-vis UAA_AUTHORIZATION &lt;Base64-Encoded-clientId:password&gt;
+C:\steam-turbine-tutorial-vis&gt;cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-vis SESSION_SECRET &lt;your-redis-encryption-string&gt;
+</pre>
 
-1.  Start your application.
+4)  Start your application.
 
-| C:\\steam-turbine-tutorial-vis&gt;cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-vis |
-|-------------------------------------------------------------------------------------------|
+<pre>C:\\steam-turbine-tutorial-vis&gt;cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-vis</pre>
 
-1.  Use “cf apps” to discover the URL to your application. Prepend “https://” to this URL, paste it into your browser and authenticate with the “tutorial-user” user account credentials that you set up in Getting Started.
+5)  Use “cf apps” to discover the URL to your application. Prepend “https://” to this URL, paste it into your browser and authenticate with the “tutorial-user” user account credentials that you set up in Getting Started.
 
-**Explore your data**
+###**Explore your data**
 
 Now that your visualization application is up and running with the support of all the backend services from the previous tutorial steps, you can explore data.
 
@@ -252,7 +214,7 @@ Now, go back to your browser and change the “select an asset” to the asset n
 
 <img src="images/step5-02.jpg" width="655" height="410" />
 
-**What you learned**
+##**What you learned**
 
 You learned how to configure connect.js and nginx.conf prior to building your application using node, npm, and grunt. You learned how to work with a corporate proxy. You then learned how to configure your manifest.yml file and push your visualization application to Cloud Foundry. Finally, you learned how to explore your data using the visualization application.
 

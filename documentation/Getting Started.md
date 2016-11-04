@@ -1,10 +1,10 @@
-**Build the Digital Twin Starter Kit: Getting Started **
+#**Build the Digital Twin Starter Kit: Getting Started**
 
-**What you'll learn to do**
+##**What you'll learn to do**
 
 Set up your environment to run a sample Digital Twin. Download and build the provided sample code.
 
-**What you need to set up**
+##**What you need to set up**
 
 This section will introduce recommended development tools and environment configuration.
 
@@ -58,60 +58,48 @@ Inside this collection are folders corresponding to each of the 5 steps taken to
 
 All of the services with available REST endpoints utilize a tool called Swagger to generate documentation for the available REST endpoints. Swagger also allows you to execute HTTP requests through its online user interface. We will discuss this in greater detail later. 
 
-What you need to do 
-====================
+##**What you need to do** 
 
-Creating services
-=================
+**Creating services**
 
-Our starter kit makes use of 7 different Predix services. These services can be created in several ways:
-========================================================================================================
+
+**Our starter kit makes use of 7 different Predix services. These services can be created in several ways:**
 
 -   via a Perl script available at (<https://github.com/DigitalTwin/dt-starter-kit-creation-script>)
-    ================================================================================================
-
+    
 -   via your browser from the service catalog (<https://www.predix.io/catalog/services/>)
-    =====================================================================================
 
 -   via the command line using the Cloud Foundry command line client
-    ================================================================
 
 We recommend that you use the script if you wish to save time. The script will abstract and hide the details of configuring this tutorial application. In other words, you will not learn as much about instantiating and wiring these services together. This may be acceptable if you already understand how Predix services work. Otherwise, after using the script, we suggest that you investigate the script to understand how it works and to consult the documentation and guides available at [Predix.io](https://predix.io).
-======================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
-| Service           
- =======            | URL                                                 
-                     ===                                                  | Starter Kit Step 
-                                                                           ================  |
-|-------------------|-----------------------------------------------------|------------------|
-| UAA               
- ===                | https://www.predix.io/services/service.html?id=1172 
-                     ===================================================  | 1-5              
-                                                                           ===               |
-| PostgreSQL        
- ==========         | https://www.predix.io/services/service.html?id=1178 
-                     ===================================================  | 1                
-                                                                           =                 |
-| Time Series       
- ===========        | https://www.predix.io/services/service.html?id=1177 
-                     ===================================================  | 1                
-                                                                           =                 |
-| Analytics Catalog 
- =================  | https://www.predix.io/services/service.html?id=1187 
-                     ===================================================  | 2                
-                                                                           =                 |
-| PostgreSQL        
- ==========         | https://www.predix.io/services/service.html?id=1178 
-                     ===================================================  | 3                
-                                                                           =                 |
-| RabbitMQ          
- ========           | https://www.predix.io/services/service.html?id=1182 
-                     ===================================================  | 3                
-                                                                           =                 |
-| Redis             
- =====              | https://www.predix.io/services/service.html?id=1215 
-                     ===================================================  | 5                
-                                                                           =                 |
+
+<table>
+  <tr>
+    <th>Service</th><th>URL</th><th>Starter Kit Step</th>
+  </tr>
+  <tr>
+    <td>UAA</td><td>https://www.predix.io/services/service.html?id=1172</td><td>1-5</td>
+  </tr>
+  <tr>
+    <td>PostgreSQL</td><td>https://www.predix.io/services/service.html?id=1178</td><td>1</td>
+  </tr>
+  <tr>
+    <td>Time Series</td><td>https://www.predix.io/services/service.html?id=1177</td><td>1</td>
+  </tr>
+  <tr>
+    <td>Analytics Catalog</td><td>https://www.predix.io/services/service.html?id=1187</td><td>2</td>
+  </tr>
+  <tr>
+    <td>PostgreSQL</td><td>https://www.predix.io/services/service.html?id=1178</td><td>3</td>
+  </tr>
+  <tr>
+    <td>RabbitMQ</td><td>https://www.predix.io/services/service.html?id=1182</td><td>3</td>
+  </tr>
+  <tr>
+    <td>Redis</td><td>https://www.predix.io/services/service.html?id=1215</td><td>5</td>
+  </tr>
+</table>
 
 **Naming your services**
 
@@ -219,13 +207,20 @@ The sample code is provided as a maven project. All the dependencies for the sam
 
 1.  Go to <https://github.com/DigitalTwin/digital-twin-time-series-client/releases> and download the source code for version 3.0.0. Unzip/untar the downloaded file and go into the top-level directory.
 
-| $ cd digital-twin-time-series-client-3.0.0 |
-|--------------------------------------------|
+<table>
+  <tr>
+    <td>$ cd digital-twin-time-series-client-3.0.0</td>
+  </tr>
+</table>
+
 
 1.  Build the code using Maven
 
-| $ mvn clean install |
-|---------------------|
+<table>
+  <tr>
+    <td>$ mvn clean install</td>
+  </tr>
+</table>
 
 **Building the sample code**
 
@@ -236,12 +231,12 @@ The code to build the tutorial services, analytic, and a utility to load some sa
 Using Git, download the steam-turbine-tutorial
 
 <table>
-<thead>
-<tr class="header">
-<th>$ git clone https://github.com/DigitalTwin/steam-turbine-tutorial.git<br />
-$ cd steam-turbine-tutorial</th>
-</tr>
-</thead>
+  <thead>
+    <tr class="header">
+      <td>$ git clone https://github.com/DigitalTwin/steam-turbine-tutorial.git<br />
+          $ cd steam-turbine-tutorial</td>
+    </tr>
+  </thead>
 <tbody>
 </tbody>
 </table>
@@ -250,53 +245,43 @@ $ cd steam-turbine-tutorial</th>
 
 Regarding your previous UAA configuration from above, note that the group named “tutorial.user” contains a user account named “tutorial-user”. This “tutorial.user” group is added to the scope of the client named “tutorial-user”. The group name “tutorial.user” is significant in that the Java source code that you just downloaded is pre-hardwired for security purposes to permit members of your “tutorial.user” group access to the back-end services. If you decided to name this group something other than “tutorial.user” then that change needs to be reflected in the Java source code, namely the “SecurityConfiguration.java” class that exists in all 7 of the submodules in /steam-turbine-tutorial/tutorial-svcs module (the only submodule in /steam-turbine-tutorial/tutorial-svcs that is not impacted is the /steam-turbine-tutorial/tutorial-svcs/tutorial-commons submodule). Before you build the code, you will need to locate the “**SecurityConfiguration.java**” class in the source tree of **each of the 7 submodules** and make the changes detailed below:
 
-<table>
-<thead>
-<tr class="header">
-<th>SecurityConfiguration.java from /tutorial-svcs/tutorial-asset/src/main/java/com/ge/digitaltwin/tutorial/asset</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>…<br />
-@Configuration<br />
-@Profile(&quot;!dev&quot;)<br />
-@EnableResourceServer<br />
-@EnableGlobalMethodSecurity(prePostEnabled = true)<br />
-public class SecurityConfiguration extends ResourceServerConfigurerAdapter {<br />
-@Override<br />
-public void configure(HttpSecurity http) throws Exception {<br />
-http.authorizeRequests()<br />
-.antMatchers(&quot;/swagger-ui.html&quot;, &quot;/webjars/springfox-swagger-ui/**&quot;,<br />
-&quot;/configuration/**&quot;, &quot;/swagger-resources/**&quot;, &quot;/v2/api-docs&quot;).permitAll()<br />
-.antMatchers(&quot;/asset/**&quot;).access(&quot;#oauth2.hasScope('<strong>tutorial.user</strong>')&quot;)<br />
-.anyRequest().denyAll();<br />
-}<br />
-<br />
-@Override<br />
-public void configure(ResourceServerSecurityConfigurer resources) throws Exception {<br />
-resources.resourceId(&quot;<strong>tutorial</strong>&quot;);<br />
-}<br />
-}</td>
-</tr>
-</tbody>
-</table>
+<pre>…
+@Configuration
+@Profile(&quot;!dev&quot;)
+@EnableResourceServer
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfiguration extends ResourceServerConfigurerAdapter {
+
+  @Override
+  public void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests().antMatchers(&quot;/swagger-ui.html&quot;, &quot;/webjars/springfox-swagger-ui/**&quot;,
+      &quot;/configuration/**&quot;, &quot;/swagger-resources/**&quot;, &quot;/v2/api-docs&quot;).permitAll()
+      .antMatchers(&quot;/asset/**&quot;).access(&quot;#oauth2.hasScope('<strong>tutorial.user</strong>')&quot;)
+      .anyRequest().denyAll();
+  }
+
+  @Override
+  public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+    resources.resourceId(&quot;<strong>tutorial</strong>&quot;);
+  }
+}
+</pre>
 
 -   Replace tutorial.user with the **name of the group** that contains the user that you wish to have access to the back-end services via the visualization application.
 
 -   Replace tutorial with the **prefix of the name of the group** that contains the user that you wish to have access to the back-end services via the visualization application.
 
-> **Build each module using Maven**
+**Build each module using Maven**
 
 <table>
 <thead>
 <tr class="header">
-<th>$ cd tutorial-analytics/tutorial-actual-vs-expected-analytic<br />
+<td>$ cd tutorial-analytics/tutorial-actual-vs-expected-analytic<br />
 $ mvn clean install<br />
 $ cd ../../tutorial-svcs<br />
 $ mvn clean install<br />
 $ cd ../tutorial-util/tutorial-timeseries-util<br />
-$ mvn clean install</th>
+$ mvn clean install</td>
 </tr>
 </thead>
 <tbody>
@@ -305,6 +290,6 @@ $ mvn clean install</th>
 
 The code to build the tutorial visualization app is found in [*https://github.com/digitalTwin/steam-turbine-tutorial-vis*](https://github.com/digitalTwin/steam-turbine-tutorial-vis). Clone this module into your local file system. We'll discuss configuring, building, and deploying this in Step 5.
 
-**What you learned**
+##**What you learned**
 
-You have learned how to configure your environment to run the Digital Twin Starter Kit, and have learned how to build the provided sample code. You have learned what modules are present in the provided code and how they implement the 5 Steps discussed in the Introduction. Bottom of Form
+You have learned how to configure your environment to run the Digital Twin Starter Kit, and have learned how to build the provided sample code. You have learned what modules are present in the provided code and how they implement the 5 Steps discussed in the Introduction.

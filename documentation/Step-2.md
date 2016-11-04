@@ -1,10 +1,10 @@
-**Step 2: Build and Deploy Models**
+#**Step 2: Build and Deploy Models**
 
-**What you'll learn to do**
+##**What you'll learn to do**
 
 <img src="images/step2-01.jpg" width="664" height="431" />
 
-Step 2 focuses on how Digital Twin models and analytics are built, deployed, and run. Digital Twin models and analytics will be run via REST endpoints. In most cases, these models and analytics will be deployed to an instance of a[* Predix Analytic Catalog *](https://predix-io-dev.grc-apps.svc.ice.ge.com/services/service.html?id=1187)or an instance of a [*Predix Analytic Runtime*](https://predix-io-dev.grc-apps.svc.ice.ge.com/services/service.html?id=1174) and executed through a workflow orchestration (see **[Step 4: ](https://predix-io-dev.grc-apps.svc.ice.ge.com/resources/tutorials/tutorial-details.html?tutorial_id=1919&tag=1913&journey=Digital%20Twin%20Runtime%20Starter%20Kit&resources=1914,1915,1916,1917,1918,1919,1920)Build Orchestration***)*. The Predix Analytics Catalog allows uploading models that are developed in Python, Java, or Matlab. For more information, refer to the Predix documentation on [*Analytic Development Process*](https://predix-io-dev.grc-apps.svc.ice.ge.com/docs/#Qd2kPYb7).
+Step 2 focuses on how Digital Twin models and analytics are built, deployed, and run. Digital Twin models and analytics will be run via REST endpoints. In most cases, these models and analytics will be deployed to an instance of a[* Predix Analytic Catalog *](https://predix-io-dev.grc-apps.svc.ice.ge.com/services/service.html?id=1187)or an instance of a [*Predix Analytic Runtime*](https://predix-io-dev.grc-apps.svc.ice.ge.com/services/service.html?id=1174) and executed through a workflow orchestration (see **Step 4: Build Orchestration**). The Predix Analytics Catalog allows uploading models that are developed in Python, Java, or Matlab. For more information, refer to the Predix documentation on [*Analytic Development Process*](https://predix-io-dev.grc-apps.svc.ice.ge.com/docs/#Qd2kPYb7).
 
 The simple workflow:
 
@@ -22,57 +22,45 @@ In this part of the tutorial, you will:
 
   
 
-**What you need to set up**
+##**What you need to set up**
 
 For this step, you will need an instance of the Analytics Catalog and an instance of the Predix UAA service. If you want to use the provided Postman collection to interact with the REST endpoints, you will need to set the authorization header with the bearer token for the UAA client that has permission to call the REST endpoint since the applications are secured. If you have not set up these services or secured the provided Postman collection, please see the **Getting Started** section for instructions. 
 
-**What you need to do**
+##**What you need to do**
 
-**Find the Predix-Zone-Id of the your Predix-Analytics-Catalog**
+###**Find the Predix-Zone-Id of the your Predix-Analytics-Catalog**
 
 In this part of the tutorial, you’ll need to know what your Predix-Zone-Id is for your Predix-Analytics-Catalog instance.
 
 From the command line using the Cloud Foundry command line interface (cf cli) you’ll run commands to find the guid, which is the Predix Zone ID, of your instance of the predix-analytic-catalog service. For example:
 
-<table>
-<thead>
-<tr class="header">
-<th>D:\mydir\steam-turbine-tutorial\tutorial-svcs\tutorial-analytic&gt; cf services<br />
-Getting services in org DigitalTwin / space dev as 200000000@mail.ad.ge.com ...<br />
-OK<br />
-name                            service                             plan           bound apps           last operation<br />
-...<br />
-my-analytics-catalog              predix-analytics-catalog   Bronze      tutorial-asset         create succeeded<br />
-...<br />
-D:\mydir\steam-turbine-tutorial\tutorial-svcs\tutorial-analytic&gt; cf service my-analytics-catalog --guid<br />
-<strong>69ab882f-ab6d-4c5a-8a4d-68f3a0148b22</strong><br />
-D:\mydir\steam-turbine-tutorial\tutorial-svcs\tutorial-analytic&gt;</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+D:\mydir\steam-turbine-tutorial\tutorial-svcs\tutorial-analytic&gt; cf services
+Getting services in org DigitalTwin / space dev as 200000000@mail.ad.ge.com ...
+OK
+name                            service                             plan           bound apps           last operation
+...
+my-analytics-catalog              predix-analytics-catalog   Bronze      tutorial-asset         create succeeded
+...
+D:\mydir\steam-turbine-tutorial\tutorial-svcs\tutorial-analytic&gt; cf service my-analytics-catalog --guid
+<strong>69ab882f-ab6d-4c5a-8a4d-68f3a0148b22</strong>
+D:\mydir\steam-turbine-tutorial\tutorial-svcs\tutorial-analytic&gt;
+</pre>
 
 The guid string returned (for example, 69ab882f-ab6d-4c5a-8a4d-68f3a0148b22) is used as the value for the header parameter Predix-Zone-Id in Predix Analytic Catalog REST API calls. We’ll need this guid soon.
 
-**Create the tutorial-analytic**
+###**Create the tutorial-analytic**
 
 If you've already created the tutorial-asset application as described in **Step 1**: "Create the tutorial-asset to application," then you already have the code locally.  
 
 If you have not already built the code, you can do so with the following commands:
 
-<table>
-<thead>
-<tr class="header">
-<th>$ cd steam-turbine-tutorial/tutorial-analytics/tutorial-actual-vs-expected-analytic<br />
-$ mvn clean package</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+$ cd steam-turbine-tutorial/tutorial-analytics/tutorial-actual-vs-expected-analytic
+$ mvn clean package
+</pre>
 
-**Upload the analytic to the Analytic Catalog**
+###**Upload the analytic to the Analytic Catalog**
 
 You can interact with the Predix Analytic Catalog through its REST API by using the provided Postman collection.
 
@@ -260,7 +248,7 @@ For all of the REST API calls, you will need to set the “Predix-Zone-Id” htt
 
 Note that Predix provides additional services for analytic support. These are the [Predix Analytics Runtime](https://www.predix.io/services/service.html?id=1174) and the [Predix Analytics User Interface](https://www.predix.io/services/service.html?id=1586). Predix has documented the [Analytic Development Process](https://www.predix.io/docs#Qd2kPYb7) which you can explore on your own.
 
-**Execute the analytic hosted in the Analytic Catalog**
+###**Execute the analytic hosted in the Analytic Catalog**
 
 For the tutorial analytic, the POST request body for the analytic execution needs a JSON object consisting of an array (rpmSeries) of JSON objects consisting of a time stamp (timestamp), revolutions per minute (rpm), and actual temperature (actualTemperature) values followed by the slope and intercept values (coefficients for the regression model). An example of this JSON data is in the table below.
 
@@ -333,6 +321,6 @@ Now you can make the following POST request to the Analytic Catalog to execute y
 
 In **Step 4: Build Orchestration***,* the BPMN file needs to know the above execution URL to run your analytic in the Digital Twin workflow. 
 
-**What you learned**
+##**What you learned**
 
 You learned how to find the predix zone id of your predix analytics catalog for use in the HTTP headers. You also learned how use the Predix Analytic Catalog to upload, validate, check the status of, and execute the pre-built analytic by using the catalog’s REST API.

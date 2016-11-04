@@ -1,6 +1,6 @@
-**Step 4: Build Orchestration**
+#**Step 4: Build Orchestration**
 
-**What you'll learn to do**
+##**What you'll learn to do**
 
 <img src="images/step4-01.jpg" width="624" height="391" />
 
@@ -13,20 +13,18 @@ The simple workflow:
 In this part of the tutorial, you will:
 
 -   Create the **tutorial-workflow** service application
-
     -   Configure a BPMN (Business Process Model and Notation) file
-
 -   Create the **tutorial-simulator** service application
 
-**What you need to set up**
+##**What you need to set up**
 
 Prior to creating this orchestration service, you’ll need to have completed **Step 1**, **Step 2**, and **Step 3** of this tutorial. You should also be familiar with [*BPMN* ](http://www.activiti.org/userguide/index.html#bpmnConstructs)and *Alfresco Activiti BPMN Designer.* If you want to use the provided Postman collection to interact with the REST endpoint, you will need to set the authorization header with the bearer token for the UAA client that has permission to call the REST endpoint since the application is secured. If you have not set up these services or secured the provided Postman collection, please see the **Getting Started** section for instructions. Having the [*Alfresco Activiti BPMN Designer*](http://docs.alfresco.com/4.1/tasks/wf-install-activiti-designer.html) plug-in for Eclipse or the [*actiBPM*](https://plugins.jetbrains.com/plugin/7429) plug-in for IntelliJ will help with the editing of the BPMN file.
 
 As we saw in **Step 2: Build and Deploy Models**, a Twin model is responsible for acting upon a set of input data about the twin asset and then producing some output of value representative of the physical twin's condition.  This Orchestration Service is used to execute a Digital Twin model by defining the sequence of tasks to acquire input data, run the analytic/model, and persist the twin analytic/model output.  The orchestration service also handles the passing of data from step to step.
 
-**What you need to do**
+##**What you need to do**
 
-**Create the workflow service**
+###**Create the workflow service**
 
 The tutorial-workflow application exposes a REST endpoint '/workflow/{workflow-id}' that executes the named workflow (we’ll discuss {workflow-id} momentarily) thereby orchestrating the services that we built in previous steps. Refer to **Getting Started** for download instructions. We will need to update the BPMN file to reference the REST endpoints that we deployed in Steps 1, 2, and 3 before building and deploying this service. Refer to **Getting Started** for download and maven build instructions.
 
@@ -91,21 +89,15 @@ Note that the services that this workflow orchestrates have minimal error checki
 
 1.  Configure the appropriate section of the "manifest.yml" file in the tutorial-svcs directory to reflect your environment.
 
-<table>
-<thead>
-<tr class="header">
-<th>- name: &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-workflow<br />
-host: &lt;YOUR_OWN_WORKFLOW_SERVICE_PREFIX&gt;-dt-tutorial-workflow<br />
-memory: 1G<br />
-path: tutorial-workflow/target/tutorial-workflow-1.1-SNAPSHOT.jar<br />
-env:<br />
-security_oauth2_resource_tokenInfoUri: https://&lt;YOUR_UAA_INSTANCE_HERE&gt;.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token<br />
-security_oauth2_client_clientId: &lt;YOUR_CLIENT_ID&gt;</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+- name: &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-workflow
+  host: &lt;YOUR_OWN_WORKFLOW_SERVICE_PREFIX&gt;-dt-tutorial-workflow
+  memory: 1G
+  path: tutorial-workflow/target/tutorial-workflow-1.1-SNAPSHOT.jar
+  env:
+    security_oauth2_resource_tokenInfoUri: https://&lt;YOUR_UAA_INSTANCE_HERE&gt;.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
+    security_oauth2_client_clientId: &lt;YOUR_CLIENT_ID&gt;
+</pre>
 
 -   The application **name** must be unique across your CloudFoundry Org.
 
@@ -117,36 +109,26 @@ security_oauth2_client_clientId: &lt;YOUR_CLIENT_ID&gt;</th>
 
 1.  Push it to Cloud Foundry
 
-| C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-workflow --no-start |
-|----------------------------------------------------------------------------------------------------------------------|
+<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-workflow --no-start</pre>
 
 1.  You'll need to set an environment variable for the security\_oauth2\_client\_clientSecret. You could set this in the manifest.yml file instead, but we recommend using an environment variable as it is more secure than storing passwords in a file, which may result in them being accidentally committed to your source code repository.
 
-| C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf set-env &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-workflow security\_oauth2\_client\_clientSecret &lt;your Client Id's secret&gt; |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf set-env &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-workflow security\_oauth2\_client\_clientSecret &lt;your Client Id's secret&gt;</pre>
 
 1.  Start your application.
 
-| C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-workflow |
-|------------------------------------------------------------------------------------------------------------|
+<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-workflow</pre>
 
 1.  Use "cf apps" to discover the URL to your service. Prepend the “https://” protocol then append your API path, /workflow/{workflow-id}, to get the full URL to your data service.
 
-<table>
-<thead>
-<tr class="header">
-<th><p>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf apps</p>
-<p>Getting apps in org DigitalTwin / space dev as 200000000@mail.ad.ge.com...<br />
-OK<br />
-name                                   requested state   instances   memory   disk   urls<br />
-...<br />
-tutorial-workflow                   started                 1/1              1G          1G     <strong>dt-tutorial-workflow.run.aws-usw02-pr.ice.predix.io</strong><br />
-...</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+C:\steam-turbine-tutorial\tutorial-svcs&gt; cf apps
+Getting apps in org DigitalTwin / space dev as 200000000@mail.ad.ge.com...
+OK
+name                                   requested state   instances   memory   disk   urls
+...
+tutorial-workflow                   started                 1/1              1G          1G     <strong>dt-tutorial-workflow.run.aws-usw02-pr.ice.predix.io</strong>
+...</pre>
 
 Get a bearer token and test your service with Postman.
 
@@ -154,86 +136,85 @@ Get a bearer token and test your service with Postman.
 
 -   The sample payload below asks the workflow to run against assetId 2 (&lt;steam-turbine-id&gt; from Step 1) between 18000000 (1 January 1970) and 315550800000 (1 January 1980). This date range encompasses the test data which was pushed to the timeseries service at the end of Step 1. Note that you must ensure that model coefficients exist and data exists for the selected assetId in the chosen startTime-endTime date range.
 
-<table>
-<thead>
-<tr class="header">
-<th>Sample JSON body for POST workflow execution</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>{<br />
-&quot;params&quot;:<br />
-{<br />
-&quot;assetId&quot;:2,<br />
-&quot;startTime&quot;:18000000,<br />
-&quot;endTime&quot;:315550800000<br />
-}<br />
-}</td>
-</tr>
-</tbody>
-</table>
+Sample JSON body for POST workflow execution:
+<pre>
+{
+  &quot;params&quot;:
+  {
+    &quot;assetId&quot;:2,
+    &quot;startTime&quot;:18000000,
+    &quot;endTime&quot;:315550800000
+  }
+}
+</pre>
 
 <img src="images/step4-03.jpg" width="717" height="609" />
 
 These are the rest endpoints of interest to the "tutorial-workflow" (an implementation of a typical "workflow" service):
-
-| **REST Service**        | **URL Example**                                                                               | **Description**                                                       |
-|-------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| POST - run the workflow | https://dt-tutorial-workflow.run.aws-usw02-pr.ice.predix.io/workflow/&lt;workflow-id&gt;      
+<table>
+  <tr>
+    <th>REST Service</th><th>URL Example</th><th>Description</th>
+  </tr>
+  <tr>
+    <td>POST - run the workflow</td><td>https://dt-tutorial-workflow.run.aws-usw02-pr.ice.predix.io/workflow/&lt;workflow-id&gt;      
                                                                                                                           
                            https://dt-tutorial-workflow.run.aws-usw02-pr.ice.predix.io/workflow/tutorial-workflow-public  
                                                                                                                           
-                           Include Authorization with appropriate Bearer token in headers.                                | Sample request body (template parameters used in bpmn file):          
-                                                                                                                                                                                                  
-                                                                                                                            {"params":{"assetId":2,"startTime":18000000,"endTime":315550800000\]  |
+                           Include Authorization with appropriate Bearer token in headers.                                </td><td>Sample request body (template parameters used in bpmn file):          
+                                                                                                                                                                                                                                               <pre>
+{
+  "params":
+  {
+    "assetId":2,
+    "startTime":18000000,
+    "endTime":315550800000
+  }
+}
+</pre>
+</td>
+  </tr>
+</table>
 
 If your workflow executed successfully, then the results of the analytic must have been saved via the service application that you created in Step 3 (tutorial-result-persistence). That service application has an endpoint that allows you to get a list of all the analytic results. You can use the “Get all analytic results” request from the Postman collection’s “Step 3 – Store Data” folder to verify that your workflow properly executed.
 
-**Create the tutorial simulator service application**
+###**Create the tutorial simulator service application**
 
 This service simulates new data coming into your workflow by invoking the workflow on different time windows of the data that already exists in your timeseries database. Note that this simulator does not actually create any new data. It relies on data that you pushed to timeseries back in Step 1. The simulator also generates Swagger documentation for all RESTful endpoints for running the simulator. The Swagger GUI may be accessed via web browser at /swagger-ui.html.
 
-1.  Configure the appropriate section of the manifest.yml file in the tutorial-svcs directory to reflect your environment.
+1)  Configure the appropriate section of the manifest.yml file in the tutorial-svcs directory to reflect your environment.
 
-<table>
-<thead>
-<tr class="header">
-<th>- name: &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-simulator<br />
-host: &lt;YOUR_OWN_SIMULATOR_PREFIX&gt;-dt-tutorial-simulator<br />
-memory: 1G<br />
-path: tutorial-simulator/target/tutorial-simulator-1.1-SNAPSHOT.jar<br />
-env:<br />
-# If using a proxy configure your proxy settings<br />
-# JAVA_OPTS: -Dhttps.proxyHost=&lt;HOST&gt; -Dhttps.proxyPort=&lt;PORT&gt; -Dhttp.nonProxyHosts=localhost<br />
-tutorial_simulator_oauth2_accessTokenUri: https://&lt;YOUR_UAA_INSTANCE_HERE&gt;.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token<br />
-tutorial_simulator_oauth2_clientId: &lt;YOUR_CLIENT_ID&gt;<br />
-security_oauth2_resource_tokenInfoUri: https://&lt;YOUR_UAA_INSTANCE_HERE&gt;.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token<br />
-security_oauth2_client_clientId: &lt;YOUR_CLIENT_ID&gt;<br />
-tutorial_workflow_workflowUri: https://&lt;YOUR_OWN_WORKFLOW_SERVICE_PREFIX&gt;-dt-tutorial-workflow.run.aws-usw02-pr.ice.predix.io/workflow/tutorial-workflow-public<br />
-tutorial_workflow_workflowMethod: post<br />
-tutorial_workflow_workflowBodyTag: params<br />
-spring_application_json: |<br />
-{<br />
-&quot;tutorial&quot; : {<br />
-&quot;workflow&quot; : {<br />
-&quot;workflowHeaders&quot; : [<br />
-{<br />
-&quot;name&quot; : &quot;Predix-Zone-Id&quot;,<br />
-&quot;value&quot; : “&lt;YOUR_ANALYTIC_CATALOG_ZONE_ID_HERE&gt;”<br />
-},<br />
-{ &quot;name&quot; : &quot;Content-type&quot;,<br />
-&quot;value&quot; : &quot;application/json&quot;<br />
-}<br />
-]<br />
-}<br />
-}<br />
-}</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+- name: &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-simulator
+  host: &lt;YOUR_OWN_SIMULATOR_PREFIX&gt;-dt-tutorial-simulator
+  memory: 1G
+  path: tutorial-simulator/target/tutorial-simulator-1.1-SNAPSHOT.jar
+  env:
+    # If using a proxy configure your proxy settings
+    # JAVA_OPTS: -Dhttps.proxyHost=&lt;HOST&gt; -Dhttps.proxyPort=&lt;PORT&gt; -Dhttp.nonProxyHosts=localhost
+    tutorial_simulator_oauth2_accessTokenUri: https://&lt;YOUR_UAA_INSTANCE_HERE&gt;.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
+    tutorial_simulator_oauth2_clientId: &lt;YOUR_CLIENT_ID&gt;
+    security_oauth2_resource_tokenInfoUri: https://&lt;YOUR_UAA_INSTANCE_HERE&gt;.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token
+    security_oauth2_client_clientId: &lt;YOUR_CLIENT_ID&gt;
+    tutorial_workflow_workflowUri: https://&lt;YOUR_OWN_WORKFLOW_SERVICE_PREFIX&gt;-dt-tutorial-workflow.run.aws-usw02-pr.ice.predix.io/workflow/tutorial-workflow-public
+    tutorial_workflow_workflowMethod: post
+    tutorial_workflow_workflowBodyTag: params
+    spring_application_json: |
+      {
+        &quot;tutorial&quot; : {
+          &quot;workflow&quot; : {
+            &quot;workflowHeaders&quot; : [
+            {
+              &quot;name&quot; : &quot;Predix-Zone-Id&quot;,
+              &quot;value&quot; : &quot;&lt;YOUR_ANALYTIC_CATALOG_ZONE_ID_HERE&gt;&quot;
+            },
+            {
+              &quot;name&quot; : &quot;Content-type&quot;,
+              &quot;value&quot; : &quot;application/json&quot;
+            }]
+          }
+        }
+      }
+</pre>
 
 -   The application **name** must be unique across your CloudFoundry Org.
 
@@ -248,48 +229,32 @@ spring_application_json: |<br />
 
 -   Substitute your predix analytic catalog’s zone id for &lt;YOUR\_ANALYTIC\_CATALOG\_ZONE\_ID\_HERE&gt;
 
-1.  Push it to CloudFoundry
+2)  Push it to CloudFoundry
 
-| C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-simulator --no-start |
-|-----------------------------------------------------------------------------------------------------------------------|
+<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-simulator --no-start</pre>
 
-1.  You'll need to set environment variables for the security\_oauth2\_client\_clientSecret and tutorial\_simulator\_oauth2\_clientSecret. You could set this in the manifest.yml file instead, but we recommend using an environment variable as it is more secure than storing passwords in a file, which may result in them being accidentally committed to your source code repository. In this tutorial, we use the same UAA service instance for the workflow service and for the simulator. Note that this does not have to be the case. You may use different UAA services to secure the two different components; in which case you would need to set the respective client secrets appropriately.
+3)  You'll need to set environment variables for the security\_oauth2\_client\_clientSecret and tutorial\_simulator\_oauth2\_clientSecret. You could set this in the manifest.yml file instead, but we recommend using an environment variable as it is more secure than storing passwords in a file, which may result in them being accidentally committed to your source code repository. In this tutorial, we use the same UAA service instance for the workflow service and for the simulator. Note that this does not have to be the case. You may use different UAA services to secure the two different components; in which case you would need to set the respective client secrets appropriately.
 
-<table>
-<thead>
-<tr class="header">
-<th>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-simulator security_oauth2_client_clientSecret &lt;your Client Id's secret&gt;<br />
-C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-simulator tutorial_simulator_oauth2_clientSecret &lt;your Client Id's secret&gt;</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre>
+C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-simulator security_oauth2_client_clientSecret &lt;your Client Id's secret&gt;
+C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-simulator tutorial_simulator_oauth2_clientSecret &lt;your Client Id's secret&gt;</pre>
 
-1.  Start your application
+4)  Start your application
 
-| C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-simulator |
-|-------------------------------------------------------------------------------------------------------------|
+<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-simulator</pre>
 
-1.  Use "cf apps" to discover the URL to your service. Prepend the [https://](NULL) protocol then append your API path to get the full URL to your data service.
+5)  Use "cf apps" to discover the URL to your service. Prepend the [https://](NULL) protocol then append your API path to get the full URL to your data service.
 
-<table>
-<thead>
-<tr class="header">
-<th>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf apps<br />
-Getting apps in org DigitalTwin / space dev as 200000000@mail.ad.ge.com...<br />
-OK<br />
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf apps
+Getting apps in org DigitalTwin / space dev as 200000000@mail.ad.ge.com...
+OK
 name requested state instances memory disk urls<br />
-...<br />
-tutorial-simulator started 1/1 1G 1G <strong>dt-tutorial-simulator.run.aws-usw02-pr.ice.predix.io</strong><br />
-...</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+...
+tutorial-simulator started 1/1 1G 1G <strong>dt-tutorial-simulator.run.aws-usw02-pr.ice.predix.io</strong>
+...
+</pre>
 
-1.  Get a bearer token and test your service with Postman
+6)  Get a bearer token and test your service with Postman
 
 -   Try the “Simulate workflow” POST request passing to it the following URL parameters:
 
@@ -302,12 +267,11 @@ tutorial-simulator started 1/1 1G 1G <strong>dt-tutorial-simulator.run.aws-usw02
     -   intervalMilliseconds
         This will run the workflow multiple times starting with startTime and incrementing by intervalMilliseconds until endTime is reached.
 
-| /simulate?assetId=2&startTime=1420167570000&endTime=1422759570000 &intervalMilliseconds=21600000 |
-|--------------------------------------------------------------------------------------------------|
+<pre>/simulate?assetId=2&startTime=1420167570000&endTime=1422759570000 &intervalMilliseconds=21600000</pre>
 
 -   When completed use the GET endpoint from the tutorial-result-persistence application to see stored results.
 
-**What you learned**
+##**What you learned**
 
 In this section, you learned how to use the pre-built and pre-deployed workflow service. You updated the BPMN workflow file to reference the REST endpoints deployed on previous steps. This required the service to be rebuilt (using maven) and deployed to Predix. You learned how to test the REST endpoints with the new changes. You learned how to build and deploy the tutorial-simulator service and confirmed that it too worked.
 
@@ -317,7 +281,7 @@ In this section, you learned how to use the pre-built and pre-deployed workflow 
 
 It is recommended that you are familiar with the [*Activiti BPM Platform*](http://www.activiti.org/).  The [*Activiti User Guide*](http://www.activiti.org/userguide/#bpmnJavaServiceTask) can be referenced for your supplemental learning.  From that guide, the following sections will be most helpful to understand the BPMN sample file components, their purpose, and interactions:
 
--   [*7, BPMN 2.0 Introduction *](http://www.activiti.org/userguide/#bpmn20)
+-   [*7, BPMN 2.0 Introduction*](http://www.activiti.org/userguide/#bpmn20)
 
 -   [*8. BPMN 2.0 Constructs*](http://www.activiti.org/userguide/#bpmnConstructs)
 
@@ -353,7 +317,7 @@ The green circle "start" node on the left of the diagram above is the entry poi
 
 *The GetRESTServiceJavaDelegate is used in the "Get Data" service task:*
 
-1. Required attributes to be specified as &lt;activiti:fields&gt; within the &lt;serviceTask&gt;:
+1) Required attributes to be specified as &lt;activiti:fields&gt; within the &lt;serviceTask&gt;:
 
 -   url - the address of the service to be executed
 
@@ -361,195 +325,113 @@ The green circle "start" node on the left of the diagram above is the entry poi
 
 *The PostRESTServiceJavaDelegate is used in the "Run Analytic" service task:*
 
-1. url - the address of the service to be executed
+2) url - the address of the service to be executed
 
 -   URL Templates are supported and require the "params" variable to exist as a Map of template variable names to their corresponding runtime values to be used (e.g., params -&gt; {"assetId": "sr787X29", "mode": "summary"})
 
-2. predixZoneId - the instance id of the Analytics Catalog service (or any Predix service that might be invoked)
+3) predixZoneId - the instance id of the Analytics Catalog service (or any Predix service that might be invoked)
 
 *The PostRESTServiceJavaDelegate is used in the "Analytic Post Processing" service task:*
 
-1. url - the address of the service to be executed
+4) url - the address of the service to be executed
 
 -   URL Templates are supported and require the "params" variable to exist as a Map of template variable names to their corresponding runtime values to be used (eg. params -&gt; {"assetId": "sr787X29", "mode": "summary"})
 
 *The PostRESTServiceJavaDelegate is used in the "Persist Results" service task:*
 
-1. url - the address of the service to be executed
+5) url - the address of the service to be executed
 
 -   URL Templates are supported and require the "params" variable to exist as a Map of template variable names to their corresponding runtime values to be used (eg. params -&gt; {"assetId": "sr787X29", "mode": "summary"})
 
 Figure 2. Raw BPMN text 
 
-| &lt;?xml version="1.0" encoding="UTF-8"?&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
- &lt;definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test"&gt;  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-   &lt;process id="tutorial-workflow-public" name="Tutorial Workflow" isExecutable="true"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;serviceTask id="RunAnalytic" name="Run Analytic" activiti:class="com.ge.digitaltwin.tutorial.workflow.activiti.PostRESTServiceJavaDelegate"&gt;                                                                                                                                                                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;extensionElements&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;activiti:field name="url"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-           &lt;activiti:string&gt;&lt;!\[CDATA\[https://ef4eb73f-3ac9-4bcb-887b-4e16225024e0.run.aws-usw02-pr.ice.predix.io/api/v1/analytic/execution/\]\]&gt;&lt;/activiti:string&gt;                                                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;/activiti:field&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;activiti:field name="predixZoneId"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-           &lt;activiti:string&gt;&lt;!\[CDATA\[59ba756c-ab6d-4c5a-8a4d-68f3a0148b22\]\]&gt;&lt;/activiti:string&gt;                                                                                                                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;/activiti:field&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/extensionElements&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;/serviceTask&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;endEvent id="endevent1" name="End"&gt;&lt;/endEvent&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;startEvent id="start" activiti:formKey="wf:submitAdhocTask"&gt;&lt;/startEvent&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;serviceTask id="GetData" name="Get Data" activiti:class="com.ge.digitaltwin.tutorial.workflow.activiti.GetRESTServiceJavaDelegate"&gt;                                                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;extensionElements&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;activiti:field name="url"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-           &lt;activiti:string&gt;&lt;!\[CDATA\[https://dt-tutorial-data.run.aws-usw02-pr.ice.predix.io/input?assetId={assetId}&startTimestamp={startTime}&endTimestamp={endTime}\]\]&gt;&lt;/activiti:string&gt;                                                                                                                                                                                                                                                                                                                         
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;/activiti:field&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/extensionElements&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;/serviceTask&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;sequenceFlow id="flow1" sourceRef="start" targetRef="GetData"&gt;&lt;/sequenceFlow&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;sequenceFlow id="flow2" sourceRef="GetData" targetRef="RunAnalytic"&gt;&lt;/sequenceFlow&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;serviceTask id="AnalyticPostProcessing" name="Analytic Post Processing" activiti:class="com.ge.digitaltwin.tutorial.workflow.activiti.PostRESTServiceJavaDelegate"&gt;                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;extensionElements&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;activiti:field name="url"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-           &lt;activiti:string&gt;&lt;!\[CDATA\[https://dt-tutorial-analytic-post-processing.run.aws-usw02-pr.ice.predix.io/transform/{assetId}\]\]&gt;&lt;/activiti:string&gt;                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;/activiti:field&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/extensionElements&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;/serviceTask&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;sequenceFlow id="flow3" sourceRef="RunAnalytic" targetRef="AnalyticPostProcessing"&gt;&lt;/sequenceFlow&gt;                                                                                                                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;serviceTask id="PersistResults" name="Persist Results" activiti:class="com.ge.digitaltwin.tutorial.workflow.activiti.PostRESTServiceJavaDelegate"&gt;                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;extensionElements&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;activiti:field name="url"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-           &lt;activiti:string&gt;&lt;!\[CDATA\[https://dt-tutorial-result-persistence.run.aws-usw02-pr.ice.predix.io/api/analyticResults\]\]&gt;&lt;/activiti:string&gt;                                                                                                                                                                                                                                                                                                                                                                 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;/activiti:field&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/extensionElements&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;/serviceTask&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;sequenceFlow id="flow4" sourceRef="AnalyticPostProcessing" targetRef="PersistResults"&gt;&lt;/sequenceFlow&gt;                                                                                                                                                                                                                                                                                                                                                                                                                   
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;sequenceFlow id="flow5" sourceRef="PersistResults" targetRef="endevent1"&gt;&lt;/sequenceFlow&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-   &lt;/process&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-   &lt;bpmndi:BPMNDiagram id="BPMNDiagram\_tutorial-workflow-public"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;bpmndi:BPMNPlane bpmnElement="tutorial-workflow-public" id="BPMNPlane\_tutorial-workflow-public"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                             
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;bpmndi:BPMNShape bpmnElement="RunAnalytic" id="BPMNShape\_RunAnalytic"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdc:Bounds height="65.0" width="115.0" x="360.0" y="220.0"&gt;&lt;/omgdc:Bounds&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/bpmndi:BPMNShape&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape\_endevent1"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdc:Bounds height="35.0" width="35.0" x="890.0" y="235.0"&gt;&lt;/omgdc:Bounds&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                         
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/bpmndi:BPMNShape&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;bpmndi:BPMNShape bpmnElement="start" id="BPMNShape\_start"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdc:Bounds height="35.0" width="35.0" x="80.0" y="235.0"&gt;&lt;/omgdc:Bounds&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/bpmndi:BPMNShape&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;bpmndi:BPMNShape bpmnElement="GetData" id="BPMNShape\_GetData"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdc:Bounds height="65.0" width="115.0" x="190.0" y="220.0"&gt;&lt;/omgdc:Bounds&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/bpmndi:BPMNShape&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;bpmndi:BPMNShape bpmnElement="AnalyticPostProcessing" id="BPMNShape\_AnalyticPostProcessing"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdc:Bounds height="65.0" width="105.0" x="540.0" y="220.0"&gt;&lt;/omgdc:Bounds&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/bpmndi:BPMNShape&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;bpmndi:BPMNShape bpmnElement="PersistResults" id="BPMNShape\_PersistResults"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdc:Bounds height="65.0" width="115.0" x="700.0" y="220.0"&gt;&lt;/omgdc:Bounds&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/bpmndi:BPMNShape&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge\_flow1"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdi:waypoint x="115.0" y="252.0"&gt;&lt;/omgdi:waypoint&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdi:waypoint x="190.0" y="252.0"&gt;&lt;/omgdi:waypoint&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/bpmndi:BPMNEdge&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge\_flow2"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdi:waypoint x="305.0" y="252.0"&gt;&lt;/omgdi:waypoint&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdi:waypoint x="360.0" y="252.0"&gt;&lt;/omgdi:waypoint&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/bpmndi:BPMNEdge&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge\_flow3"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdi:waypoint x="475.0" y="252.0"&gt;&lt;/omgdi:waypoint&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdi:waypoint x="540.0" y="252.0"&gt;&lt;/omgdi:waypoint&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/bpmndi:BPMNEdge&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge\_flow4"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdi:waypoint x="645.0" y="252.0"&gt;&lt;/omgdi:waypoint&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdi:waypoint x="700.0" y="252.0"&gt;&lt;/omgdi:waypoint&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/bpmndi:BPMNEdge&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge\_flow5"&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdi:waypoint x="815.0" y="252.0"&gt;&lt;/omgdi:waypoint&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-         &lt;omgdi:waypoint x="890.0" y="252.0"&gt;&lt;/omgdi:waypoint&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       &lt;/bpmndi:BPMNEdge&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     &lt;/bpmndi:BPMNPlane&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-   &lt;/bpmndi:BPMNDiagram&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
- &lt;/definitions&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;definitions xmlns=&quot;http://www.omg.org/spec/BPMN/20100524/MODEL&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:activiti=&quot;http://activiti.org/bpmn&quot; xmlns:bpmndi=&quot;http://www.omg.org/spec/BPMN/20100524/DI&quot; xmlns:omgdc=&quot;http://www.omg.org/spec/DD/20100524/DC&quot; xmlns:omgdi=&quot;http://www.omg.org/spec/DD/20100524/DI&quot; typeLanguage=&quot;http://www.w3.org/2001/XMLSchema&quot; expressionLanguage=&quot;http://www.w3.org/1999/XPath&quot; targetNamespace=&quot;http://www.activiti.org/test&quot;&gt;
+  &lt;process id=&quot;tutorial-workflow-public&quot; name=&quot;Tutorial Workflow&quot; isExecutable=&quot;true&quot;&gt;
+    &lt;serviceTask id=&quot;RunAnalytic&quot; name=&quot;Run Analytic&quot; activiti:class=&quot;com.ge.digitaltwin.tutorial.workflow.activiti.PostRESTServiceJavaDelegate&quot;&gt;
+      &lt;extensionElements&gt;
+        &lt;activiti:field name=&quot;url&quot;&gt;
+          &lt;activiti:string&gt;&lt;![CDATA[https://ef4eb73f-3ac9-4bcb-887b-4e16225024e0.run.aws-usw02-pr.ice.predix.io/api/v1/analytic/execution/]]&gt;&lt;/activiti:string&gt;
+        &lt;/activiti:field&gt;
+        &lt;activiti:field name=&quot;predixZoneId&quot;&gt;
+          &lt;activiti:string&gt;&lt;![CDATA[59ba756c-ab6d-4c5a-8a4d-68f3a0148b22]]&gt;&lt;/activiti:string&gt;
+        &lt;/activiti:field&gt;
+      &lt;/extensionElements&gt;
+    &lt;/serviceTask&gt;
+    &lt;endEvent id=&quot;endevent1&quot; name=&quot;End&quot;&gt;&lt;/endEvent&gt;
+    &lt;startEvent id=&quot;start&quot; activiti:formKey=&quot;wf:submitAdhocTask&quot;&gt;&lt;/startEvent&gt;
+    &lt;serviceTask id=&quot;GetData&quot; name=&quot;Get Data&quot; activiti:class=&quot;com.ge.digitaltwin.tutorial.workflow.activiti.GetRESTServiceJavaDelegate&quot;&gt;
+      &lt;extensionElements&gt;
+        &lt;activiti:field name=&quot;url&quot;&gt;
+          &lt;activiti:string&gt;&lt;![CDATA[https://dt-tutorial-data.run.aws-usw02-pr.ice.predix.io/input?assetId={assetId}&startTimestamp={startTime}&endTimestamp={endTime}]]&gt;&lt;/activiti:string&gt;
+        &lt;/activiti:field&gt;
+      &lt;/extensionElements&gt;
+    &lt;/serviceTask&gt;
+    &lt;sequenceFlow id=&quot;flow1&quot; sourceRef=&quot;start&quot; targetRef=&quot;GetData&quot;&gt;&lt;/sequenceFlow&gt;
+    &lt;sequenceFlow id=&quot;flow2&quot; sourceRef=&quot;GetData&quot; targetRef=&quot;RunAnalytic&quot;&gt;&lt;/sequenceFlow&gt;
+    &lt;serviceTask id=&quot;AnalyticPostProcessing&quot; name=&quot;Analytic Post Processing&quot; activiti:class=&quot;com.ge.digitaltwin.tutorial.workflow.activiti.PostRESTServiceJavaDelegate&quot;&gt;
+      &lt;extensionElements&gt;
+        &lt;activiti:field name=&quot;url&quot;&gt;
+          &lt;activiti:string&gt;&lt;![CDATA[https://dt-tutorial-analytic-post-processing.run.aws-usw02-pr.ice.predix.io/transform/{assetId}]]&gt;&lt;/activiti:string&gt;
+        &lt;/activiti:field&gt;
+      &lt;/extensionElements&gt;
+    &lt;/serviceTask&gt;
+    &lt;sequenceFlow id=&quot;flow3&quot; sourceRef=&quot;RunAnalytic&quot; targetRef=&quot;AnalyticPostProcessing&quot;&gt;&lt;/sequenceFlow&gt;
+    &lt;serviceTask id=&quot;PersistResults&quot; name=&quot;Persist Results&quot; activiti:class=&quot;com.ge.digitaltwin.tutorial.workflow.activiti.PostRESTServiceJavaDelegate&quot;&gt;
+      &lt;extensionElements&gt;
+        &lt;activiti:field name=&quot;url&quot;&gt;
+          &lt;activiti:string&gt;&lt;![CDATA[https://dt-tutorial-result-persistence.run.aws-usw02-pr.ice.predix.io/api/analyticResults]]&gt;&lt;/activiti:string&gt;
+        &lt;/activiti:field&gt;
+      &lt;/extensionElements&gt;
+    &lt;/serviceTask&gt;
+    &lt;sequenceFlow id=&quot;flow4&quot; sourceRef=&quot;AnalyticPostProcessing&quot; targetRef=&quot;PersistResults&quot;&gt;&lt;/sequenceFlow&gt;
+    &lt;sequenceFlow id=&quot;flow5&quot; sourceRef=&quot;PersistResults&quot; targetRef=&quot;endevent1&quot;&gt;&lt;/sequenceFlow&gt;
+  &lt;/process&gt;
+  &lt;bpmndi:BPMNDiagram id=&quot;BPMNDiagram_tutorial-workflow-public&quot;&gt;
+    &lt;bpmndi:BPMNPlane bpmnElement=&quot;tutorial-workflow-public&quot; id=&quot;BPMNPlane_tutorial-workflow-public&quot;&gt;
+      &lt;bpmndi:BPMNShape bpmnElement=&quot;RunAnalytic&quot; id=&quot;BPMNShape_RunAnalytic&quot;&gt;
+        &lt;omgdc:Bounds height=&quot;65.0&quot; width=&quot;115.0&quot; x=&quot;360.0&quot; y=&quot;220.0&quot;&gt;&lt;/omgdc:Bounds&gt;
+      &lt;/bpmndi:BPMNShape&gt;
+      &lt;bpmndi:BPMNShape bpmnElement=&quot;endevent1&quot; id=&quot;BPMNShape_endevent1&quot;&gt;
+        &lt;omgdc:Bounds height=&quot;35.0&quot; width=&quot;35.0&quot; x=&quot;890.0&quot; y=&quot;235.0&quot;&gt;&lt;/omgdc:Bounds&gt;
+      &lt;/bpmndi:BPMNShape&gt;
+      &lt;bpmndi:BPMNShape bpmnElement=&quot;start&quot; id=&quot;BPMNShape_start&quot;&gt;
+        &lt;omgdc:Bounds height=&quot;35.0&quot; width=&quot;35.0&quot; x=&quot;80.0&quot; y=&quot;235.0&quot;&gt;&lt;/omgdc:Bounds&gt;
+      &lt;/bpmndi:BPMNShape&gt;
+      &lt;bpmndi:BPMNShape bpmnElement=&quot;GetData&quot; id=&quot;BPMNShape_GetData&quot;&gt;
+        &lt;omgdc:Bounds height=&quot;65.0&quot; width=&quot;115.0&quot; x=&quot;190.0&quot; y=&quot;220.0&quot;&gt;&lt;/omgdc:Bounds&gt;
+      &lt;/bpmndi:BPMNShape&gt;
+      &lt;bpmndi:BPMNShape bpmnElement=&quot;AnalyticPostProcessing&quot; id=&quot;BPMNShape_AnalyticPostProcessing&quot;&gt;
+        &lt;omgdc:Bounds height=&quot;65.0&quot; width=&quot;105.0&quot; x=&quot;540.0&quot; y=&quot;220.0&quot;&gt;&lt;/omgdc:Bounds&gt;
+      &lt;/bpmndi:BPMNShape&gt;
+      &lt;bpmndi:BPMNShape bpmnElement=&quot;PersistResults&quot; id=&quot;BPMNShape_PersistResults&quot;&gt;
+        &lt;omgdc:Bounds height=&quot;65.0&quot; width=&quot;115.0&quot; x=&quot;700.0&quot; y=&quot;220.0&quot;&gt;&lt;/omgdc:Bounds&gt;
+      &lt;/bpmndi:BPMNShape&gt;
+      &lt;bpmndi:BPMNEdge bpmnElement=&quot;flow1&quot; id=&quot;BPMNEdge_flow1&quot;&gt;
+        &lt;omgdi:waypoint x=&quot;115.0&quot; y=&quot;252.0&quot;&gt;&lt;/omgdi:waypoint&gt;
+        &lt;omgdi:waypoint x=&quot;190.0&quot; y=&quot;252.0&quot;&gt;&lt;/omgdi:waypoint&gt;
+      &lt;/bpmndi:BPMNEdge&gt;
+      &lt;bpmndi:BPMNEdge bpmnElement=&quot;flow2&quot; id=&quot;BPMNEdge_flow2&quot;&gt;
+        &lt;omgdi:waypoint x=&quot;305.0&quot; y=&quot;252.0&quot;&gt;&lt;/omgdi:waypoint&gt;
+        &lt;omgdi:waypoint x=&quot;360.0&quot; y=&quot;252.0&quot;&gt;&lt;/omgdi:waypoint&gt;
+      &lt;/bpmndi:BPMNEdge&gt;
+      &lt;bpmndi:BPMNEdge bpmnElement=&quot;flow3&quot; id=&quot;BPMNEdge_flow3&quot;&gt;
+        &lt;omgdi:waypoint x=&quot;475.0&quot; y=&quot;252.0&quot;&gt;&lt;/omgdi:waypoint&gt;
+        &lt;omgdi:waypoint x=&quot;540.0&quot; y=&quot;252.0&quot;&gt;&lt;/omgdi:waypoint&gt;
+      &lt;/bpmndi:BPMNEdge&gt;
+      &lt;bpmndi:BPMNEdge bpmnElement=&quot;flow4&quot; id=&quot;BPMNEdge_flow4&quot;&gt;
+        &lt;omgdi:waypoint x=&quot;645.0&quot; y=&quot;252.0&quot;&gt;&lt;/omgdi:waypoint&gt;
+        &lt;omgdi:waypoint x=&quot;700.0&quot; y=&quot;252.0&quot;&gt;&lt;/omgdi:waypoint&gt;
+      &lt;/bpmndi:BPMNEdge&gt;
+      &lt;bpmndi:BPMNEdge bpmnElement=&quot;flow5&quot; id=&quot;BPMNEdge_flow5&quot;&gt;
+        &lt;omgdi:waypoint x=&quot;815.0&quot; y=&quot;252.0&quot;&gt;&lt;/omgdi:waypoint&gt;
+        &lt;omgdi:waypoint x=&quot;890.0&quot; y=&quot;252.0&quot;&gt;&lt;/omgdi:waypoint&gt;
+      &lt;/bpmndi:BPMNEdge&gt;
+    &lt;/bpmndi:BPMNPlane&gt;
+  &lt;/bpmndi:BPMNDiagram&gt;
+&lt;/definitions&gt;
+
+</pre> 
 
  

@@ -1,5 +1,5 @@
-**Build the Digital Twin Starter Kit: **Introduction
-
+Build the Digital Twin Starter Kit: Introduction
+-
 **What you'll learn to do**
 
 You will learn the definition and concepts of the Digital Twin as well as the considerations and methods for creating a Digital Twin.
