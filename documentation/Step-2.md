@@ -2,13 +2,13 @@
 
 **What you'll learn to do**
 
-<img src="media/image1.png" width="664" height="431" />
+<img src="images/step2-01.jpg" width="664" height="431" />
 
 Step 2 focuses on how Digital Twin models and analytics are built, deployed, and run. Digital Twin models and analytics will be run via REST endpoints. In most cases, these models and analytics will be deployed to an instance of a[* Predix Analytic Catalog *](https://predix-io-dev.grc-apps.svc.ice.ge.com/services/service.html?id=1187)or an instance of a [*Predix Analytic Runtime*](https://predix-io-dev.grc-apps.svc.ice.ge.com/services/service.html?id=1174) and executed through a workflow orchestration (see **[Step 4: ](https://predix-io-dev.grc-apps.svc.ice.ge.com/resources/tutorials/tutorial-details.html?tutorial_id=1919&tag=1913&journey=Digital%20Twin%20Runtime%20Starter%20Kit&resources=1914,1915,1916,1917,1918,1919,1920)Build Orchestration***)*. The Predix Analytics Catalog allows uploading models that are developed in Python, Java, or Matlab. For more information, refer to the Predix documentation on [*Analytic Development Process*](https://predix-io-dev.grc-apps.svc.ice.ge.com/docs/#Qd2kPYb7).
 
 The simple workflow:
 
-<img src="media/image2.jpeg" width="624" height="143" />
+<img src="images/step2-02.jpg" width="624" height="143" />
 
 In this part of the tutorial, you will:
 
@@ -329,7 +329,7 @@ Now you can make the following POST request to the Analytic Catalog to execute y
 </tbody>
 </table>
 
-<img src="media/image3.png" width="946" height="374" />
+<img src="images/step2-03.jpg" width="946" height="374" />
 
 In **Step 4: Build Orchestration***,* the BPMN file needs to know the above execution URL to run your analytic in the Digital Twin workflow. 
 
