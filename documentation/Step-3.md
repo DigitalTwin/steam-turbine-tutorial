@@ -3,13 +3,13 @@
 
 **What you'll learn to do**
 
-<img src="media/image1.png" width="624" height="392" />
+<img src="images/step3-01.jpg" width="624" height="392" />
 
 Step 3 illustrates how to build and deploy a "save data" service that exposes REST endpoints (URLs).
 
 The simple workflow:
 
-<img src="media/image2.jpeg" width="776" height="172" />
+<img src="images/step3-02.jpg" width="776" height="172" />
 
  In this part of the tutorial, you will:
 
@@ -116,11 +116,11 @@ tutorial-result-persistence         started                1/1 �
 
 -   Try the “Post a single result” REST endpoint.
 
-<img src="media/image3.jpeg" width="1413" height="962" />
+<img src="images/step3-03.jpg" width="1413" height="962" />
 
 -   Try the “Get all analytic results” REST endpoint and check if the result you posted is in the list.
 
-<img src="media/image4.jpeg" width="1415" height="984" />
+<img src="images/step3-04.jpg" width="1415" height="984" />
 
  
 
@@ -197,7 +197,7 @@ tutorial-analytic-post-processing          started              
 
 -   Try the “Transform analytic output” POST request. Note the assetId value on the URL and the body contains the results from executing the analytic.
 
-<img src="media/image5.jpeg" width="1416" height="963" />
+<img src="images/step3-05.jpg" width="1416" height="963" />
 
 **What you learned**
 
