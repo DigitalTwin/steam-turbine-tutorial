@@ -26,7 +26,7 @@ A Digital Twin has five defining features:
 
 There are 5 steps to creating and deploying a Digital Twin:
 
-<img src="media/image1.png" width="665" height="417" />
+<img src="images/intro-01.jpg" width="665" height="417" />
 
 **Step 1: Get Data **
 
