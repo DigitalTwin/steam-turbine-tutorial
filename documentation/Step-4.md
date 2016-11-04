@@ -1,3 +1,5 @@
+Previous: [Step 3](Step-3.md)
+
 #**Step 4: Build Orchestration**
 
 ##**What you'll learn to do**
@@ -275,6 +277,8 @@ tutorial-simulator started 1/1 1G 1G <strong>dt-tutorial-simulator.run.aws-usw02
 
 In this section, you learned how to use the pre-built and pre-deployed workflow service. You updated the BPMN workflow file to reference the REST endpoints deployed on previous steps. This required the service to be rebuilt (using maven) and deployed to Predix. You learned how to test the REST endpoints with the new changes. You learned how to build and deploy the tutorial-simulator service and confirmed that it too worked.
 
+Next: [Step 5](Step-5.md)
+
 **Appendix - an explanation of the Digital Twin Orchestration Java delegates**
 
 **Terminology**
@@ -434,4 +438,5 @@ Figure 2. Raw BPMN text 
 
 </pre> 
 
- 
+Next: [Step 5](Step-5.md)
+
