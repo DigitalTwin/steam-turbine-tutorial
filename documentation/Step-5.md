@@ -20,7 +20,7 @@ The content for the visual elements are usually provided with the same services 
 
 For this tutorial, the visualization application allows the user to select an asset to visualize that asset’s associated data. You can run the simulation from Step 4 to simulate the Digital Twin responding to new data. The simulation will use the sample data created and stored in the time series data service. The Digital Twin workflow will be executed several times, simulating the arrival of new data in the time series (by sending in start and end times to the workflow). The time series data has the sample "actual" data. The analytic will calculate the expected data values based on the model coefficients and also the delta between the expected and the actual values. The expected and actual values will be plotted vs. time.
 
-This fully functional web application pulls data from the "GET" endpoint described here: [*Step 3: Save Results*](https://predix-io-dev.grc-apps.svc.ice.ge.com/resources/tutorials/tutorial-details.html?tutorial_id=1918&tag=1913&journey=Digital%20Twin%20Runtime%20Starter%20Kit&resources=1914,1915,1916,1917,1918,1919,1920).  Note that this is not the only URL that this web application uses.
+This fully functional web application pulls data from the "GET" endpoint described here: **Step 3**.  Note that this is not the only URL that this web application uses.
 
  In this part of the tutorial, you will:
 
