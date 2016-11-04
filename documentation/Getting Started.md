@@ -290,7 +290,7 @@ $ mvn clean install</td>
 </tbody>
 </table>
 
-The code to build the tutorial visualization app is found in [*https://github.com/digitalTwin/steam-turbine-tutorial-vis*](https://github.com/digitalTwin/steam-turbine-tutorial-vis). Clone this module into your local file system. We'll discuss configuring, building, and deploying this in Step 5.
+The code to build the tutorial visualization app is found in [https://github.com/DigitalTwin/steam-turbine-tutorial-vis](https://github.com/DigitalTwin/steam-turbine-tutorial-vis). Clone this module into your local file system. We'll discuss configuring, building, and deploying this in Step 5.
 
 ##**What you learned**
 
