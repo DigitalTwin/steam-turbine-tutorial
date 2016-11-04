@@ -61,3 +61,6 @@ For our example Digital Twin scenario, we use a model that compares the actual r
 ### What you learned
 
 You have learned the defining characteristics of a Digital Twin and the Five Steps that go into creating a Digital Twin.
+
+Next: [Getting Started](Getting Started.md)
+
