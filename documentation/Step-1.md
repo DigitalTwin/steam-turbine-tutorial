@@ -1,3 +1,5 @@
+Previous: [Getting Started](Getting Started.md)
+
 #**Step 1: Get Data**
 
 ##**What you'll learn to do**
@@ -346,3 +348,5 @@ Now that you have a significant amount of data in your time series service, letâ
 You learned how to set up and test the services needed to interact with the data that will feed our sample Digital Twin model. You also saw how to push sample data into your time series service.
 
 We will continue with building and deploying models in **Step 2**.
+
+Next: [Step 2](Step-2.md)
