@@ -52,7 +52,7 @@ We recommend using Postman or Swagger to interact with and test REST endpoints.
 
 **Postman**
 
-For your convenience, we have included a Postman collection in the root directory of the source code called DigitalTwinTutorial.postman\_collection.json. You can import this collection into Postman by following the instructions here: [*https://www.getpostman.com/docs/collections*](https://www.getpostman.com/docs/collections). 
+For your convenience, we have included a Postman collection in the root directory of the source code called DigitalTwinTutorial.postman\_collection.json. You can import this collection into Postman by following the instructions here: [https://www.getpostman.com/docs/collections](https://www.getpostman.com/docs/collections). 
 
 Inside this collection are folders corresponding to each of the 5 steps taken to build our sample Digital Twin app. In each folder there are example REST calls we used to create and test our application.  We will use this Postman collection throughout the tutorial to demonstrate how to interact with the services provided in the Starter Kit.
 
