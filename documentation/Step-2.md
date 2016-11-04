@@ -321,7 +321,7 @@ Now you can make the following POST request to the Analytic Catalog to execute y
 
 <img src="images/step2-03.jpg" width="946" height="374" />
 
-In [Step 4](Step-4.md), the BPMN file needs to know the above execution URL to run your analytic in the Digital Twin workflow. 
+In **Step 4**, the BPMN file needs to know the above execution URL to run your analytic in the Digital Twin workflow. 
 
 ##**What you learned**
 
