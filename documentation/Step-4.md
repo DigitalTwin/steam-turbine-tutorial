@@ -8,7 +8,7 @@ Step 4 illustrates how to build and deploy a "workflow" orchestration service th
 
 The simple workflow:
 
-<img src="imags/step4-02.jpg" width="675" height="156" />
+<img src="images/step4-02.jpg" width="675" height="156" />
 
 In this part of the tutorial, you will:
 
