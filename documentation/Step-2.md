@@ -1,3 +1,5 @@
+Previous: [Step 1](Step-1.md)
+
 #**Step 2: Build and Deploy Models**
 
 ##**What you'll learn to do**
@@ -324,3 +326,5 @@ In **Step 4: Build Orchestration***,* the BPMN file needs to know the above e
 ##**What you learned**
 
 You learned how to find the predix zone id of your predix analytics catalog for use in the HTTP headers. You also learned how use the Predix Analytic Catalog to upload, validate, check the status of, and execute the pre-built analytic by using the catalog’s REST API.
+
+Next: [Step 3](Step-3.md)
