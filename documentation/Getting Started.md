@@ -179,7 +179,7 @@ For more information on UAA, see the following documentation:
 
 Now that you have a UAA service set up, you will need to configure the provided Postman collection to authenticate against that UAA service to interact with the Starter Kit service endpoints.
 
-Instructions on how to configure your Postman environment can be found here: [*https://www.getpostman.com/docs/environments *](https://www.getpostman.com/docs/environments)
+Instructions on how to configure your Postman environment can be found here: [https://www.getpostman.com/docs/environments](https://www.getpostman.com/docs/environments)
 
 Since the strings below are frequently used, the collection is configured to read three different variables from your Postman environment:
 
