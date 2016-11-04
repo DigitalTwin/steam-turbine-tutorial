@@ -12,15 +12,15 @@ You will learn the definition and concepts of the Digital Twin as well as the co
 
 A Digital Twin has five defining features:
 
-1.  **Per asset:  **The Digital Twin is applied to individual assets.  A Digital Twin instance models and tracks a single specific asset over its lifetime.  Most functional or mathematical formulas, called kernels, can be reused across assets belonging to the same asset class. At runtime each twin will need to be trained specifically for an individual asset to achieve asset level customization.
+1.  **Per asset:** The Digital Twin is applied to individual assets.  A Digital Twin instance models and tracks a single specific asset over its lifetime.  Most functional or mathematical formulas, called kernels, can be reused across assets belonging to the same asset class. At runtime each twin will need to be trained specifically for an individual asset to achieve asset level customization.
 
 2.  **Generates value:**  The Digital Twin is used to create demonstrable business value; e.g., to have zero unplanned outages and an optimized output.
 
-3.  **Adaptable:  **The Digital Twin infrastructure and models can be applied to other part or asset classes, or adapt to new scenarios or new factors. 
+3.  **Adaptable:** The Digital Twin infrastructure and models can be applied to other part or asset classes, or adapt to new scenarios or new factors. 
 
 4.  **Continuously updated:**  The Digital Twin models update continually as the physical asset is operated. At any moment the Digital Twin exhibits a faithful representation of the current state of the asset.  The output of the model changes with every airplane flight or with every fuel burn hour. 
 
-5.  **Scalable:  ** Benefit is derived when hundreds or thousands of like assets have a Digital Twin.  A Digital Twin tracking a single asset learns from all of the other similar assets.**  **
+5.  **Scalable:** Benefit is derived when hundreds or thousands of like assets have a Digital Twin.  A Digital Twin tracking a single asset learns from all of the other similar assets.
 
 **The 5-step Starter Kit**
 
@@ -28,7 +28,7 @@ There are 5 steps to creating and deploying a Digital Twin:
 
 <img src="images/intro-01.jpg" width="665" height="417" />
 
-**Step 1: Get Data **
+**Step 1: Get Data**
 
 Digital Twins need a vast amount of data to predict and understand an asset's specific condition, life, performance, and service constraints. Once an asset’s sensor data are available on disk, data services become the mechanisms that expose and provide this data to a consumer. They provide the connections to the various repositories where the needed information is stored, eliminating the need for individual models to have to handle direct repository connections, database querying, etc. 
 
@@ -38,13 +38,13 @@ The goal of Step 1 is to ensure that the data needed for a specific model is acc
 
 Step 2 focuses on the construction of kernels, models, analytics, etc. Kernels are the basic functional and mathematical formulas, while models are kernels that have been trained for a specific asset. Here, either new kernels are created or existing kernels reused, and then trained using the data services and gold data discussed in Step 1 to create a model representing an individual asset. Once these models have been verified against the gold data, they can be deployed to an operational or production environment.
 
-**Step 3: Save Results  **
+**Step 3: Save Results**
 
 After a model runs, the output of that run needs to be saved. Saving the output allows it to be utilized by any downstream processes, as well as making it available for understanding the behavior of the model over time. The results storage is the convergence point for parallel runs when many twins are being manually or continuously updated. 
 
 In addition to saving the model output, the model state must also be saved. If a model is retraining itself and evolving to reflect incoming data, model state should be persisted so that future runs are always starting from the most recently modeled asset condition.
 
-**Step 4: Build Orchestration **
+**Step 4: Build Orchestration**
 
 As mentioned earlier, the implementation of a Digital Twin is a collection of various services and software components executed in a sequence to produce information utilized to drive business value. Constructing and executing this sequence is referred to as *orchestration.* They are created by combining the data services from Step 1 with the deployed models described in Step 2, executed in sequence, with results stored as described in Step 3. These orchestrations execute based on a trigger: potentially an event, timer, or external request, and run in both automated and semi-automated fashions.
 

@@ -55,15 +55,15 @@ Notes:
 
 2)  Push it to Cloud Foundry.
 
-<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-asset --no-start</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf push &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-asset --no-start</pre>
 
 3)  You'll need to set an environment variable for the security\_oauth2\_client\_clientSecret. You could set this in the manifest.yml file instead, but we recommend using an environment variable as it is more secure than storing passwords in a file, which may result in them being accidentally committed to your source code repository.
 
-<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf set-env &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-asset security\_oauth2\_client\_clientSecret &lt;your Client Id's secret&gt;</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-asset security\_oauth2\_client\_clientSecret &lt;your Client Id's secret&gt;</pre>
 
 4)  Start your application.
 
-<pre>C:\\steam-turbine-tutorial\\tutorial-svcs\\tutorial-asset&gt; cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-asset</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs\tutorial-asset&gt; cf start &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-asset</pre>
 
 5)  Use "cf apps" to discover the URL to your service. Prepend the "https://" protocol then append your API path to get the full URL to your data service.
 
@@ -113,19 +113,19 @@ Substitute your client id for &lt;YOUR\_CLIENT\_ID&gt;.
 2)  Push it to Cloud Foundry
 
 
-<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-model-coefficient --no-start
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf push &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-model-coefficient --no-start
 </pre>
 
 3)  Set an environment variable for the security\_oauth2\_client\_clientSecret. You could set this in the manifest.yml file instead, but we recommend using an environment variable as it is more secure than storing passwords in a file, which may result in them being accidentally committed to your source code repository.
 
 <pre>
-C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf set-env &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-model-coefficient security\_oauth2\_client\_clientSecret &lt;your Client Id's secret&gt;
+C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-model-coefficient security_oauth2_client_clientSecret &lt;your Client Id's secret&gt;
 </pre>
 
 4)  Start your application.
 
 <pre>
-C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-model-coefficient
+C:\steam-turbine-tutorial\tutorial-svcs&gt; cf start &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-model-coefficient
 </pre>
 
 5)  Run the "cf apps" command to discover the URL to your service. Prepend the “https://” protocol then append your API path to get the full URL to your data service
@@ -215,7 +215,7 @@ This application will retrieve the time series data for a given date range and a
 
 2)  Push it to Cloud Foundry
 
-<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-data --no-start</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf push &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-data --no-start</pre>
 
 3)  You'll need to set environment variables for security\_oauth2\_client\_clientSecret and com\_ge\_dt\_tsc\_clientSecret. You could set this in the manifest.yml file instead, but we recommend using an environment variable as it is more secure than storing passwords in a file, which may result in them being accidentally committed to your source code repository.
 
@@ -226,7 +226,7 @@ C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFI
 
 4)  Start your application.
 
-<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-data</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf start &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-data</pre>
 
 5)  Run the "cf apps" command to discover the URL to your service. Prepend the “https://” protocol then append your API path to get the full URL to your data service
 
@@ -292,7 +292,7 @@ Build your executable jar file via the following command:
 Execute the utility with a command similar to the following (make sure the -D options appear before -jar). For the purposes of this tutorial, please use “2” as the &lt;steam-turbine-id&gt; as this will create consistency with the remaining sections.
 
 <pre>
-D:\\Projects2016\\pedro\\steam-turbine-tutorial\\tutorial-util\\tutorial-timeseries-util&gt;java -Dhttps.proxyHost=&lt;your-proxy-host&gt; -Dhttps.proxyPort=&lt;your-proxy-port&gt; -Dconfig.steamTurbineId=&lt;steam-turbine-id&gt; -Dconfig.csvFilename=&lt;csv filename in resources directory or path/filename on the local file system&gt; -Dcom.ge.dt.tsc.clientSecret=&lt;client-secret-for-tutorial-svcs-client&gt; -jar target\\tutorial-timeseries-util-1.0-SNAPSHOT.jar
+D:\Projects\steam-turbine-tutorial\tutorial-util\tutorial-timeseries-util&gt;java -Dhttps.proxyHost=&lt;your-proxy-host&gt; -Dhttps.proxyPort=&lt;your-proxy-port&gt; -Dconfig.steamTurbineId=&lt;steam-turbine-id&gt; -Dconfig.csvFilename=&lt;csv filename in resources directory or path/filename on the local file system&gt; -Dcom.ge.dt.tsc.clientSecret=&lt;client-secret-for-tutorial-svcs-client&gt; -jar target\tutorial-timeseries-util-1.0-SNAPSHOT.jar
 </pre>
 
 Note: We recommend using the path/filename convention when specifying the config.csvFilename parameter. When executing this utility directly from a jar file, some systems have difficulty finding the config.csvFilename when specified as a file in the resources directory.

@@ -89,7 +89,7 @@ Note that the services that this workflow orchestrates have minimal error checki
 
 **Note**: When creating your own workflow, refer to the appendix at the end of this tutorial step for an explanation of the Digital Twin Orchestration Java Delegates, details about BPMN file, and helpful delegate classes.
 
-1.  Configure the appropriate section of the "manifest.yml" file in the tutorial-svcs directory to reflect your environment.
+1)  Configure the appropriate section of the "manifest.yml" file in the tutorial-svcs directory to reflect your environment.
 
 <pre>
 - name: &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-workflow
@@ -109,19 +109,19 @@ Note that the services that this workflow orchestrates have minimal error checki
 
 -   Substitute your client id for &lt;YOUR\_CLIENT\_ID&gt;.
 
-1.  Push it to Cloud Foundry
+2)  Push it to Cloud Foundry
 
-<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-workflow --no-start</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf push &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-workflow --no-start</pre>
 
-1.  You'll need to set an environment variable for the security\_oauth2\_client\_clientSecret. You could set this in the manifest.yml file instead, but we recommend using an environment variable as it is more secure than storing passwords in a file, which may result in them being accidentally committed to your source code repository.
+3)  You'll need to set an environment variable for the security\_oauth2\_client\_clientSecret. You could set this in the manifest.yml file instead, but we recommend using an environment variable as it is more secure than storing passwords in a file, which may result in them being accidentally committed to your source code repository.
 
-<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf set-env &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-workflow security\_oauth2\_client\_clientSecret &lt;your Client Id's secret&gt;</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-workflow security_oauth2_client_clientSecret &lt;your Client Id's secret&gt;</pre>
 
-1.  Start your application.
+4)  Start your application.
 
-<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-workflow</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf start &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-workflow</pre>
 
-1.  Use "cf apps" to discover the URL to your service. Prepend the “https://” protocol then append your API path, /workflow/{workflow-id}, to get the full URL to your data service.
+5)  Use "cf apps" to discover the URL to your service. Prepend the “https://” protocol then append your API path, /workflow/{workflow-id}, to get the full URL to your data service.
 
 <pre>
 C:\steam-turbine-tutorial\tutorial-svcs&gt; cf apps
@@ -132,7 +132,7 @@ name                                   requested state   inst
 tutorial-workflow                   started                 1/1              1G          1G     <strong>dt-tutorial-workflow.run.aws-usw02-pr.ice.predix.io</strong>
 ...</pre>
 
-Get a bearer token and test your service with Postman.
+6) Get a bearer token and test your service with Postman.
 
 -   Try the “Execute a workflow” POST request: The body of the request should have a “params” key which defines an object that contains keys and values for “assetId”, “startTime” and “endTime”.
 
@@ -233,7 +233,7 @@ This service simulates new data coming into your workflow by invoking the workfl
 
 2)  Push it to CloudFoundry
 
-<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-simulator --no-start</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf push &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-simulator --no-start</pre>
 
 3)  You'll need to set environment variables for the security\_oauth2\_client\_clientSecret and tutorial\_simulator\_oauth2\_clientSecret. You could set this in the manifest.yml file instead, but we recommend using an environment variable as it is more secure than storing passwords in a file, which may result in them being accidentally committed to your source code repository. In this tutorial, we use the same UAA service instance for the workflow service and for the simulator. Note that this does not have to be the case. You may use different UAA services to secure the two different components; in which case you would need to set the respective client secrets appropriately.
 
@@ -243,7 +243,7 @@ C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFI
 
 4)  Start your application
 
-<pre>C:\\steam-turbine-tutorial\\tutorial-svcs&gt; cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-simulator</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf start &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-simulator</pre>
 
 5)  Use "cf apps" to discover the URL to your service. Prepend the [https://](NULL) protocol then append your API path to get the full URL to your data service.
 

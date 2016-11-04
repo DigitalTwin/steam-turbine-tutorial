@@ -187,7 +187,7 @@ my-tutorial-redis redis-5 shared-vm
 
 2)  Push it to Cloud Foundry
 
-<pre>C:\\steam-turbine-tutorial-vis&gt;cf push &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-vis –no-start</pre>
+<pre>C:\steam-turbine-tutorial-vis&gt;cf push &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-vis –no-start</pre>
 
 3)  You’ll need to set two environment variables
 
@@ -202,7 +202,7 @@ C:\steam-turbine-tutorial-vis&gt;cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutor
 
 4)  Start your application.
 
-<pre>C:\\steam-turbine-tutorial-vis&gt;cf start &lt;YOUR\_OWN\_UNIQUE\_PREFIX&gt;-tutorial-vis</pre>
+<pre>C:\steam-turbine-tutorial-vis&gt;cf start &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-vis</pre>
 
 5)  Use “cf apps” to discover the URL to your application. Prepend “https://” to this URL, paste it into your browser and authenticate with the “tutorial-user” user account credentials that you set up in Getting Started.
 

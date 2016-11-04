@@ -6,7 +6,7 @@ Previous: [Step 1](Step-1.md)
 
 <img src="images/step2-01.jpg" width="664" height="431" />
 
-Step 2 focuses on how Digital Twin models and analytics are built, deployed, and run. Digital Twin models and analytics will be run via REST endpoints. In most cases, these models and analytics will be deployed to an instance of a[* Predix Analytic Catalog *](https://predix-io-dev.grc-apps.svc.ice.ge.com/services/service.html?id=1187)or an instance of a [*Predix Analytic Runtime*](https://predix-io-dev.grc-apps.svc.ice.ge.com/services/service.html?id=1174) and executed through a workflow orchestration (see **Step 4: Build Orchestration**). The Predix Analytics Catalog allows uploading models that are developed in Python, Java, or Matlab. For more information, refer to the Predix documentation on [*Analytic Development Process*](https://predix-io-dev.grc-apps.svc.ice.ge.com/docs/#Qd2kPYb7).
+Step 2 focuses on how Digital Twin models and analytics are built, deployed, and run. Digital Twin models and analytics will be run via REST endpoints. In most cases, these models and analytics will be deployed to an instance of a[* Predix Analytic Catalog *](https://predix-io-dev.grc-apps.svc.ice.ge.com/services/service.html?id=1187)or an instance of a [*Predix Analytic Runtime*](https://predix-io-dev.grc-apps.svc.ice.ge.com/services/service.html?id=1174) and executed through a workflow orchestration (see [Step 4](Step-4.md)). The Predix Analytics Catalog allows uploading models that are developed in Python, Java, or Matlab. For more information, refer to the Predix documentation on [*Analytic Development Process*](https://predix-io-dev.grc-apps.svc.ice.ge.com/docs/#Qd2kPYb7).
 
 The simple workflow:
 
@@ -26,7 +26,7 @@ In this part of the tutorial, you will:
 
 ##**What you need to set up**
 
-For this step, you will need an instance of the Analytics Catalog and an instance of the Predix UAA service. If you want to use the provided Postman collection to interact with the REST endpoints, you will need to set the authorization header with the bearer token for the UAA client that has permission to call the REST endpoint since the applications are secured. If you have not set up these services or secured the provided Postman collection, please see the **Getting Started** section for instructions. 
+For this step, you will need an instance of the Analytics Catalog and an instance of the Predix UAA service. If you want to use the provided Postman collection to interact with the REST endpoints, you will need to set the authorization header with the bearer token for the UAA client that has permission to call the REST endpoint since the applications are secured. If you have not set up these services or secured the provided Postman collection, please see the [Getting Started](Getting Started.md) section for instructions. 
 
 ##**What you need to do**
 
@@ -321,7 +321,7 @@ Now you can make the following POST request to the Analytic Catalog to execute y
 
 <img src="images/step2-03.jpg" width="946" height="374" />
 
-In **Step 4: Build Orchestration***,* the BPMN file needs to know the above execution URL to run your analytic in the Digital Twin workflow. 
+In [Step 4](Step-4.md), the BPMN file needs to know the above execution URL to run your analytic in the Digital Twin workflow. 
 
 ##**What you learned**
 

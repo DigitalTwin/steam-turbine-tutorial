@@ -14,37 +14,37 @@ This section will introduce recommended development tools and environment config
 
 IntelliJ (with BPMN plugin), Eclipse (with BPMN plugin), or some similar tool
 
--   IntelliJ: [*https://www.jetbrains.com/idea/download/*](https://www.jetbrains.com/idea/download/)
+-   IntelliJ: [https://www.jetbrains.com/idea/download/](https://www.jetbrains.com/idea/download/)
 
--   Eclipse: [*https://eclipse.org/downloads/*](https://eclipse.org/downloads/)
+-   Eclipse: [https://eclipse.org/downloads/](https://eclipse.org/downloads/)
 
 Cloud Foundry command line client
 
--   [*https://docs.cloudfoundry.org/cf-cli/install-go-cli.html*](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
+-   [https://docs.cloudfoundry.org/cf-cli/install-go-cli.html](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
 
 UAAC - UAA Command line client - Many UAA functions can be done with the Predix Security Starter Kit, but you might need UAAC for more complex efforts or troubleshooting problems.
 
--   [*https://www.predix.io/docs/?r=705324\#Kmchpf5k*](https://predix-io-dev.grc-apps.svc.ice.ge.com/docs/?r=705324#Kmchpf5k)
+-   [https://www.predix.io/docs/?r=705324\#Kmchpf5k](https://predix-io-dev.grc-apps.svc.ice.ge.com/docs/?r=705324#Kmchpf5k)
 
 Maven
 
--   [*https://maven.apache.org/install.html*](https://maven.apache.org/install.html)
+-   [https://maven.apache.org/install.html](https://maven.apache.org/install.html)
 
 Git
 
--   https://git-scm.com/
+-   [https://git-scm.com/](https://git-scm.com/)
 
 Java 8
 
--   [*http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html*](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+-   [http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 Postman
 
--    [*https://www.getpostman.com/*](https://www.getpostman.com/)
+-    [https://www.getpostman.com/](https://www.getpostman.com/)
 
 Node / Bower / Grunt
 
--   See the “Tooling” prerequisites at <https://github.com/PredixDev/predix-seed>
+-   See the “Tooling” prerequisites at [https://github.com/PredixDev/predix-seed](https://github.com/PredixDev/predix-seed)
 
 **Using Postman or Swagger to exercise REST endpoints**
 
@@ -143,7 +143,7 @@ Two new clients:
 
 -   tutorial-user (for use with the front-end visualization)
 
-    -   scope = “tutorial.admin”,”tutorial.user” ~~&lt;analytics\_catalog\_scope&gt;~~
+    -   scope = “tutorial.admin”,”tutorial.user”
 
     -   resource\_ids: none
 
@@ -153,7 +153,7 @@ Two new clients:
 
         -   You will need to set this to the uri of the visualization you will create in step 5
 
-    -   autoapprove: “tutorial.admin”,”tutorial.user” ~~&lt;analytics\_catalog\_scope&gt;~~
+    -   autoapprove: “tutorial.admin”,”tutorial.user”
 
     -   action: none
 
