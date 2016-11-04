@@ -107,13 +107,9 @@ tutorial-result-persistence         started                1/1 �
 
 -   Try the “Post a single result” REST endpoint.
 
-width="1413" height="962"
-
 <img src="images/step3-03.jpg"  />
 
 -   Try the “Get all analytic results” REST endpoint and check if the result you posted is in the list.
-
-width="1415" height="984"
 
 <img src="images/step3-04.jpg" />
 
