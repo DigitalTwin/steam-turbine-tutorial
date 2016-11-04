@@ -24,13 +24,13 @@ In this part of the tutorial, you will:
 
 ##**What you need to set up**
 
-Prior to deploying any tutorial services to the cloud, you'll need a [UAA service](https://www.predix.io/services/service.html?id=1172) instance, a [PostgreSQL service](https://www.predix.io/services/service.html?id=1178) instance, and a [Predix Time Series service](https://www.predix.io/services/service.html?id=1177) instance. If you want to use the provided Postman collection to interact with the REST endpoints, you will need to set the authorization header with the bearer token for the UAA client that has permission to call the REST endpoint since the applications are secured. If you have not set up these services or secured the provided Postman collection, please see the [Getting Started](https://predix-io-dev.grc-apps.svc.ice.ge.com/resources/tutorials/tutorial-details.html?tutorial_id=1915&tag=1913&journey=Digital%20Twin%20Runtime%20Starter%20Kit&resources=1914,1915,1916,1917,1918,1919,1920) section for instructions. 
+Prior to deploying any tutorial services to the cloud, you'll need a [UAA service](https://www.predix.io/services/service.html?id=1172) instance, a [PostgreSQL service](https://www.predix.io/services/service.html?id=1178) instance, and a [Predix Time Series service](https://www.predix.io/services/service.html?id=1177) instance. If you want to use the provided Postman collection to interact with the REST endpoints, you will need to set the authorization header with the bearer token for the UAA client that has permission to call the REST endpoint since the applications are secured. If you have not set up these services or secured the provided Postman collection, please see the **Getting Started** section for instructions. 
 
 ##**What you need to do**
 
 ###**Create the tutorial-asset application**
 
-The tutorial-asset application exposes a REST endpoint '/asset' that returns a list of asset names and their corresponding id's. For simplicity, these are stored in a file, assets.json. If the assets were constantly changing, you could imagine storing them in a database and having this service query the database. Refer to [*Getting Started*](https://predix-io-dev.grc-apps.svc.ice.ge.com/resources/tutorials/tutorial-details.html?tutorial_id=1915&tag=1913&journey=Digital%20Twin%20Runtime%20Starter%20Kit&resources=1914,1915,1916,1917,1918,1919,1920) for download and maven build instructions.
+The tutorial-asset application exposes a REST endpoint '/asset' that returns a list of asset names and their corresponding id's. For simplicity, these are stored in a file, assets.json. If the assets were constantly changing, you could imagine storing them in a database and having this service query the database. Refer to **Getting Started** for download and maven build instructions.
 
 Note that Predix now provides an [Asset Data](https://www.predix.io/services/service.html?id=1171) service that will covers the functionality of this tutorial-asset application. Instantiating this service and replacing this tutorial-asset application is left as an exercise for the reader.
 
@@ -169,7 +169,7 @@ tutorial-model-coefficient          started                1/1 
 
 ###**Create the tutorial-data application**
 
-This application will retrieve the time series data for a given date range and asset id. It will also retrieve the model coefficients associated with the asset id from the tutorial-model-coefficient service and bundle them in the returned JSON. The returned JSON is in a form that the analytic can directly consume. Refer to** Getting Started**[ ](https://predix-io-dev.grc-apps.svc.ice.ge.com/resources/tutorials/tutorial-details.html?tutorial_id=1915&tag=1913&journey=Digital%20Twin%20Runtime%20Starter%20Kit&resources=1914,1915,1916,1917,1918,1919,1920)for download and maven build instructions.
+This application will retrieve the time series data for a given date range and asset id. It will also retrieve the model coefficients associated with the asset id from the tutorial-model-coefficient service and bundle them in the returned JSON. The returned JSON is in a form that the analytic can directly consume. Refer to **Getting Started** for download and maven build instructions.
 
 **Deploying your microservice**
 
