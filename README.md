@@ -5,11 +5,11 @@
 In the documentation folder are several MSWord documents that can be followed to walk you through building your digital twin
 of a steam turbine.  The documents and the suggested order of reading are listed below.
 
-- [Introduction.docx](documentation/Introduction.docx)
-- [Getting Started.docx](documentation/Getting Started.docx)
-- [Step-1.docx](documentation/Step-1.docx)
-- [Step-2.docx](documentation/Step-2.docx)
-- [Step-3.docx](documentation/Step-3.docx)
-- [Step-4.docx](documentation/Step-4.docx)
-- [Step-5.docx](documentation/Step-5.docx)
-- [Creating Your Own Digital Twin.docx](documentation/Creating Your Own Digital Twin.docx)
+- [Introduction.md](documentation/Introduction.md)
+- [Getting Started.md](documentation/Getting Started.md)
+- [Step-1.md](documentation/Step-1.md)
+- [Step-2.md](documentation/Step-2.md)
+- [Step-3.md](documentation/Step-3.md)
+- [Step-4.md](documentation/Step-4.md)
+- [Step-5.md](documentation/Step-5.md)
+- [Creating Your Own Digital Twin.md](documentation/Creating Your Own Digital Twin.md)
