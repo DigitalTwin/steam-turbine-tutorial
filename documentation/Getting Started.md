@@ -111,7 +111,7 @@ The convention used in this tutorial is to prefix all your service and applicati
 
 Setting up a Predix UAA service in your own Predix space is required to build the sample Digital Twin. The Perl script will do this for you. Alternatively, you can find instructions on how to set up your own UAA service on the Predix website (<https://www.predix.io/services/service.html?id=1172>). For tutorials on how to configure the Predix UAA service, see the Exploring Security Services tutorial at <https://predix-io-dev.grc-apps.svc.ice.ge.com/resources/tutorials/journey.html#1613>.
 
-Once you have provisioned a UAA service, you can choose to configure your UAA service through the UAAC command line interface (instructions for installing can be found here: [*https://github.com/cloudfoundry/cf-uaac*](https://github.com/cloudfoundry/cf-uaac)), or through the Predix Tool Kit ([*https://predix-starter.run.aws-usw02-pr.ice.predix.io/*](https://predix-starter.run.aws-usw02-pr.ice.predix.io/)). For inexperienced users, it is often easiest to use the Predix Tool Kit.
+Once you have provisioned a UAA service, you can choose to configure your UAA service through the UAAC command line interface (instructions for installing can be found here: [https://github.com/cloudfoundry/cf-uaac](https://github.com/cloudfoundry/cf-uaac)), or through the Predix Tool Kit ([*https://predix-starter.run.aws-usw02-pr.ice.predix.io/*](https://predix-starter.run.aws-usw02-pr.ice.predix.io/)). For inexperienced users, it is often easiest to use the Predix Tool Kit.
 
 We recommend the following configuration for your UAA service:
 
@@ -173,7 +173,7 @@ We have included a Perl script in this Starter Kit that will set up UAA and all 
 
 For more information on UAA, see the following documentation:
 
--   *[CloudFoundry UAA](https://predix-io-dev.grc-apps.svc.ice.ge.com/docs#SJzDWEsh) -* <https://github.com/cloudfoundry/uaa>
+-   [CloudFoundry UAA](https://predix-io-dev.grc-apps.svc.ice.ge.com/docs#SJzDWEsh) - <https://github.com/cloudfoundry/uaa>
 
 **Configure Postman**
 
