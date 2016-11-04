@@ -24,8 +24,6 @@ Prior to deploying these tutorial service applications to the cloud, you'll need
 
 **Note**: In order to save the output from the analytic, it needs to be transformed into a JSON structure that can be handled by the "save-data" (tutorial-result-persistence) service. We have created another service (tutorial-result-post-processing) that takes in the JSON output from the analytic and returns a transformed JSON structure that can easily be POSTed to the "save-data" service.
 
- 
-
 ##**What you need to do**
 
 ###**Create the tutorial-result-persistence application**
