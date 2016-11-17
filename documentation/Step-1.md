@@ -59,7 +59,7 @@ Notes:
 
 3)  You'll need to set an environment variable for the security_oauth2_client_clientSecret. You could set this in the manifest.yml file instead, but we recommend using an environment variable as it is more secure than storing passwords in a file, which may result in them being accidentally committed to your source code repository.
 
-<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-asset security\_oauth2\_client\_clientSecret &lt;your Client Id's secret&gt;</pre>
+<pre>C:\steam-turbine-tutorial\tutorial-svcs&gt; cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutorial-asset security_oauth2_client_clientSecret &lt;your Client Id's secret&gt;</pre>
 
 4)  Start your application.
 
