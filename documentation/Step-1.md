@@ -279,7 +279,7 @@ logging.level.com.ge.digitaltwin.tutorial.util: debug
 
 -   Substitute your client id for &lt;YOUR\_CLIENT\_ID&gt;.
 
--   Substitute your Predix time series service zone id for “&lt;YOUR\_PREDIX\_TIMESERIES\_SERVICE\_ZONE\_ID&gt;”
+-   Substitute your Predix time series service zone id for &lt;YOUR\_PREDIX\_TIMESERIES\_SERVICE\_ZONE\_ID&gt;
 
 -   Set the proxyHost and proxyPort as appropriate for your environment.
 
