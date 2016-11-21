@@ -263,13 +263,13 @@ Note that the section with the key “com.ge.dt.tsc” is the configuration of t
 
 <pre>
 com.ge.dt.tsc:
-token-endpoint: https://&lt;YOUR_UAA_INSTANCE_HERE&gt;.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
-clientId: &lt;YOUR CLIENT ID&gt;
-zoneId: &lt;YOUR_PREDIX_TIMESERIES_SERVICE_ZONE_ID&gt;
-ingestionEndpoint: wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages
-queryEndpoint: https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints
-proxyHost: &lt;HOSTNAME&gt;
-proxyPort: &lt;PORT&gt;
+  token-endpoint: https://&lt;YOUR_UAA_INSTANCE_HERE&gt;.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
+  clientId: &lt;YOUR CLIENT ID&gt;
+  zoneId: &lt;YOUR_PREDIX_TIMESERIES_SERVICE_ZONE_ID&gt;
+  ingestionEndpoint: wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages
+  queryEndpoint: https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints
+  proxyHost: &lt;HOSTNAME&gt;
+  proxyPort: &lt;PORT&gt;
 
 logging.level.com.ge.dt.tsc: DEBUG
 logging.level.com.ge.digitaltwin.tutorial.util: debug
