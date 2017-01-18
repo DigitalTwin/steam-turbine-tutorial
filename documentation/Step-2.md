@@ -118,7 +118,8 @@ For all of the REST API calls, you will need to set the “Predix-Zone-Id” htt
 <td><p>2</p>
 <p> </p>
 <p>POST Upload analytic file/jar</p>
-<p>https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/artifacts</p></td>
+<p>https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io/api/v1/catalog/artifacts</p>
+<p>The value of "type" should be "Executable"</p></td>
 <td><table>
 <thead>
 <tr class="header">
