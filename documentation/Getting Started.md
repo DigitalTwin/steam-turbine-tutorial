@@ -22,7 +22,7 @@ Cloud Foundry command line client
 
 -   [https://docs.cloudfoundry.org/cf-cli/install-go-cli.html](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
 
-UAAC - UAA Command line client - Many UAA functions can be done with the Predix Security Starter Kit, but you might need UAAC for more complex efforts or troubleshooting problems.
+UAAC - UAA Command line client - Many UAA functions can be done with the Predix Security Starter Kit, but you'll UAAC for script execution, more complex efforts, or troubleshooting problems.  
 
 -   [https://www.predix.io/docs/?r=705324\#Kmchpf5k](https://predix-io-dev.grc-apps.svc.ice.ge.com/docs/?r=705324#Kmchpf5k)
 
