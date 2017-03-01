@@ -24,7 +24,7 @@ Cloud Foundry command line client
 
 UAAC - UAA Command line client - Many UAA functions can be done with the Predix Security Starter Kit, but you'll UAAC for script execution, more complex efforts, or troubleshooting problems.  
 
--   [https://www.predix.io/docs/?r=705324\#Kmchpf5k](https://predix-io-dev.grc-apps.svc.ice.ge.com/docs/?r=705324#Kmchpf5k)
+-   [https://www.predix.io/docs/?r=705324\#Kmchpf5k](https://www.predix.io/docs/?r=705324#Kmchpf5k)
 
 Maven
 
