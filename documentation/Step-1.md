@@ -1,4 +1,4 @@
-Previous: [Getting Started](Getting Started.md)
+Previous: [Getting Started](GettingStarted.md)
 
 #**Step 1: Get Data**
 

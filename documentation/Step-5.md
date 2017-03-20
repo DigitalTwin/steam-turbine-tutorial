@@ -220,4 +220,4 @@ Now, go back to your browser and change the “select an asset” to the asset n
 
 You learned how to configure connect.js and nginx.conf prior to building your application using node, npm, and grunt. You learned how to work with a corporate proxy. You then learned how to configure your manifest.yml file and push your visualization application to Cloud Foundry. Finally, you learned how to explore your data using the visualization application.
 
-Next: [Creating Your Own Digital Twin](Creating Your Own Digital Twin.md)
+Next: [Creating Your Own Digital Twin](CreatingYourOwnDigitalTwin.md)
