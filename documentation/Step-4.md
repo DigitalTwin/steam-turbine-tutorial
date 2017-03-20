@@ -1,8 +1,8 @@
 Previous: [Step 3](Step-3.md)
 
-#**Step 4: Build Orchestration**
+# **Step 4: Build Orchestration**
 
-##**What you'll learn to do**
+## **What you'll learn to do**
 
 <img src="images/step4-01.jpg" width="624" height="391" />
 
@@ -18,15 +18,15 @@ In this part of the tutorial, you will:
     -   Configure a BPMN (Business Process Model and Notation) file
 -   Create the **tutorial-simulator** service application
 
-##**What you need to set up**
+## **What you need to set up**
 
 Prior to creating this orchestration service, you’ll need to have completed **Step 1**, **Step 2**, and **Step 3** of this tutorial. You should also be familiar with [*BPMN* ](http://www.activiti.org/userguide/index.html#bpmnConstructs)and *Alfresco Activiti BPMN Designer.* If you want to use the provided Postman collection to interact with the REST endpoint, you will need to set the authorization header with the bearer token for the UAA client that has permission to call the REST endpoint since the application is secured. If you have not set up these services or secured the provided Postman collection, please see the **Getting Started** section for instructions. Having the [*Alfresco Activiti BPMN Designer*](http://docs.alfresco.com/4.1/tasks/wf-install-activiti-designer.html) plug-in for Eclipse or the [*actiBPM*](https://plugins.jetbrains.com/plugin/7429) plug-in for IntelliJ will help with the editing of the BPMN file.
 
 As we saw in **Step 2: Build and Deploy Models**, a Twin model is responsible for acting upon a set of input data about the twin asset and then producing some output of value representative of the physical twin's condition.  This Orchestration Service is used to execute a Digital Twin model by defining the sequence of tasks to acquire input data, run the analytic/model, and persist the twin analytic/model output.  The orchestration service also handles the passing of data from step to step.
 
-##**What you need to do**
+## **What you need to do**
 
-###**Create the workflow service**
+### **Create the workflow service**
 
 The tutorial-workflow application exposes a REST endpoint '/workflow/{workflow-id}' that executes the named workflow (we’ll discuss {workflow-id} momentarily) thereby orchestrating the services that we built in previous steps. Refer to **Getting Started** for download instructions. We will need to update the BPMN file to reference the REST endpoints that we deployed in Steps 1, 2, and 3 before building and deploying this service. Refer to **Getting Started** for download and maven build instructions.
 
@@ -179,7 +179,7 @@ These are the rest endpoints of interest to the "tutorial-workflow" (an implemen
 
 If your workflow executed successfully, then the results of the analytic must have been saved via the service application that you created in Step 3 (tutorial-result-persistence). That service application has an endpoint that allows you to get a list of all the analytic results. You can use the “Get all analytic results” request from the Postman collection’s “Step 3 – Store Data” folder to verify that your workflow properly executed.
 
-###**Create the tutorial simulator service application**
+### **Create the tutorial simulator service application**
 
 This service simulates new data coming into your workflow by invoking the workflow on different time windows of the data that already exists in your timeseries database. Note that this simulator does not actually create any new data. It relies on data that you pushed to timeseries back in Step 1. The simulator also generates Swagger documentation for all RESTful endpoints for running the simulator. The Swagger GUI may be accessed via web browser at /swagger-ui.html.
 
@@ -273,7 +273,7 @@ tutorial-simulator started 1/1 1G 1G <strong>dt-tutorial-simulator.run.aws-usw02
 
 -   When completed use the GET endpoint from the tutorial-result-persistence application to see stored results.
 
-##**What you learned**
+## **What you learned**
 
 In this section, you learned how to use the pre-built and pre-deployed workflow service. You updated the BPMN workflow file to reference the REST endpoints deployed on previous steps. This required the service to be rebuilt (using maven) and deployed to Predix. You learned how to test the REST endpoints with the new changes. You learned how to build and deploy the tutorial-simulator service and confirmed that it too worked.
 

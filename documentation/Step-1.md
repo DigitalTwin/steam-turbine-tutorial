@@ -1,8 +1,8 @@
 Previous: [Getting Started](GettingStarted.md)
 
-#**Step 1: Get Data**
+# **Step 1: Get Data**
 
-##**What you'll learn to do**
+## **What you'll learn to do**
 
 <img src="images/step1-01.jpg" width="632" height="397" />
 
@@ -22,13 +22,13 @@ In this part of the tutorial, you will:
 
 -   Create and upload sample data to the Predix Time Series service
 
-##**What you need to set up**
+## **What you need to set up**
 
 Prior to deploying any tutorial services to the cloud, you'll need a [UAA service](https://www.predix.io/services/service.html?id=1172) instance, a [PostgreSQL service](https://www.predix.io/services/service.html?id=1178) instance, and a [Predix Time Series service](https://www.predix.io/services/service.html?id=1177) instance. If you want to use the provided Postman collection to interact with the REST endpoints, you will need to set the authorization header with the bearer token for the UAA client that has permission to call the REST endpoint since the applications are secured. If you have not set up these services or secured the provided Postman collection, please see the **Getting Started** section for instructions. 
 
-##**What you need to do**
+## **What you need to do**
 
-###**Create the tutorial-asset application**
+### **Create the tutorial-asset application**
 
 The tutorial-asset application exposes a REST endpoint '/asset' that returns a list of asset names and their corresponding id's. For simplicity, these are stored in a file, assets.json. If the assets were constantly changing, you could imagine storing them in a database and having this service query the database. Refer to **Getting Started** for download and maven build instructions.
 
@@ -81,7 +81,7 @@ tutorial-asset                      started           
 
 <img src="images/step1-03.jpg" width="624" height="669" />
 
-###**Create the tutorial-model-coefficient application**
+### **Create the tutorial-model-coefficient application**
 
 This application sets and gets the coefficients for a specific asset model. This illustrates how tuned parameters for an asset model can be retrieved and combined with time series data before calling the analytic. Refer to **Getting Started** for download and maven build instructions.
 
@@ -167,7 +167,7 @@ tutorial-model-coefficient          started                1/1 
 
 <img src="images/step1-05.jpg" width="624" height="542" />
 
-###**Create the tutorial-data application**
+### **Create the tutorial-data application**
 
 This application will retrieve the time series data for a given date range and asset id. It will also retrieve the model coefficients associated with the asset id from the tutorial-model-coefficient service and bundle them in the returned JSON. The returned JSON is in a form that the analytic can directly consume. Refer to **Getting Started** for download and maven build instructions.
 
@@ -240,7 +240,7 @@ tutorial-data                      started           �
 </pre>
 We’ll test this application after we’ve pushed some time series data into the service in the next section.
 
-###**Create and upload sample data to the Predix Time Series service**
+### **Create and upload sample data to the Predix Time Series service**
 
 To demonstrate that we can retrieve time series data from the time series service, we need to load some sample data into the time series service for our asset(s). We have a sample utility in steam-turbine-tutorial/tutorial-util/tutorial-timeseries-util. This utility can be used to create some demonstration data. This simulates a service that, in real-world Digital Twin applications, would capture data from the asset’s sensors and save it for analysis. Refer to **Getting Started** for download instructions.
 
@@ -343,7 +343,7 @@ Now that you have a significant amount of data in your time series service, let�
 
 <img src="images/step1-07.jpg" width="624" height="663" />
 
-##**What you learned**
+## **What you learned**
 
 You learned how to set up and test the services needed to interact with the data that will feed our sample Digital Twin model. You also saw how to push sample data into your time series service.
 
