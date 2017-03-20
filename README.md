@@ -12,4 +12,4 @@ of a steam turbine.  The documents and the suggested order of reading are listed
 - [Step-3.md](documentation/Step-3.md)
 - [Step-4.md](documentation/Step-4.md)
 - [Step-5.md](documentation/Step-5.md)
-- [Creating Your Own Digital Twin.md](documentation/Creating\ Your\ Own\ Digital\ Twin.md)
+- [Creating\ Your\ Own\ Digital\ Twin.md](documentation/Creating\ Your\ Own\ Digital\ Twin.md)
