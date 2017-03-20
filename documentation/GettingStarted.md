@@ -1,12 +1,12 @@
 Previous: [Introduction](Introduction.md)
 
-**Build the Digital Twin Starter Kit: Getting Started**
+## **Build the Digital Twin Starter Kit: Getting Started**
 
-**What you'll learn to do**
+### **What you'll learn to do**
 
 Set up your environment to run a sample Digital Twin. Download and build the provided sample code.
 
-**What you need to set up**
+### **What you need to set up**
 
 This section will introduce recommended development tools and environment configuration.
 
