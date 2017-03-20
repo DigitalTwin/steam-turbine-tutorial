@@ -1,12 +1,12 @@
 Previous: [Step 5](Step-5.md)
 
-#**Build the Digital Twin Starter Kit: Creating Your Digital Twin**
+# **Build the Digital Twin Starter Kit: Creating Your Digital Twin**
 
-##**What you'll learn to do**
+## **What you'll learn to do**
 
 Now that you’ve completed the Digital Twin Starter Kit Tutorial, it is time for you to apply what you’ve learned to create your own Digital Twins. The following are some guiding questions and recommendations on how to get started.
 
-##**What you need to do**
+## **What you need to do**
 
 **Gather Your Information**
 

@@ -1,8 +1,8 @@
 Previous: [Step 4](Step-4.md)
 
-#**Step 5: Build Applications**
+# **Step 5: Build Applications**
 
-##**What you'll learn to do**
+## **What you'll learn to do**
 
 Step 5 notes that while every Digital Twin application is likely to have its own visualization requirements, a few common elements are frequently used. In this step, you’ll learn how to set up a simple visualization application that leverages the services and orchestration that we previously built.
 
@@ -28,13 +28,13 @@ This fully functional web application pulls data from the "GET" endpoint describ
 
 -   Explore your data
 
-##**What you need to set up**
+## **What you need to set up**
 
 You will need a Predix service instance of a [Key-Value (Redis)](https://www.predix.io/services/service.html?id=1215) service and you’ll need to know its name. You’ll also need a properly configured UAA instance. Please refer to the [*Setting up a UAA service in Getting Started*](https://predix-io-dev.grc-apps.svc.ice.ge.com/resources/tutorials/tutorial-details.html?tutorial_id=1915&tag=1913&journey=Digital%20Twin%20Runtime%20Starter%20Kit&resources=1914,1915,1916,1917,1918,1919,1920) to create your own clients, users and secrets for building the tutorial.
 
-##**What you need to do**
+## **What you need to do**
 
-###**Create the tutorial-vis application**
+### **Create the tutorial-vis application**
 
 **Update URLs to the REST endpoints to get data**
 
@@ -206,7 +206,7 @@ C:\steam-turbine-tutorial-vis&gt;cf set-env &lt;YOUR_OWN_UNIQUE_PREFIX&gt;-tutor
 
 5)  Use “cf apps” to discover the URL to your application. Prepend “https://” to this URL, paste it into your browser and authenticate with the “tutorial-user” user account credentials that you set up in Getting Started.
 
-###**Explore your data**
+### **Explore your data**
 
 Now that your visualization application is up and running with the support of all the backend services from the previous tutorial steps, you can explore data.
 
@@ -216,8 +216,8 @@ Now, go back to your browser and change the “select an asset” to the asset n
 
 <img src="images/step5-02.jpg"  />
 
-##**What you learned**
+## **What you learned**
 
 You learned how to configure connect.js and nginx.conf prior to building your application using node, npm, and grunt. You learned how to work with a corporate proxy. You then learned how to configure your manifest.yml file and push your visualization application to Cloud Foundry. Finally, you learned how to explore your data using the visualization application.
 
-Next: [Creating Your Own Digital Twin](Creating Your Own Digital Twin.md)
+Next: [Creating Your Own Digital Twin](CreatingYourOwnDigitalTwin.md)

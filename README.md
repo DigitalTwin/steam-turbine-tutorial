@@ -5,11 +5,11 @@
 In the documentation folder are several Markdown documents that can be followed to walk you through building your digital twin
 of a steam turbine.  The documents and the suggested order of reading are listed and linked below.
 
-- [Introduction.md](documentation/Introduction.md)
-- [Getting Started.md](documentation/Getting Started.md)
-- [Step-1.md](documentation/Step-1.md)
-- [Step-2.md](documentation/Step-2.md)
-- [Step-3.md](documentation/Step-3.md)
-- [Step-4.md](documentation/Step-4.md)
-- [Step-5.md](documentation/Step-5.md)
-- [Creating Your Own Digital Twin.md](documentation/Creating Your Own Digital Twin.md)
+- [Introduction](documentation/Introduction.md)
+- [Getting Started](documentation/GettingStarted.md)
+- [Step-1](documentation/Step-1.md)
+- [Step-2](documentation/Step-2.md)
+- [Step-3](documentation/Step-3.md)
+- [Step-4](documentation/Step-4.md)
+- [Step-5](documentation/Step-5.md)
+- [Creating Your Own Digital Twin](documentation/CreatingYourOwnDigitalTwin.md)

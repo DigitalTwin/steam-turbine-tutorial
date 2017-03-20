@@ -1,8 +1,8 @@
 Previous: [Step 1](Step-1.md)
 
-#**Step 2: Build and Deploy Models**
+# **Step 2: Build and Deploy Models**
 
-##**What you'll learn to do**
+## **What you'll learn to do**
 
 <img src="images/step2-01.jpg" width="664" height="431" />
 
@@ -24,13 +24,13 @@ In this part of the tutorial, you will:
 
   
 
-##**What you need to set up**
+## **What you need to set up**
 
-For this step, you will need an instance of the Analytics Catalog and an instance of the Predix UAA service. If you want to use the provided Postman collection to interact with the REST endpoints, you will need to set the authorization header with the bearer token for the UAA client that has permission to call the REST endpoint since the applications are secured. If you have not set up these services or secured the provided Postman collection, please see the [Getting Started](Getting Started.md) section for instructions. 
+For this step, you will need an instance of the Analytics Catalog and an instance of the Predix UAA service. If you want to use the provided Postman collection to interact with the REST endpoints, you will need to set the authorization header with the bearer token for the UAA client that has permission to call the REST endpoint since the applications are secured. If you have not set up these services or secured the provided Postman collection, please see the [Getting Started](GettingStarted.md) section for instructions. 
 
-##**What you need to do**
+## **What you need to do**
 
-###**Find the Predix-Zone-Id of the your Predix-Analytics-Catalog**
+### **Find the Predix-Zone-Id of the your Predix-Analytics-Catalog**
 
 In this part of the tutorial, you’ll need to know what your Predix-Zone-Id is for your Predix-Analytics-Catalog instance.
 
@@ -51,7 +51,7 @@ D:\mydir\steam-turbine-tutorial\tutorial-svcs\tutorial-analytic&gt;
 
 The guid string returned (for example, 69ab882f-ab6d-4c5a-8a4d-68f3a0148b22) is used as the value for the header parameter Predix-Zone-Id in Predix Analytic Catalog REST API calls. We’ll need this guid soon.
 
-###**Create the tutorial-analytic**
+### **Create the tutorial-analytic**
 
 If you've already created the tutorial-asset application as described in **Step 1**: "Create the tutorial-asset to application," then you already have the code locally.  
 
@@ -62,7 +62,7 @@ $ cd steam-turbine-tutorial/tutorial-analytics/tutorial-actual-vs-expected-analy
 $ mvn clean package
 </pre>
 
-###**Upload the analytic to the Analytic Catalog**
+### **Upload the analytic to the Analytic Catalog**
 
 You can interact with the Predix Analytic Catalog through its REST API by using the provided Postman collection.
 
@@ -251,7 +251,7 @@ For all of the REST API calls, you will need to set the “Predix-Zone-Id” htt
 
 Note that Predix provides additional services for analytic support. These are the [Predix Analytics Runtime](https://www.predix.io/services/service.html?id=1174) and the [Predix Analytics User Interface](https://www.predix.io/services/service.html?id=1586). Predix has documented the [Analytic Development Process](https://www.predix.io/docs#Qd2kPYb7) which you can explore on your own.
 
-###**Execute the analytic hosted in the Analytic Catalog**
+### **Execute the analytic hosted in the Analytic Catalog**
 
 For the tutorial analytic, the POST request body for the analytic execution needs a JSON object consisting of an array (rpmSeries) of JSON objects consisting of a time stamp (timestamp), revolutions per minute (rpm), and actual temperature (actualTemperature) values followed by the slope and intercept values (coefficients for the regression model). An example of this JSON data is in the table below.
 
@@ -324,7 +324,7 @@ Now you can make the following POST request to the Analytic Catalog to execute y
 
 In **Step 4**, the BPMN file needs to know the above execution URL to run your analytic in the Digital Twin workflow. 
 
-##**What you learned**
+## **What you learned**
 
 You learned how to find the predix zone id of your predix analytics catalog for use in the HTTP headers. You also learned how use the Predix Analytic Catalog to upload, validate, check the status of, and execute the pre-built analytic by using the catalog’s REST API.
 

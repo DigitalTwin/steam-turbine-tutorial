@@ -1,10 +1,10 @@
 Build the Digital Twin Starter Kit: Introduction
 -
-**What you'll learn to do**
+### **What you'll learn to do**
 
 You will learn the definition and concepts of the Digital Twin as well as the considerations and methods for creating a Digital Twin.
 
-**What you need to do**
+### **What you need to do**
 
 **What is a Digital Twin?**
 
@@ -62,5 +62,5 @@ For our example Digital Twin scenario, we use a model that compares the actual r
 
 You have learned the defining characteristics of a Digital Twin and the Five Steps that go into creating a Digital Twin.
 
-Next: [Getting Started](Getting Started.md)
+Next: [Getting Started](GettingStarted.md)
 

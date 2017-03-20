@@ -1,12 +1,12 @@
 Previous: [Introduction](Introduction.md)
 
-#**Build the Digital Twin Starter Kit: Getting Started**
+## **Build the Digital Twin Starter Kit: Getting Started**
 
-##**What you'll learn to do**
+### **What you'll learn to do**
 
 Set up your environment to run a sample Digital Twin. Download and build the provided sample code.
 
-##**What you need to set up**
+### **What you need to set up**
 
 This section will introduce recommended development tools and environment configuration.
 
@@ -60,7 +60,7 @@ Inside this collection are folders corresponding to each of the 5 steps taken to
 
 All of the services with available REST endpoints utilize a tool called Swagger to generate documentation for the available REST endpoints. Swagger also allows you to execute HTTP requests through its online user interface. We will discuss this in greater detail later. 
 
-##**What you need to do** 
+**What you need to do** 
 
 **Creating services**
 
@@ -292,7 +292,7 @@ $ mvn clean install</td>
 
 The code to build the tutorial visualization app is found in [https://github.com/DigitalTwin/steam-turbine-tutorial-vis](https://github.com/DigitalTwin/steam-turbine-tutorial-vis). Clone this module into your local file system. We'll discuss configuring, building, and deploying this in Step 5.
 
-##**What you learned**
+### **What you learned**
 
 You have learned how to configure your environment to run the Digital Twin Starter Kit, and have learned how to build the provided sample code. You have learned what modules are present in the provided code and how they implement the 5 Steps discussed in the Introduction.
 

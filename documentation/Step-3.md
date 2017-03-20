@@ -1,8 +1,8 @@
 Previous: [Step 2](Step-2.md)
 
-#**Step 3: Save Results**
+# **Step 3: Save Results**
 
-##**What you'll learn to do**
+## **What you'll learn to do**
 
 <img src="images/step3-01.jpg" width="624" height="392" />
 
@@ -18,15 +18,15 @@ The simple workflow:
 
 -   Create the **tutorial-analytic-post-processing** application
 
-##**What you need to set up**
+## **What you need to set up**
 
 Prior to deploying these tutorial service applications to the cloud, you'll need a [UAA service](https://www.predix.io/services/service.html?id=1172) instance, a [PostgreSQL service](https://www.predix.io/services/service.html?id=1178) instance, and a [Message Queue service](https://www.predix.io/services/service.html?id=1182) instance (RabbitMQ). If you want to use the provided Postman collection to interact with the REST endpoints, you will need to set the authorization header with the bearer token for the UAA client that has permission to call the REST endpoint since the applications are secured. If you have not set up these services or secured the provided Postman collection, please see the **Getting Started** section for instructions. 
 
 **Note**: In order to save the output from the analytic, it needs to be transformed into a JSON structure that can be handled by the "save-data" (tutorial-result-persistence) service. We have created another service (tutorial-result-post-processing) that takes in the JSON output from the analytic and returns a transformed JSON structure that can easily be POSTed to the "save-data" service.
 
-##**What you need to do**
+## **What you need to do**
 
-###**Create the tutorial-result-persistence application**
+### **Create the tutorial-result-persistence application**
 
 The tutorial-result-persistence application exposes REST endpoints that allow for saving, modifying, retrieving, and deleting analytic results. Refer to **Getting Started** for download and maven build instructions. In this step of the tutorial, we’ll be using the “save” feature of this tutorial-result-persistence service. In Step 5 of the tutorial, we’ll use this service again to retrieve some analytic results for visualization purposes.
 
@@ -111,7 +111,7 @@ tutorial-result-persistence         started                1/1 �
 
 <img src="images/step3-04.jpg" />
 
-###**Create the tutorial-analytic-post-processing service**
+### **Create the tutorial-analytic-post-processing service**
 
 This application takes the JSON output from the analytic and transforms it into a different JSON structure that can easily be saved via a POST to the tutorial-result-persistence service. Refer to **Getting Started** for download and maven build instructions.
 
@@ -167,7 +167,7 @@ tutorial-analytic-post-processing          started              
 
 <img src="images/step3-05.jpg" width="1416" height="963" />
 
-##**What you learned**
+## **What you learned**
 
 You have learned how to set up the services needed to transform and save the results of the analytic to a postgres database. These services publish the following endpoints (with sample invocation URLs):
 
