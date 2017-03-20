@@ -1,7 +1,7 @@
 Previous: [Step 1](Step-1.md)
 
 # **Step 2: Build and Deploy Models**
-
+-
 ## **What you'll learn to do**
 
 <img src="images/step2-01.jpg" width="664" height="431" />

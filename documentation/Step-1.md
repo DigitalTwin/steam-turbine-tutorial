@@ -1,7 +1,7 @@
 Previous: [Getting Started](GettingStarted.md)
 
 # **Step 1: Get Data**
-
+-
 ## **What you'll learn to do**
 
 <img src="images/step1-01.jpg" width="632" height="397" />

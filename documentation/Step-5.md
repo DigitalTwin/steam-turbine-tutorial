@@ -1,7 +1,7 @@
 Previous: [Step 4](Step-4.md)
 
 # **Step 5: Build Applications**
-
+-
 ## **What you'll learn to do**
 
 Step 5 notes that while every Digital Twin application is likely to have its own visualization requirements, a few common elements are frequently used. In this step, you’ll learn how to set up a simple visualization application that leverages the services and orchestration that we previously built.
