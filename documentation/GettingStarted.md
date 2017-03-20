@@ -292,7 +292,7 @@ $ mvn clean install</td>
 
 The code to build the tutorial visualization app is found in [https://github.com/DigitalTwin/steam-turbine-tutorial-vis](https://github.com/DigitalTwin/steam-turbine-tutorial-vis). Clone this module into your local file system. We'll discuss configuring, building, and deploying this in Step 5.
 
-**What you learned**
+### **What you learned**
 
 You have learned how to configure your environment to run the Digital Twin Starter Kit, and have learned how to build the provided sample code. You have learned what modules are present in the provided code and how they implement the 5 Steps discussed in the Introduction.
 
