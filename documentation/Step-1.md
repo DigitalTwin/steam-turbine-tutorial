@@ -77,9 +77,9 @@ tutorial-asset                      started           
 </pre>
 6)  Get a bearer token and test your service with Postman.
 
--   Try the “Get all assets” GET request.
+-   Try the “Get all assets” GET request from the Postman Collections window. Alternatively, you can access the URL : https://&lt;YOUR_OWN_ASSET_SERVICE_PREFIX&gt;-dt-tutorial-asset.run.aws-usw02-pr.ice.predix.io/asset
 
-<img src="images/step1-03.jpg" width="624" height="669" />
+<img src="images/step1-03.jpg" width="730" height="669" />
 
 ### **Create the tutorial-model-coefficient application**
 
