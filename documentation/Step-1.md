@@ -131,7 +131,7 @@ C:\steam-turbine-tutorial\tutorial-svcs&gt; cf start &lt;YOUR_OWN_UNIQUE_PREFIX&
 5)  Run the "cf apps" command to discover the URL to your service. Prepend the “https://” protocol then append your API path to get the full URL to your data service
 
 <pre>
-C:\steam-turbine-tutorial\tutorial-svcs\tutorial-tutorial-model-coefficient&gt; cf apps
+C:\steam-turbine-tutorial\tutorial-svcs\tutorial-model-coefficient&gt; cf apps
 Getting apps in org DigitalTwin / space dev as 200000000@mail.ad.ge.com...
 OK
 name                                      requested state   instances   memory   disk   urls
