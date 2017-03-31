@@ -205,7 +205,7 @@ This application will retrieve the time series data for a given date range and a
 
 -   com\_ge\_dt\_tsc\_queryEndpoint is the endpoint used for querying time series data. It is usually: https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints
 
--   com\_ge\_dt\_tsc\_ingestionEndpoint is the endpoint used to ingesting time series data. This endpoint is not used in this service but is required by the Predix Time Series client. It is usually wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages
+-   com\_ge\_dt\_tsc\_ingestionEndpoint is the endpoint used to ingest time series data. This endpoint is not used in this service but is required by the Predix Time Series client. It is usually wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages
 
 -   com\_ge\_dt\_tsc\_zoneId is the Predix zone id of your time series service. Retrieve it by
 
